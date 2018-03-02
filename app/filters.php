@@ -63,14 +63,8 @@ Route::filter('admin', function()
         }
     }
     $admin = Auth::admin()->get();
-    if (isset($admin)) {
-        if ($admin->role_id != ADMIN) {
-            $route = Route::getCurrentRoute()->getActionName();
-            $check = checkUrlPermission($route);
-            if (!$check) {
-                return View::make('403');
-            }
-        }
+    if (!isset($admin)) {
+        dd(444);
     }
     
 });

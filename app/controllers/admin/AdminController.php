@@ -1,7 +1,7 @@
 <?php
 class AdminController extends BaseController {
     public function __construct() {
-        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
+        // $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
     }
     /**
      * Display a listing of the resource.
@@ -43,7 +43,7 @@ class AdminController extends BaseController {
      */
     public function show($id)
     {
-        dd(111);
+        dd(4444444);
     }
     /**
      * Show the form for editing the specified resource.
@@ -53,6 +53,7 @@ class AdminController extends BaseController {
      */
     public function edit($id)
     {
+        dd('test');
         $admin = Admin::find($id);
         return View::make('administrator.edit')->with(compact('admin'));
     }

@@ -8,12 +8,18 @@
                 </a>
             </li>
             <li>
-                <a href="{{ action('ManagerTeacher@index') }}">
+                <a href="{{ action('ManagerTeacherController@index') }}">
                     <i class="fa fa-newspaper-o"></i> 
                     <span>Quản lý teacher </span>
                 </a>
             </li>
-                
+             <li>
+                <a href="{{ action('ManagerStudentController@index') }}">
+                    <i class="fa fa-newspaper-o"></i> 
+                    <span>Quản lý student 1</span>
+                </a>
+            </li>
+            
         </ul>
     </section>
 </aside>
