@@ -124,6 +124,7 @@ return array(
 		"Ollieread\Multiauth\MultiauthServiceProvider",
 		"Maatwebsite\Excel\ExcelServiceProvider",
 	    'Barryvdh\Debugbar\ServiceProvider',
+		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 	),
 
 	/*

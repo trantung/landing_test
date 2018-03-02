@@ -50,24 +50,26 @@ Route::filter('auth', function()
 
 Route::filter('admin', function()
 {
-    if (Auth::admin()->guest()){
-        if (Auth::user()->guest()){
-            return Redirect::action('AdminController@login');
-        }
-        if (Auth::user()->check()) {
-            $route = Route::getCurrentRoute()->getActionName();
-            $check = checkUrlPermission($route);
-            if (!$check) {
-                return View::make('403');
+    $user = currentUser();
+    if( !$user ){
+        return Redirect::action('AdminController@login');
+    }
+    if( !hasRole('admin', $user) ){
+        $route = Route::getCurrentRoute()->getActionName();
+        $checkPermission = false;
+        foreach (getAllPermissions() as $permission => $value) {
+            if( userAccess($permission, $user) && in_array($route, $value['accept']) ){
+                $checkPermission = $value['accept'];
+                break;
             }
         }
+        if( !$checkPermission ){
+            App::abort(403);
+        }
     }
-    $admin = Auth::admin()->get();
-    if (!isset($admin)) {
-        dd(444);
-    }
-    
+
 });
+
 Route::filter('user', function()
 {
     if (Auth::user()->guest()){

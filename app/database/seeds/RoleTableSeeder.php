@@ -6,15 +6,20 @@ class RoleTableSeeder extends Seeder {
     {
         Role::create([
             'name'=>'Quản lý hệ thống',
+            'slug'=>'admin'
+        ]);
+        Role::create([
+            'name'=>'Webmaster',
+            'slug'=>'webmaster'
         ]);
         Role::create([
             'name'=>'Sale',
+            'slug'=>'sale'
         ]);
         Role::create([
-            'name'=>'Manager cấp trung',
+            'name'=>'Giáo viên',
+            'slug'=>'teacher'
         ]);
-       
-        
     }
 
 }

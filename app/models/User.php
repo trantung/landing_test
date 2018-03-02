@@ -24,18 +24,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-	protected $fillable = array('email', 'password', 'role_id', 'username', 'personal_email', 
-		'center_id', 'phone', 'start_date', 'end_date', 'birth_day', 'current_address', 'address', 'id_number', 'id_date', 'id_provide', 'job', 'full_name'
+	protected $fillable = array('email', 'password', 'role_id', 'username',
 	);
     protected $dates = ['deleted_at'];
 
-    public function center() 
+    public function role()
     {
-        return $this->belongsTo('Center', 'center_id', 'id');
-
-    }
-    public function free_time_user()
-    {
-    	return $this->hasMany('FreeTimeUser', 'user_id', 'id');
+        return $this->belongsTo('Role', 'role_id', 'id');
     }
 }

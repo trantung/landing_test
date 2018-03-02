@@ -1,9 +1,5 @@
 <?php
 class ManagerStudentController extends AdminController {
-    // public function __construct() {
-    //     parent::__construct();
-    //     $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -11,9 +7,8 @@ class ManagerStudentController extends AdminController {
      */
     public function index()
     {
-        dd(42131231);
         $data = Admin::all();
-        return View::make('administrator.index')->with(compact('data'));
+        return View::make('student.index')->with(compact('data'));
     }
     /**
      * Show the form for creating a new resource.
@@ -22,7 +17,7 @@ class ManagerStudentController extends AdminController {
      */
     public function create()
     {
-        return View::make('administrator.create');
+        return View::make('student.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -34,8 +29,7 @@ class ManagerStudentController extends AdminController {
         $input = Input::except('_token');
         $input['password'] = Hash::make($input['password']);
         $adminId = Admin::create($input)->id;
-        return Redirect::action('AdminController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
-            Người dùng đã được tạo!');
+        return Redirect::action('ManagerStudentController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
     }
     /**
      * Display the specified resource.
