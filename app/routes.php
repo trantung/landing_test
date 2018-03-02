@@ -1,5 +1,5 @@
 <?php
-Route::resource('/admin', 'AdminController');
+// Route::resource('/admin', 'AdminController');
 // Route::get('/', 'AdminController@index');
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', array('uses' => 'AdminController@login', 'as' => 'admin.login'));
@@ -7,8 +7,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/logout', 'AdminController@logout');
     Route::get('administrator/{id}/reset', 'AdminController@getResetPass');
     Route::post('/administrator/{id}/reset', 'AdminController@postResetPass');
-    Route::resource('/teacher', 'ManagerTeacher');
+    Route::resource('/teacher', 'ManagerTeacherController');
+    Route::resource('/student', 'ManagerStudentController');
+	Route::resource('/', 'AdminController');
 });
+
 
 // Route::controller('/ajax', 'AjaxController');
 

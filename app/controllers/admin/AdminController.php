@@ -43,7 +43,7 @@ class AdminController extends BaseController {
      */
     public function show($id)
     {
-        dd(111);
+        dd(4444444);
     }
     /**
      * Show the form for editing the specified resource.

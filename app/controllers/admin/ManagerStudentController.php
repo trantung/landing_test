@@ -1,8 +1,9 @@
 <?php
 class ManagerStudentController extends AdminController {
-    public function __construct() {
-        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
-    }
+    // public function __construct() {
+    //     parent::__construct();
+    //     $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -10,6 +11,7 @@ class ManagerStudentController extends AdminController {
      */
     public function index()
     {
+        dd(42131231);
         $data = Admin::all();
         return View::make('administrator.index')->with(compact('data'));
     }
@@ -43,7 +45,7 @@ class ManagerStudentController extends AdminController {
      */
     public function show($id)
     {
-        dd(111);
+    
     }
     /**
      * Show the form for editing the specified resource.
