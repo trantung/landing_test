@@ -83,12 +83,7 @@ class AdminController extends BaseController {
 
     public function login()
     {
-        $checkLogin = Auth::admin()->check();
-        if($checkLogin) {
-            return Redirect::action('AdminController@index');
-        } else {
-            return View::make('admin.layout.login');
-        }
+        return View::make('admin.layout.login');
     }
     public function doLogin()
     {
