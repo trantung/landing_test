@@ -1,126 +1,22 @@
 <?php
 class Common {
 
-    public static function getFreeTimeOfUser($uid, $timeId = null, $startTime = null, $endTime = null){
-        $data = [];
-        $times = FreeTimeUser::where('user_id', $uid);
-        if( $timeId ){
-            $times->where('time_id', $timeId);
+    public static function getLevelName($level){
+        if( $level == BEGINING ){
+            return 'Begining';
+        } elseif( $level == ADVANCE ){
+            return 'Advance';
         }
-        if( $startTime ){
-            $times->where('start_time', $startTime);
-        }
-        if( $endTime ){
-            $times->where('end_time', $endTime);
-        }
-        if( $times->count() == 0 ){
-            return false;
-        }
-        foreach ($times->get() as $key => $value) {
-            $data[$value->time_id][] = [
-                'start_time' => $value->start_time,
-                'end_time' => $value->end_time,
-            ];
-        }
-        if( count($data) ){
-            return $data;
-        }
-        return false;
+        return '';
     }
 
-    public static function listFolderFiles($dir){
-        if( !is_dir($dir) ){
-            return [];
+    public static function getGenderName($gender){
+        if( $gender == NAM ){
+            return 'Nam';
+        } elseif( $gender == NU ){
+            return 'Nữ';
         }
-        $ffs = scandir($dir);
-
-        unset($ffs[array_search('.', $ffs, true)]);
-        unset($ffs[array_search('..', $ffs, true)]);
-
-        // prevent empty ordered elements
-        if (count($ffs) < 1){
-            
-            return [];
-        }
-
-        $files = [];
-        foreach($ffs as $ff){
-            if( !is_dir($dir.'/'.$ff) ){
-                $files[] = $dir.'/'.$ff;
-            }else{
-                $files = array_merge($files, self::listFolderFiles($dir.'/'.$ff));
-            }
-        }
-        return $files;
-    }
-
-    /**
-     * Lay danh sach level cua 1 User
-     */
-    public static function getLevelOfUser($uid){
-        $levels = UserCenterLevel::where('user_id', $uid)->lists('level_id');
-        return $levels;
-    }
-
-    /**
-     * Lay danh sach Class, Subject, Level cua 1 trung tam
-     */
-    public static function getClassSubjectLevelOfCenter($centerId){
-        $levelsObject = Center::find($centerId);
-        $arr = [
-            'listClasses' => [],
-            'listSubjects' => [],
-            'listLevels'    => [],
-        ];
-        if( count($levelsObject->levels) ){
-            foreach ($levelsObject->levels as $level) {
-                $arr['listLevels'][] = $level->id;
-                if( !isset($arr['listClasses'][$level->class_id]) ){
-                    $arr['listClasses'][$level->class_id] = ClassModel::find($level->class_id);
-                }
-                if( !in_array($level->subject_id, $arr['listSubjects']) ){
-                    $arr['listSubjects'][] = $level->subject_id;
-                }
-            }
-        }
-        return $arr;
-    }
-
-    /**
-     * Lay danh sach Level cua 1 mon hoc thuoc 1 lop, tra ve 1 mang
-     */
-    public static function getLevelBySubject($classId, $subjectId){
-        $subjectClass = SubjectClass::where('class_id', '=', $classId)->where('subject_id', '=', $subjectId)->first();
-        $subjectClassId = Common::getObject($subjectClass, 'id');
-        if( $subjectClassId ){
-            $levels = Level::select('id', 'name')->where('subject_class_id', '=', $subjectClassId)->get();
-            return $levels;
-        }
-        return [];
-    }
-
-    /**
-     * Lay danh sach Level cua 1 mon hoc thuoc 1 lop, tra ve 1 mang
-     */
-    public static function getSubjectClassByLevel($level){
-        $subjectClassId = SubjectClass::findOrFail($level->subject_class_id);
-        $classes = ClassModel::findOrFail(Common::getObject($subjectClassId, 'class_id'));
-        $subjects = Subject::findOrFail(Common::getObject($subjectClassId, 'subject_id'));
-        return ['class'=>$classes,'subject'=>$subjects];
-    }
-
-    /**
-     * Lay danh sach Level cua 1 mon hoc thuoc 1 lop, tra ve 1 chuoi
-     */
-    public static function renderLevelBySubject($classId, $subjectId, $separated = ', '){
-        $output = [];
-        $levels = self::getLevelBySubject($classId, $subjectId);
-        if( $levels ){
-            foreach ($levels as $key => $value) {
-                $output[] = $value->name;
-            }
-        }
-        return implode($separated, $output);
+        return 'Không xác định';
     }
 
     public static function getValueOfObject($ob, $method, $field, $default = null)

@@ -7,7 +7,7 @@ class ManagerStudentController extends AdminController {
      */
     public function index()
     {
-        $data = Admin::all();
+        $data = Student::paginate(PAGINATE);
         return View::make('student.index')->with(compact('data'));
     }
     /**
@@ -26,9 +26,11 @@ class ManagerStudentController extends AdminController {
      */
     public function store()
     {
-        $input = Input::except('_token');
-        $input['password'] = Hash::make($input['password']);
-        $adminId = Admin::create($input)->id;
+        $input = Input::all();
+        if( Input::hasFile('avatar') ){
+            
+        }
+        $studentId = CommonNormal::create($input, 'Student');
         return Redirect::action('ManagerStudentController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
     }
     /**

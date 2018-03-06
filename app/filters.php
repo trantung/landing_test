@@ -54,6 +54,7 @@ Route::filter('admin', function()
     if( !$user ){
         return Redirect::action('AdminController@login');
     }
+    // dd($user);
     if( !hasRole('admin', $user) ){
         $route = Route::getCurrentRoute()->getActionName();
         $checkPermission = false;
