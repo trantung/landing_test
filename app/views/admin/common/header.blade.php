@@ -71,19 +71,19 @@
 	@yield('js_header')
 
 	<script>
-	  $(function () {
-	    
-	    $('#datepickerStartdate').datepicker({
-	    	dateFormat: 'yy-mm-dd',
+		$(function () {
+
+			$('#datepicker').datepicker({
+				dateFormat: 'yy-mm-dd',
 			});
 
-	    $('.timepicker').timepicker({
-		    'minTime': '6:00am',
-		    'maxTime': '10:00pm',
-		    'show2400': true,
-		    'timeFormat': 'H:i'
-		})
+			$('.timepicker').timepicker({
+				'minTime': '6:00am',
+				'maxTime': '10:00pm',
+				'show2400': true,
+				'timeFormat': 'H:i'
+			})
 
-	  });
+		});
 	</script>
 </head>

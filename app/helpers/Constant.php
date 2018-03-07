@@ -1,7 +1,9 @@
 <?php
-define('ADMIN', 1);
-define('TEACHER', 2);
-define('SALE', 3);
+define('ADMIN', 'admin');
+define('WEBMASTER', 'webmaster');
+define('SALE', 'sale');
+define('TEACHER', 'teacher');
+
 define('PAGINATE',20);
 
 define('DOCUMENT_UPLOAD_DIR', '/uploads//');

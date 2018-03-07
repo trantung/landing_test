@@ -50,17 +50,17 @@ class Common {
         return false;
     }
 
-    public static function getRoleUser()
+    public static function getRoles()
     {
-        $list = [
-            QLTT => 'Quản lý trung tâm',
-            GV => 'Giáo vụ',
-            PTCM => 'Phụ trách chuyên môn',
-            CVHT => 'Cố vấn học tập',
-            SALE => 'Bán hàng',
-            KT => 'Kế toán',
-  
-        ];
+        $list = Role::lists('name', 'slug');
+        if( count($list) == 0 ){
+            $list = [
+                ADMIN => 'ADMINISTRATOR',
+                WEBMASTER => 'WEBMASTER',
+                SALE => 'SALE',
+                TEACHER => 'TEACHER',
+            ];
+        }
         return $list;
     }
 

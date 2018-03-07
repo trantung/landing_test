@@ -10,7 +10,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/teacher', 'ManagerTeacherController');
     Route::resource('/student', 'ManagerStudentController');
     
-	Route::resource('/administrator', 'AdminController');
+    Route::resource('/administrator', 'AdminController');
+	Route::resource('/permission', 'PermissionController');
 });
 
 
