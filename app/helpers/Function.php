@@ -59,14 +59,22 @@ function getAllPermissions(){
     ];
 }
 
+function hasRoleAccess($role, $permission){
+    $permissions = RolePermission::where('role_slug', $role)->where('permission', $permission)->count();
+    if( $permissions > 0 ){
+        return true;
+    }
+    return false;
+}
+
 function userAccess($permission, $user = null){
     if( $user == null ){
         $user = currentUser();
     }
     if( hasRole('admin', $user) ){
-        // return true;
+        return true;
     }
-    $permissions = RolePermission::where('role_id', $user->role_id)->where('permission', $permission)->count();
+    $permissions = RolePermission::where('role_slug', Common::getObject($user->role, 'slug'))->where('permission', $permission)->count();
     if( $permissions > 0 ){
         return true;
     }
@@ -97,4 +105,27 @@ function currentUser(){
         $user->model = 'User';
     }
     return $user;
+}
+
+function renderUrl($action, $title, $parameter = [], $attribute = []){
+    $link = app('html')->linkAction($action, $title, $parameter, $attribute);
+    $user = currentUser();
+    if( !$user ){
+        return false;
+    }
+    if( hasRole(ADMIN, $user) ){
+        return $link;
+    }
+
+    $checkPermission = false;
+    foreach (getAllPermissions() as $permission => $value) {
+        if( userAccess($permission, $user) && in_array($action, $value['accept']) ){
+            $checkPermission = $value['accept'];
+            break;
+        }
+    }
+    if( $checkPermission ){
+        return $link;
+    }
+    return false;
 }

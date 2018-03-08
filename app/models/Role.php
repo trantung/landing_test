@@ -1,19 +1,19 @@
 <?php
 // use Illuminate\Database\Eloquent\SoftDeletingTrait;
-// use Cviebrock\EloquentSluggable\SluggableInterface;
-// use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 
 class Role extends Eloquent
 {
-    // use SluggableTrait;
+    use SluggableTrait;
     // use SoftDeletingTrait;
     public $timestamps = false;
     
-    // protected $sluggable = array(
-    //     'build_from' => 'name',
-    //     'save_to'    => 'slug',
-    //     // 'separator' => '_'
-    // );
+    protected $sluggable = array(
+        'build_from' => 'name',
+        'save_to'    => 'slug',
+        // 'separator' => '_'
+    );
 
     protected $table = 'roles';
     protected $fillable = ['name', 'slug'];

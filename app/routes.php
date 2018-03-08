@@ -11,6 +11,10 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/student', 'ManagerStudentController');
     
     Route::resource('/administrator', 'AdminController');
+
+    Route::resource('/role', 'RoleController');
+    Route::get('/permission/{role}', 'PermissionController@editRole');
+    Route::put('/permission/{role}', 'PermissionController@updateRole');
 	Route::resource('/permission', 'PermissionController');
 });
 

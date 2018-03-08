@@ -3,8 +3,9 @@
 class RolePermission extends Eloquent
 {
     // use SoftDeletingTrait;
+    public $timestamps = false;
     
     protected $table = 'role_permission';
-    protected $fillable = ['role_id', 'permission'];
+    protected $fillable = ['role_slug', 'permission'];
 
 }

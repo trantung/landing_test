@@ -33,7 +33,14 @@ class PermissionController extends AdminController {
 	public function store()
 	{
 		$input = Input::all();
-		dd($input);
+		DB::table('role_permission')->truncate();
+		foreach ($input['permission'] as $permission => $roles) {
+			foreach ($roles as $roleSlug => $value) {
+				RolePermission::create(['role_slug' => $roleSlug, 'permission' => $permission]);
+			}
+		}
+		return Redirect::back()->withMessage('Lưu thành công');
+		// dd($input);
 	}
 
 
@@ -43,9 +50,42 @@ class PermissionController extends AdminController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($slug)
 	{
 		//
+	}
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function editRole($role)
+	{
+		$role = Role::findBySlug($role);
+		$data = RolePermission::where('role_slug', $role->slug)->get();
+		return View::make('permission.detail')->with(compact('data', 'role'));
+	}
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function updateRole($role)
+	{
+		$input = Input::all();
+		RolePermission::where('role_slug', $role)->delete();
+		foreach ($input['permission'] as $permission => $roles) {
+			foreach ($roles as $roleSlug => $value) {
+				RolePermission::create(['role_slug' => $roleSlug, 'permission' => $permission]);
+			}
+		}
+		return Redirect::back()->withMessage('Lưu thành công');
 	}
 
 

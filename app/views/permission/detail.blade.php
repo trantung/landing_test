@@ -10,15 +10,13 @@
 	    </div>
 	</div>
 	<div class="box box-primary">
-		{{ Form::open(array('action' => array('PermissionController@store'), 'method' => "POST")) }}
+		{{ Form::open(array('action' => array('PermissionController@updateRole', $role->slug ), 'method' => "PUT")) }}
 			<div class="box-body">
 				<table class ="table table-bordered table-striped table-hover sticky-table">
 					<thead>
 						<tr>
 							<th>Quyền truy cập</th>
-							@foreach ($roles as $name)
-								<th width="135px" class="text-center">{{ $name }}</th>
-							@endforeach
+							<th width="135px" class="text-center">{{ $role->name }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -28,11 +26,9 @@
 									{{ $element['name'] }}
 									{{ !empty($element['description']) ? '<p><i>'.$element['description'].'</i></p>' : '' }}
 								</td>
-								@foreach ($roles as $slug => $name)
-									<td title="{{ $element['description'] }}" width="135px" class="text-center" style="vertical-align: middle;">
-										<input type="checkbox" name="permission[{{ $key }}][{{ $slug }}]" value="1" {{ ( $slug == ADMIN ) ? 'disabled' : '' }} {{ ( $slug == ADMIN | hasRoleAccess($slug, $key) ) ? 'checked' : '' }}>
-									</td>
-								@endforeach
+								<td title="{{ $element['description'] }}" width="135px" class="text-center" style="vertical-align: middle;">
+									<input type="checkbox" name="permission[{{ $key }}][{{ $role->slug }}]" value="1" {{ ( $role->slug == ADMIN ) ? 'disabled' : '' }} {{ ( $role->slug == ADMIN | hasRoleAccess($role->slug, $key) ) ? 'checked' : '' }}>
+								</td>
 							</tr>
 						@endforeach
 					</tbody>
