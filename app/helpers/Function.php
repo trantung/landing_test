@@ -5,7 +5,7 @@ function getAllPermissions(){
             'name' => 'Xem danh sách quản trị viên',
             'description' => 'Được phép xem danh sách tất cả các quản trị viên của hệ thống. Chỉ trao quyền cho người đáng tin cậy',
             'accept' => ['AdminController@index'],
-            'callback_function' => '',
+            'callback_function' => 'function_calback',
         ],
         'teacher.view' => [
             'name' => 'Xem danh sách giáo viên',
@@ -57,6 +57,11 @@ function getAllPermissions(){
             'callback_function' => '',
         ],
     ];
+}
+
+function function_calback(){
+    $route = Request::segment(3);
+    dd($route);
 }
 
 function hasRoleAccess($role, $permission){

@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
-            {{ Form::open(array('action' => array('ManagerStudentController@store'), 'method' => "POST", 'file' => true)) }}
+            {{ Form::open(array('action' => array('ManagerStudentController@store'), 'method' => "POST", 'files' => true)) }}
 
                 <div class="box-body">
                     <div class="row">

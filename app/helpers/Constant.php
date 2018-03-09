@@ -6,7 +6,7 @@ define('TEACHER', 'teacher');
 
 define('PAGINATE',20);
 
-define('DOCUMENT_UPLOAD_DIR', '/uploads//');
+define('UPLOAD_DIR', '/uploads/');
 /*
     Các role của nhân viên trung tâm
 */

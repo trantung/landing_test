@@ -55,19 +55,22 @@ Route::filter('admin', function()
         return Redirect::action('AdminController@login');
     }
     // dd($user);
-    if( !hasRole('admin', $user) ){
+    // if( !hasRole('admin', $user) ){
         $route = Route::getCurrentRoute()->getActionName();
         $checkPermission = false;
         foreach (getAllPermissions() as $permission => $value) {
             if( userAccess($permission, $user) && in_array($route, $value['accept']) ){
                 $checkPermission = $value['accept'];
+                if( !empty($value['callback_function']) && function_exists($value['callback_function']) ){
+                    call_user_func($value['callback_function']);
+                }
                 break;
             }
         }
         if( !$checkPermission ){
             App::abort(403);
         }
-    }
+    // }    
 
 });
 

@@ -28,10 +28,17 @@ class ManagerStudentController extends AdminController {
     {
         $input = Input::all();
         if( Input::hasFile('avatar') ){
-            
+            $file = Input::file('avatar');
+            $fileName = $file->getClientOriginalName();
+            $fileUrl = UPLOAD_DIR.time(). '_' .$fileName;
+            $uploadSuccess = $file->move(public_path().$fileUrl);
+            if( $uploadSuccess ){
+                ////////// Neu upload thanh cong thi luu url vao database
+                $input['avatar'] = $fileUrl;
+            }
         }
         $studentId = CommonNormal::create($input, 'Student');
-        return Redirect::action('ManagerStudentController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
+        return Redirect::action('ManagerStudentController@index')->withMesage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
     }
     /**
      * Display the specified resource.
@@ -51,8 +58,8 @@ class ManagerStudentController extends AdminController {
      */
     public function edit($id)
     {
-        $admin = Admin::find($id);
-        return View::make('administrator.edit')->with(compact('admin'));
+        $student = Student::findOrFail($id);
+        return View::make('student.edit')->with(compact('student'));
     }
     /**
      * Update the specified resource in storage.
@@ -63,9 +70,25 @@ class ManagerStudentController extends AdminController {
     public function update($id)
     {
         $input = Input::all();
-        $input['password'] = Hash::make($input['password']);
-        Admin::findOrFail($id)->update($input);
-        return Redirect::action('AdminController@index');
+        if( Input::hasFile('avatar') ){
+
+            ////////// Xoa anh cu
+            $student = Student::find($id);
+            if( !empty($student->avatar) ){
+                @unlink(public_path().$student->avatar);
+            }
+            
+            $file = Input::file('avatar');
+            $fileName = $file->getClientOriginalName();
+            $fileUrl = UPLOAD_DIR.$fileName;
+            $uploadSuccess = $file->move(public_path().UPLOAD_DIR, $fileName);
+            if( $uploadSuccess ){
+                ////////// Neu upload thanh cong thi luu url vao database
+                $input['avatar'] = $fileUrl;
+            }
+        }
+        CommonNormal::update($id, $input, 'Student');
+        return Redirect::back()->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh được lưu thành công!');
     }
     /**
      * Remove the specified resource from storage.
@@ -75,22 +98,9 @@ class ManagerStudentController extends AdminController {
      */
     public function destroy($id)
     {
-        Admin::findOrFail($id)->delete();
-        return Redirect::action('AdminController@index');
+        CommonNormal::delete($id, 'Student');
+        return Redirect::action('ManagerStudentController@index');
     }
 
-    public function getResetPass($id)
-    {
-        return View::make('administrator.reset')->with(compact('id'));
-    }
-    public function postResetPass($id)
-    {
-        $input = Input::all();
-        $admin = Admin::find($id);
-        $password = Hash::make($input['password']);
-        $admin->update(['password' => $password]);
-        return Redirect::action('AdminController@index');
-
-    }
 }
 
