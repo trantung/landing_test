@@ -7,7 +7,19 @@ class ManagerStudentController extends AdminController {
      */
     public function index()
     {
-        $data = Student::paginate(PAGINATE);
+        $input = Input::all();
+        $data = Student::orderBy('created_at', 'desc');
+        if( !empty($input['full_name']) ){
+            $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
+        }
+        if( !empty($input['email']) ){
+            $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
+        }
+        if( !empty($input['phone']) ){
+            $data = $data->where('phone', 'LIKE', '%'.$input['phone'].'%');
+        }
+
+        $data = $data->paginate(PAGINATE);
         return View::make('student.index')->with(compact('data'));
     }
     /**
@@ -77,7 +89,7 @@ class ManagerStudentController extends AdminController {
             if( !empty($student->avatar) ){
                 @unlink(public_path().$student->avatar);
             }
-            
+
             $file = Input::file('avatar');
             $fileName = $file->getClientOriginalName();
             $fileUrl = UPLOAD_DIR.$fileName;
@@ -99,7 +111,7 @@ class ManagerStudentController extends AdminController {
     public function destroy($id)
     {
         CommonNormal::delete($id, 'Student');
-        return Redirect::action('ManagerStudentController@index');
+        return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
     }
 
 }

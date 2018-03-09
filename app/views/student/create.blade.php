@@ -7,7 +7,7 @@
 
 <div class="row margin-bottom">
     <div class="col-xs-12">
-        <a href="{{ action('ManagerStudentController@index') }}" class="btn btn-success">Danh sách học sinh</a>
+        {{ renderUrl('ManagerStudentController@index', 'Danh sách học sinh', [], ['class' => 'btn btn-primary']) }}
     </div>
 </div>
 

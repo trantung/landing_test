@@ -1,13 +1,16 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý học sinh' }}
+{{ $title='Danh sách học sinh' }}
 @stop
 @section('content')
 	<div class="row margin-bottom">
 	    <div class="col-xs-12">
-			<a href="{{ action('ManagerStudentController@create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Thêm học sinh mới</a>
+        	{{ renderUrl('ManagerStudentController@create', 'Thêm học sinh mới', [], ['class' => 'btn btn-primary']) }}
 	    </div>
+	</div>
+	<div class="margin-bottom">
+	    @include('student.filter')
 	</div>
 	@if( count($data) )
 		<div class="box box-primary">
@@ -30,10 +33,12 @@
 							<td>{{ Common::getGenderName($student->gender) }}</td>
 							<td>{{ date('d/m/Y', strtotime($student->birth_day)) }}</td>
 							<td>
-					           <a href="{{ action('ManagerStudentController@edit', $student->id) }}" class="btn btn-primary" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
-							   {{ Form::open(array('method'=>'DELETE', 'action' => array('AdminController@destroy', $student->id), 'style' => 'display: inline-block;')) }}
-					           <button title="Delete" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"><i class="glyphicon glyphicon-remove"></i></button>
-					           {{ Form::close() }}
+								{{ renderUrl('ManagerStudentController@edit', 'Sửa', [$student->id], ['class' => 'btn btn-primary']) }}
+								@if (userAccess('student.delete'))
+									{{ Form::open(array('method'=>'DELETE', 'action' => array('ManagerStudentController@destroy', $student->id), 'style' => 'display: inline-block;')) }}
+										<button title="Delete" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"><i class="glyphicon glyphicon-remove"></i></button>
+									{{ Form::close() }}
+								@endif
 							</td>
 						</tr>
 					@endforeach
