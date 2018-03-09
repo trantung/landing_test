@@ -4,12 +4,14 @@ class AdminTableSeeder extends Seeder {
 
     public function run()
     {
-        Admin::create([
-            'role_id' => 1,
-            'email'=>'trantunghn196@gmail.com',
-            'password'=>Hash::make('123456'),
-            'username'=> 'tung1984'
-        ]);
+        if( Admin::where('username', 'admin')->count() == 0 ){
+            Admin::create([
+                'role_id' => 1,
+                'email'=>'admin@gmail.com',
+                'password'=>Hash::make('123456'),
+                'username'=> 'admin'
+            ]);
+        }
         // Admin::create([
         //     'role_id' => 1,
         //     'email'=>'tiennq@hocmai.vn',
