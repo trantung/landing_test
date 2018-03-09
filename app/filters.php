@@ -55,7 +55,7 @@ Route::filter('admin', function()
         return Redirect::action('AdminController@login');
     }
     // dd($user);
-    // if( !hasRole('admin', $user) ){
+    if( !hasRole('admin', $user) ){
         $route = Route::getCurrentRoute()->getActionName();
         $checkPermission = false;
         foreach (getAllPermissions() as $permission => $value) {
@@ -70,7 +70,7 @@ Route::filter('admin', function()
         if( !$checkPermission ){
             App::abort(403);
         }
-    // }    
+    } 
 
 });
 
