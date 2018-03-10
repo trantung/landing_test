@@ -28,3 +28,7 @@ define('T5', 5);
 define('T6', 6);
 define('T7', 7);
 define('CN', 8);
+
+define('REGISTER_LESSON', 1);
+define('CANCEL_LESSON', 2);
+define('CHANGE_LESSON', 3);

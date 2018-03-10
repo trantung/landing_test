@@ -55,8 +55,12 @@
                         <div class="col-sm-6">
                             <fieldset>
                                 <div class="form-group">
+                                    <label>Hình thức học</label>
+                                    {{  Form::select('type', ['' => '-- Chọn --', 1 => 'Học thử', 2 => 'Học chính thức'], '', array('class' => 'form-control', 'rows' => 3 )) }}
+                                </div>
+                                <div class="form-group">
                                     <label>Chọn thời lượng buổi học</label>
-                                    {{  Form::select('level', ['' => '-- Chọn --', 30 => '30 phút', 60 => '60 phút', 90 => '90 phút'], '', array('class' => 'form-control', 'rows' => 3 )) }}
+                                    {{  Form::select('lesson_duration', ['' => '-- Chọn --', 30 => '30 phút', 60 => '60 phút', 90 => '90 phút'], '', array('class' => 'form-control', 'rows' => 3 )) }}
                                 </div>
                                 <div class="form-group">
                                     <label>Ngày bắt đầu học</label>
@@ -66,6 +70,12 @@
                                     <label>Trình độ</label>
                                     {{  Form::select('level', ['' => '-- Chọn --', BEGINING => 'Begining', ADVANCE => 'Advance'], '', array('class' => 'form-control', 'rows' => 3 )) }}
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Số lượng buổi học <span class="text-warning">(*)</span></label>
+                                    {{  Form::text('lesson_number', '', array('class' => 'form-control', 'required' => 'required' )) }}
+                                </div>
+                                @include('student.lesson_per_week')
                                 <legend>Thông tin đính kèm</legend>
                                 <div class="form-group">
                                     <label>Họ tên bố/mẹ</label>
@@ -78,6 +88,10 @@
                                 <div class="form-group">
                                     <label>Số điện thoại bố/mẹ</label>
                                     {{  Form::text('parent_phone', '', array('class' => 'form-control' )) }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Nguồn</label>
+                                    {{  Form::text('source', '', array('class' => 'form-control' )) }}
                                 </div>
                                 <div class="form-group">
                                     <label>Ghi chú</label>

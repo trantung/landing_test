@@ -7,14 +7,14 @@ return array(
             'driver' => 'eloquent',
             'model' => 'Admin'
         ),
-        'partner' => array(
-            'driver' => 'eloquent',
-            'model' => 'Partner'
-        ),
         'user' => array(
             'driver' => 'database',
             'table' => 'users'
-        )
+        ),
+        'teacher' => array(
+            'driver' => 'database',
+            'table' => 'teacher'
+        ),
     ),
 
     'reminder' => array(

@@ -56,6 +56,25 @@ function getAllPermissions(){
             'accept' => ['ManagerStudentController@destroy'],
             'callback_function' => '',
         ],
+        'schedule.view' => [
+            'name' => 'Xem lịch học của học sinh',
+            'description' => 'Được phép xem thông tin lịch học tất cả học sinh',
+            'accept' => ['ScheduleController@index'],
+            'callback_function' => '',
+        ],
+        'schedule.edit' => [
+            'name' => 'Sửa lịch học của học sinh',
+            'description' => 'Được phép sửa thông tin lịch học tất cả học sinh',
+            'accept' => ['ScheduleController@update', 'ScheduleController@edit'],
+            'callback_function' => '',
+        ],
+        'student.publish' => [
+            'name' => 'Xem danh sách học sinh publish',
+            'description' => 'Xem danh sách học sinh publish',
+            'accept' => ['ManagerStudentController@publish', 'ManagerStudentController@publishShow'],
+            'callback_function' => '',
+        ],
+        
     ];
 }
 
@@ -105,9 +124,9 @@ function currentUser(){
         $user = Auth::admin()->get();
         $user->model = 'Admin';
     }
-    if( Auth::user()->check() ){
-        $user = Auth::user()->get();
-        $user->model = 'User';
+    if( Auth::teacher()->check() ){
+        $user = Auth::teacher()->get();
+        $user->model = 'Teacher';
     }
     return $user;
 }
@@ -131,6 +150,34 @@ function renderUrl($action, $title, $parameter = [], $attribute = []){
     }
     if( $checkPermission ){
         return $link;
+    }
+    return false;
+}
+function getTimeId($time)
+{
+    $string = $time;
+    $timestamp = strtotime($string);
+    $day = date("l", $timestamp);
+    if ($day == 'Sunday') {
+        return CN;
+    }
+    if ($day == 'Monday') {
+        return T2;
+    }
+    if ($day == 'Tuesday') {
+        return T3;
+    }
+    if ($day == 'Wednesday') {
+        return T4;
+    }
+    if ($day == 'Thursday') {
+        return T5;
+    }
+    if ($day == 'Friday') {
+        return T6;
+    }
+    if ($day == 'Saturday') {
+        return T7;
     }
     return false;
 }

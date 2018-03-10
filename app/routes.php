@@ -1,5 +1,5 @@
 <?php
-Route::get('/', 'AdminController@index');
+Route::get('/', 'AdminController@dashboard');
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', 'AdminController@index');
     Route::get('/login', array('uses' => 'AdminController@login', 'as' => 'admin.login'));
@@ -8,7 +8,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('administrator/{id}/reset', 'AdminController@getResetPass');
     Route::post('/administrator/{id}/reset', 'AdminController@postResetPass');
     Route::resource('/teacher', 'ManagerTeacherController');
+    Route::get('/student_publish', 'ManagerStudentController@publish');
+    Route::get('student_publish/{id}', 'ManagerStudentController@getPublishShow');
+    Route::post('student_publish/{id}', 'ManagerStudentController@postPublishShow');
     Route::resource('/student', 'ManagerStudentController');
+    Route::resource('/student_schedule', 'ScheduleController');
     
     Route::resource('/administrator', 'AdminController');
 

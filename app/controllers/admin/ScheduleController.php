@@ -1,7 +1,7 @@
 <?php
-class AdminController extends BaseController {
+class ScheduleController extends AdminController {
     public function __construct() {
-        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'dashboard')));
+        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
     }
     /**
      * Display a listing of the resource.
@@ -43,7 +43,7 @@ class AdminController extends BaseController {
      */
     public function show($id)
     {
-        dd(4444444);
+        dd(111);
     }
     /**
      * Show the form for editing the specified resource.
@@ -53,7 +53,6 @@ class AdminController extends BaseController {
      */
     public function edit($id)
     {
-        dd('test');
         $admin = Admin::find($id);
         return View::make('administrator.edit')->with(compact('admin'));
     }
@@ -82,43 +81,6 @@ class AdminController extends BaseController {
         return Redirect::action('AdminController@index');
     }
 
-    public function login()
-    {
-        return View::make('admin.layout.login');
-    }
-    public function doLogin()
-    {
-        $rules = array(
-            'username' => 'required',
-            'password' => 'required',
-        );
-        $input = Input::except('_token');
-        $validator = Validator::make($input, $rules);
-        if ($validator->fails()) {
-            return Redirect::action('AdminController@login')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
-            $checkLogin = Auth::admin()->attempt($input, true);
-            if($checkLogin) {
-                return Redirect::action('AdminController@dashboard');
-            } else {
-                return Redirect::action('AdminController@login');
-            }
-        }
-
-    }
-    public function dashboard()
-    {
-        return View::make('admin.dashboard');
-    }
-    public function logout()
-    {
-        Auth::admin()->logout();
-        // Auth::user()->logout();
-        // Session::flush();
-        return Redirect::action('AdminController@login');
-    }
     public function getResetPass($id)
     {
         return View::make('administrator.reset')->with(compact('id'));

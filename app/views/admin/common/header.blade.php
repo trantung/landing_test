@@ -68,6 +68,9 @@
 	{{ HTML::script('custom/js/jquery.timepicker.min.js') }}
 	{{ HTML::script('custom/js/print.min.js') }}
 	{{ HTML::script('adminlte/plugins/bootstrap-select/bootstrap-select.min.js') }}
+	{{ HTML::script('custom/js/form-control.js') }}
+	{{ HTML::script('custom/js/ajax.js') }}
+
 	@yield('js_header')
 
 	<script>

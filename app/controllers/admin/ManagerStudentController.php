@@ -39,6 +39,7 @@ class ManagerStudentController extends AdminController {
     public function store()
     {
         $input = Input::all();
+        // dd($input);
         if( Input::hasFile('avatar') ){
             $file = Input::file('avatar');
             $fileName = $file->getClientOriginalName();
@@ -50,6 +51,41 @@ class ManagerStudentController extends AdminController {
             }
         }
         $studentId = CommonNormal::create($input, 'Student');
+        //create schedules
+        $scheduleInput = [];
+        $scheduleInput['lesson_per_week'] = $input['lesson_per_week'];
+        $scheduleInput['lesson_duration'] = $input['lesson_duration'];
+        $scheduleInput['lesson_number'] = $input['lesson_number'];
+        $scheduleInput['type'] = $input['type'];
+        $scheduleInput['start_date'] = $input['start_date'];
+        $scheduleInput['level'] = $input['level'];
+        $scheduleInput['student_id'] = $studentId;
+        $scheduleInput['status'] = REGISTER_LESSON;
+        $scheduleId = Schedule::create($scheduleInput)->id;
+        //create schedule_details
+        $lessonDate = [];
+        for ($i=0; $i < $input['lesson_number']; $i++) { 
+            foreach ($input['time_id'] as $key => $value) {
+                if ($value != '' && count($lessonDate) < $input['lesson_number']) {
+                    $number = $i*7;
+                    $text = ' + '.$number.' days';
+                    $lessonDate[] = [date('Y-m-d', strtotime($value.$text)), $input['hours'][$key]];
+                }
+            }
+        }
+        // dd($lessonDate);
+        for ($i=0; $i < $input['lesson_number']; $i++) { 
+            $scheduleDetail = Input::only(
+                'type', 'level','lesson_duration'
+            );
+            $scheduleDetail['student_id'] = $studentId;
+            $scheduleDetail['schedule_id'] = $scheduleId;
+            $scheduleDetail['time_id'] = getTimeId($lessonDate[$i][0]);
+            $scheduleDetail['status'] = REGISTER_LESSON;
+            $scheduleDetail['lesson_date'] = $lessonDate[$i][0];
+            $scheduleDetail['lesson_hour'] = $lessonDate[$i][1];
+            $scheduleDetailId = ScheduleDetail::create($scheduleDetail)->id;
+        }
         return Redirect::action('ManagerStudentController@index')->withMesage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
     }
     /**

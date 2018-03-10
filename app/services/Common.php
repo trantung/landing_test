@@ -559,11 +559,11 @@ class Common {
         }
     }
 
-    public static function getPackageDropdownList($name, $packages = [], $default = null)
+    public static function getNumberLessonList($name, $numberLesson = [], $default = null)
     {
         $html = '<select name="'. $name .'" class="form-control" required>
             <option value="">-- Chọn --</option>';
-        foreach ($packages as $key => $value) {
+        foreach ($numberLesson as $key => $value) {
             $html .= '<option '. ( ($value->id == $default) ? 'selected' : '' ) .' number-lesson="'. $value->lesson_per_week .'" value="'. $value->id .'">'. $value->name .'<p>-</p>'.$value->lesson_per_week.' buổi/tuần<p>-</p>'.$value->total_lesson.' buổi<p>-thời lượng </p>'.$value->duration.' phút<p>-tối đa </p>'.$value->max_student.' học sinh</option>';
         }
         $html .= '<select>';                                                                            
@@ -582,5 +582,18 @@ class Common {
             return Common::getObject($family[1], 'phone');
         }
         return false;
+    }
+    public static function getLessonPerWeek()
+    {
+        $array = ['' => '-- Chọn --', 
+            1 => 1, 
+            2 => 2, 
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+            7 => 7,
+        ];
+        return $array;
     }
 }
