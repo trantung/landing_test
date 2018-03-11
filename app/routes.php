@@ -7,6 +7,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/logout', 'AdminController@logout');
     Route::get('administrator/{id}/reset', 'AdminController@getResetPass');
     Route::post('/administrator/{id}/reset', 'AdminController@postResetPass');
+
+    Route::get('teacher/{id}/reset', 'ManagerTeacherController@getResetPass');
+    Route::post('/teacher/{id}/reset', 'ManagerTeacherController@postResetPass');
     Route::resource('/teacher', 'ManagerTeacherController');
     Route::get('/student_publish', 'ManagerStudentController@publish');
     Route::get('student_publish/{id}', 'ManagerStudentController@getPublishShow');
@@ -21,7 +24,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::put('/permission/{role}', 'PermissionController@updateRole');
 	Route::resource('/permission', 'PermissionController');
 });
-
+Route::group(['prefix' => 'publish'], function () {
+    Route::get('/teacher/student', 'PublishController@privateStudent');
+    Route::get('/teacher/schedule/{id}/show', 'PublishController@showScheduleStudent');
+    Route::resource('/teacher', 'PublishController');
+});
 
 App::error( function(Exception $exception, $code){
 	$pathInfo = Request::getPathInfo();

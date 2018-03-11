@@ -103,7 +103,13 @@ class AdminController extends BaseController {
             if($checkLogin) {
                 return Redirect::action('AdminController@dashboard');
             } else {
-                return Redirect::action('AdminController@login');
+                $checkLoginTeacher = Auth::teacher()->attempt($input, true);
+                if ($checkLoginTeacher) {
+                    // dd(111);
+                    return Redirect::action('PublishController@index');
+                } else {
+                    return Redirect::action('AdminController@login');
+                }
             }
         }
 
@@ -115,8 +121,6 @@ class AdminController extends BaseController {
     public function logout()
     {
         Auth::admin()->logout();
-        // Auth::user()->logout();
-        // Session::flush();
         return Redirect::action('AdminController@login');
     }
     public function getResetPass($id)

@@ -39,18 +39,10 @@ class ManagerStudentController extends AdminController {
     public function store()
     {
         $input = Input::all();
-        // dd($input);
-        if( Input::hasFile('avatar') ){
-            $file = Input::file('avatar');
-            $fileName = $file->getClientOriginalName();
-            $fileUrl = UPLOAD_DIR.time(). '_' .$fileName;
-            $uploadSuccess = $file->move(public_path().$fileUrl);
-            if( $uploadSuccess ){
-                ////////// Neu upload thanh cong thi luu url vao database
-                $input['avatar'] = $fileUrl;
-            }
-        }
         $studentId = CommonNormal::create($input, 'Student');
+        $input['avatar'] = CommonUpload::uploadImage($studentId, UPLOAD_DIR, 'avatar',UPLOADSTUDENT);
+        CommonNormal::update($studentId, ['avatar' => $input['avatar']] );
+
         //create schedules
         $scheduleInput = [];
         $scheduleInput['lesson_per_week'] = $input['lesson_per_week'];
@@ -118,24 +110,27 @@ class ManagerStudentController extends AdminController {
     public function update($id)
     {
         $input = Input::all();
-        if( Input::hasFile('avatar') ){
+        // if( Input::hasFile('avatar') ){
+        //     ////////// Xoa anh cu
+        //     $student = Student::find($id);
+        //     if( !empty($student->avatar) ){
+        //         @unlink(public_path().$student->avatar);
+        //     }
 
-            ////////// Xoa anh cu
-            $student = Student::find($id);
-            if( !empty($student->avatar) ){
-                @unlink(public_path().$student->avatar);
-            }
+        //     $file = Input::file('avatar');
+        //     $fileName = $file->getClientOriginalName();
+        //     $fileUrl = UPLOAD_DIR.$fileName;
+        //     $uploadSuccess = $file->move(public_path().UPLOAD_DIR, $fileName);
+        //     if( $uploadSuccess ){
+        //         ////////// Neu upload thanh cong thi luu url vao database
+        //         $input['avatar'] = $fileUrl;
+        //     }
+        // }
+        $student = Student::find($id);
+        $input['avatar'] = CommonUpload::uploadImage($id, UPLOAD_DIR, 'avatar',UPLOADSTUDENT,$student->avatar);
+        $student->update($input);
 
-            $file = Input::file('avatar');
-            $fileName = $file->getClientOriginalName();
-            $fileUrl = UPLOAD_DIR.$fileName;
-            $uploadSuccess = $file->move(public_path().UPLOAD_DIR, $fileName);
-            if( $uploadSuccess ){
-                ////////// Neu upload thanh cong thi luu url vao database
-                $input['avatar'] = $fileUrl;
-            }
-        }
-        CommonNormal::update($id, $input, 'Student');
+        // CommonNormal::update($id, $input, 'Student');
         return Redirect::back()->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh được lưu thành công!');
     }
     /**

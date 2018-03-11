@@ -1,12 +1,14 @@
 $(document).ready(function(){
 
     ////// Chon thoi gian hoc form tao lich hoc
-    $(document).on('change', '.schedule-create-form select[name="package_id"]', function(){
-        var val = $(this).val(),
-        order = $(this).find('>option[value="'+ val +'"]').attr('number-lesson');
-        $('.time-box-student >.item').each(function(key, val){
+    $(document).on('change', '.schedule-create-form select[name="lesson_per_week"]', function(){
+        var val = $(this).val();
+        console.log(111);
+        // order = $(this).find('>option[value="'+ val +'"]').attr('number-lesson');
+        $('.time-box-student >.item').each(function(key, val2){
+            // console.log(val);
             $(this).find('input').val('').change();
-            if( (key+1) <= order ){
+            if( (key+1) <= val ){
                 $(this).removeClass('hidden');
             } else{
                 $(this).addClass('hidden');

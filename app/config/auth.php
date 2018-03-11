@@ -13,7 +13,7 @@ return array(
         ),
         'teacher' => array(
             'driver' => 'database',
-            'table' => 'teacher'
+            'table' => 'teachers'
         ),
     ),
 

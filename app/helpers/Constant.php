@@ -3,6 +3,8 @@ define('ADMIN', 'admin');
 define('WEBMASTER', 'webmaster');
 define('SALE', 'sale');
 define('TEACHER', 'teacher');
+define('UPLOADTEACHER', '/teacher');
+define('UPLOADSTUDENT', '/student');
 
 define('PAGINATE',20);
 
@@ -32,3 +34,7 @@ define('CN', 8);
 define('REGISTER_LESSON', 1);
 define('CANCEL_LESSON', 2);
 define('CHANGE_LESSON', 3);
+//hoc thu hoc that
+define('TRIAL', 1);
+define('OFFICAL', 2);
+//

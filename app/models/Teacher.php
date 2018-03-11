@@ -28,4 +28,9 @@ class Teacher extends Eloquent implements UserInterface, RemindableInterface {
 		'note', 'phone', 'date_register', 'banking_number'
 	);
     protected $dates = ['deleted_at'];
+
+    public function role()
+    {
+        return $this->belongsTo('Role', 'role_id', 'id');
+    }
 }

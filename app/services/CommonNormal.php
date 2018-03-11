@@ -25,27 +25,16 @@ class CommonNormal
         if ($name == NULL) {
             $name = Request::segment(2);
         } 
-        if ($name == 'subject') {
-            return 'Subject';
-        }
-        if ($name == 'partner') {
-            return 'Partner';
-        }
-        if ($name == 'class') {
-            return 'ClassModel';
-        }
         if ($name == 'user') {
             return 'User';
         }
-        if ($name == 'level') {
-            return 'Level';
+        if ($name == 'teacher') {
+            return 'Teacher';
         }
-        if ($name == 'doc') {
-            return 'Document';
+        if ($name == 'student') {
+            return 'Student';
         }
-        if ($name == 'center') {
-            return 'Center';
-        }
+
         return $name;
     }
 }

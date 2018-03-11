@@ -15,4 +15,9 @@ class Student extends Eloquent
 
     protected $dates = ['deleted_at'];
 
-}
+    public function schedules()
+    {
+        return $this->hasMany('Schedule', 'student_id', 'id');
+    }
+
+}	

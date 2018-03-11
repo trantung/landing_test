@@ -41,6 +41,21 @@
                 </a>
             </li>
             @endif
+            @if(hasRole('teacher'))
+            <li>
+                <a href="{{ action('PublishController@index') }}">
+                    <i class="fa fa-key"></i> 
+                    <span>Danh sách học sinh chung</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ action('PublishController@privateStudent') }}">
+                    <i class="fa fa-key"></i> 
+                    <span>Danh sách học sinh cá nhân</span>
+                </a>
+            </li>
+            @endif
+
         </ul>
     </section>
 </aside>

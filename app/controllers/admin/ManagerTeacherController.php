@@ -10,8 +10,8 @@ class ManagerTeacherController extends AdminController {
      */
     public function index()
     {
-        $data = Admin::all();
-        return View::make('administrator.index')->with(compact('data'));
+        $data = Teacher::all();
+        return View::make('teacher.index')->with(compact('data'));
     }
     /**
      * Show the form for creating a new resource.
@@ -20,7 +20,7 @@ class ManagerTeacherController extends AdminController {
      */
     public function create()
     {
-        return View::make('administrator.create');
+        return View::make('teacher.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -31,9 +31,12 @@ class ManagerTeacherController extends AdminController {
     {
         $input = Input::except('_token');
         $input['password'] = Hash::make($input['password']);
-        $adminId = Admin::create($input)->id;
-        return Redirect::action('AdminController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
-            Người dùng đã được tạo!');
+        $input['role_id'] = getRoleIdBySlug(TEACHER);
+        $teacherId = Teacher::create($input)->id;
+        $input['image_url'] = CommonUpload::uploadImage($teacherId, UPLOAD_DIR, 'image_url',UPLOADTEACHER);
+        CommonNormal::update($teacherId, ['image_url' => $input['image_url']] );
+        return Redirect::action('ManagerTeacherController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
+            Teacher đã được tạo!');
     }
     /**
      * Display the specified resource.
@@ -53,8 +56,8 @@ class ManagerTeacherController extends AdminController {
      */
     public function edit($id)
     {
-        $admin = Admin::find($id);
-        return View::make('administrator.edit')->with(compact('admin'));
+        $teacher = Teacher::find($id);
+        return View::make('teacher.edit')->with(compact('teacher'));
     }
     /**
      * Update the specified resource in storage.
@@ -65,9 +68,10 @@ class ManagerTeacherController extends AdminController {
     public function update($id)
     {
         $input = Input::all();
-        $input['password'] = Hash::make($input['password']);
-        Admin::findOrFail($id)->update($input);
-        return Redirect::action('AdminController@index');
+        $teacher = Teacher::find($id);
+        $input['image_url'] = CommonUpload::uploadImage($id, UPLOAD_DIR, 'image_url',UPLOADTEACHER,$teacher->image_url);
+        $teacher->update($input);
+        return Redirect::action('ManagerTeacherController@index');
     }
     /**
      * Remove the specified resource from storage.
@@ -77,21 +81,21 @@ class ManagerTeacherController extends AdminController {
      */
     public function destroy($id)
     {
-        Admin::findOrFail($id)->delete();
-        return Redirect::action('AdminController@index');
+        Teacher::findOrFail($id)->delete();
+        return Redirect::action('ManagerTeacherController@index');
     }
 
     public function getResetPass($id)
     {
-        return View::make('administrator.reset')->with(compact('id'));
+        return View::make('teacher.reset')->with(compact('id'));
     }
     public function postResetPass($id)
     {
         $input = Input::all();
-        $admin = Admin::find($id);
+        $admin = Teacher::find($id);
         $password = Hash::make($input['password']);
         $admin->update(['password' => $password]);
-        return Redirect::action('AdminController@index');
+        return Redirect::action('ManagerTeacherController@index');
 
     }
 }

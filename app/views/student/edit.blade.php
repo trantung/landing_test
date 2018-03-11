@@ -27,7 +27,7 @@
                                 <div class="form-group">
                                     <label>Ảnh đại diện</label>
                                     <input type="file" name="avatar" class="form-control">
-                                    {{ !empty($student->avatar) ? '<br><a target="_blank" href="'.$student->avatar.'"><img width="100px" src="'.$student->avatar.'"></a>' : '' }}
+                                    <img src="{{ url(UPLOAD_DIR . UPLOADSTUDENT . '/' . $student->id . '/' . $student->avatar) }}" width="200px" height="auto"  />
                                 </div>
                                 <div class="form-group">
                                     <label>Email <span class="text-warning">(*)</span></label>

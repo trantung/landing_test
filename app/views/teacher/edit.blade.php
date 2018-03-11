@@ -71,7 +71,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   {{ Form::file('image_url', null, array('class' => 'form-control')) }}
-                  <img src="{{ url(UPLOADIMG . UPLOAD_TEACHER . '/' . $teacher->id . '/' . $teacher->image_url) }}" width="200px" height="auto"  />
+                  <img src="{{ url(UPLOAD_DIR . UPLOADTEACHER . '/' . $teacher->id . '/' . $teacher->image_url) }}" width="200px" height="auto"  />
                 </div>
               </div>
             </div>

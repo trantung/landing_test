@@ -14,4 +14,8 @@ class Schedule extends Eloquent
 
     protected $dates = ['deleted_at'];
 
+    public function student()
+    {
+        return $this->belongsTo('Student', 'student_id', 'id');
+    }
 }

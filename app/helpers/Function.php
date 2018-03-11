@@ -71,10 +71,17 @@ function getAllPermissions(){
         'student.publish' => [
             'name' => 'Xem danh sách học sinh publish',
             'description' => 'Xem danh sách học sinh publish',
-            'accept' => ['ManagerStudentController@publish', 'ManagerStudentController@publishShow'],
+            'accept' => ['PublishController@index'],
             'callback_function' => '',
         ],
-        
+        'student.publish_show' => [
+            'name' => 'Xem chi tiết học sinh publish',
+            'description' => 'Xem chi tiết học sinh publish',
+            'accept' => ['PublishController@show','PublishController@update', 
+                'PublishController@privateStudent', 'PublishController@showScheduleStudent'],
+            'callback_function' => '',
+        ],
+
     ];
 }
 
@@ -125,7 +132,10 @@ function currentUser(){
         $user->model = 'Admin';
     }
     if( Auth::teacher()->check() ){
-        $user = Auth::teacher()->get();
+        $teacher = Auth::teacher()->get();
+        $userId = $teacher->id;
+        // dd($user->role);
+        $user = Teacher::find($userId);
         $user->model = 'Teacher';
     }
     return $user;
@@ -180,4 +190,17 @@ function getTimeId($time)
         return T7;
     }
     return false;
+}
+function getRoleIdBySlug($slug)
+{
+    $role = Role::findBySlug($slug);
+    if ($role) {
+        return $role->id;
+    }
+    return null;
+}
+function getRoleAdmin()
+{
+    $list = Role::lists('name', 'id');
+    return $list;
 }
