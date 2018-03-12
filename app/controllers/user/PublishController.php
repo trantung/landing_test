@@ -75,23 +75,24 @@ class PublishController extends AdminController {
         ScheduleDetail::where('schedule_id', $schedule->id)->update(['teacher_id' => $teacherId]);
         return Redirect::action('PublishController@index');
     }
-    public function privateStudent()
+    private function getTeacherId()
     {
         $teacherId = Input::get('teacher_id');
         if (!$teacherId) {
             $teacher = currentUser();
             $teacherId = $teacher->id;
         }
+        return $teacherId;
+    }
+    public function privateStudent()
+    {
+        $teacherId = $this->getTeacherId();
         $data = Schedule::where('teacher_id', $teacherId)->paginate(PAGINATE);
         return View::make('student.private_teacher')->with(compact('data', 'teacherId'));
     }
     public function showScheduleStudent($id)
     {
-        $teacherId = Input::get('teacher_id');
-        if (!$teacherId) {
-            $teacher = currentUser();
-            $teacherId = $teacher->id;
-        }
+        $teacherId = $this->getTeacherId();
         $schedule = Schedule::find($id);
         $studentId = $schedule->student_id;
         $student = Student::find($studentId);
@@ -100,10 +101,11 @@ class PublishController extends AdminController {
     }
     public function showScheduleDetail($id)
     {
+        $teacherId = $this->getTeacherId();
         $lessonDetail = ScheduleDetail::find($id);
         $studentId = $lessonDetail->student_id;
         $student = Student::find($studentId);
-        return View::make('student.lesson_detail')->with(compact('lessonDetail', 'student'));
+        return View::make('student.lesson_detail')->with(compact('lessonDetail', 'student', 'teacherId'));
     }
     public function updateScheduleDetail($id)
     {
