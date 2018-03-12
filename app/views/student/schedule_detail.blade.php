@@ -6,7 +6,7 @@
 @section('content')
 <div class="row margin-bottom">
     <div class="col-xs-12">
-        {{ renderUrl('PublishController@privateStudent', 'Danh sách học sinh cá nhân', [], ['class' => 'btn btn-primary']) }}
+        {{ renderUrl('PublishController@privateStudent', 'Danh sách học sinh cá nhân', ['teacher_id' => $teacherId], ['class' => 'btn btn-primary']) }}
     </div>
 </div>
     @if( count($data) )

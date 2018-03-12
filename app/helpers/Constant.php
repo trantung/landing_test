@@ -30,8 +30,7 @@ define('T5', 5);
 define('T6', 6);
 define('T7', 7);
 define('CN', 8);
-
-define('CHOSSE_LESSON_STATUS', 0);
+//status trong bang schedule_detail
 define('REGISTER_LESSON', 1);
 define('CANCEL_LESSON', 2);
 define('CHANGE_LESSON', 3);
@@ -40,8 +39,10 @@ define('FINISH', 5);
 define('WAIT_CONFIRM_FINISH', 4);
 define('FINISH_LESSON', 5);
 
-//hoc thu hoc that
+//hoc thu hoc that(type)
 define('TRIAL', 1);
 define('OFFICAL', 2);
+//status trong bang schedule
+define('FINISH_LESSON_TOTAL', 2);
 //email
 define('SUBJECT_EMAIL', 'Mail gửi từ hệ thống');

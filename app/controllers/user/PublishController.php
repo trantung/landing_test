@@ -83,15 +83,20 @@ class PublishController extends AdminController {
             $teacherId = $teacher->id;
         }
         $data = Schedule::where('teacher_id', $teacherId)->paginate(PAGINATE);
-        return View::make('student.private_teacher')->with(compact('data'));
+        return View::make('student.private_teacher')->with(compact('data', 'teacherId'));
     }
     public function showScheduleStudent($id)
     {
+        $teacherId = Input::get('teacher_id');
+        if (!$teacherId) {
+            $teacher = currentUser();
+            $teacherId = $teacher->id;
+        }
         $schedule = Schedule::find($id);
         $studentId = $schedule->student_id;
         $student = Student::find($studentId);
         $data = ScheduleDetail::where('schedule_id', $id)->paginate(PAGINATE);
-        return View::make('student.schedule_detail')->with(compact('data', 'student'));
+        return View::make('student.schedule_detail')->with(compact('data', 'student', 'teacherId'));
     }
     public function showScheduleDetail($id)
     {
@@ -112,6 +117,7 @@ class PublishController extends AdminController {
             $lessonDetail->update($input);
             //gui mail to hoc sinh neu đã status = WAIT_CONFIRM_FINISH
             if ($input['status'] == WAIT_CONFIRM_FINISH) {
+                
                 //gui mail
                 $studentId = $lessonDetail->student_id;
                 $student = Student::find($studentId);
@@ -151,7 +157,14 @@ class PublishController extends AdminController {
     public function confirmEmail($token, $id)
     {
         $lessonDetail = ScheduleDetail::find($id);
-        if ($lessonDetail) {
+        if ($lessonDetail->status == WAIT_CONFIRM_FINISH) {
+            //update so buoi hoc con lai cua hoc sinh vao bang schedule
+            $scheduleUpdate = Schedule::find($lessonDetail->schedule_id);
+            if ($scheduleUpdate->lesson_number > 1) {
+                $scheduleUpdate->update(['remain_lesson' => $scheduleUpdate->lesson_number - 1]);
+            } else {
+                $scheduleUpdate->update(['remain_lesson' => 0, 'status' => FINISH_LESSON_TOTAL]);
+            }
             $lessonDetail->update(['status' => FINISH_LESSON]);
             return 'Bạn đã xác nhận hoàn thành buổi học';
         }
