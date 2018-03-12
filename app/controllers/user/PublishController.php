@@ -1,7 +1,7 @@
 <?php
 class PublishController extends AdminController {
     public function __construct() {
-        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
+        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'confirmEmail')));
     }
     /**
      * Display a listing of the resource.
@@ -75,27 +75,87 @@ class PublishController extends AdminController {
         ScheduleDetail::where('schedule_id', $schedule->id)->update(['teacher_id' => $teacherId]);
         return Redirect::action('PublishController@index');
     }
-    public function privateStudent()
+    public function privateStudent($teacherId = null)
     {
-        $teacher = currentUser();
-        $teacherId = $teacher->id;
+        if ($teacherId == null) {
+            $teacher = currentUser();
+            $teacherId = $teacher->id;
+        }
         $data = Schedule::where('teacher_id', $teacherId)->paginate(PAGINATE);
         return View::make('student.private_teacher')->with(compact('data'));
     }
-    public function showScheduleStudent()
+    public function showScheduleStudent($id)
     {
-        $teacher = currentUser();
-        $teacherId = $teacher->id;
-        $data = Schedule::where('teacher_id', $teacherId)->paginate(PAGINATE);
-        return View::make('student.private_teacher')->with(compact('data'));
+        $schedule = Schedule::find($id);
+        $studentId = $schedule->student_id;
+        $student = Student::find($studentId);
+        $data = ScheduleDetail::where('schedule_id', $id)->paginate(PAGINATE);
+        return View::make('student.schedule_detail')->with(compact('data', 'student'));
     }
-    
+    public function showScheduleDetail($id)
+    {
+        $lessonDetail = ScheduleDetail::find($id);
+        $studentId = $lessonDetail->student_id;
+        $student = Student::find($studentId);
+        return View::make('student.lesson_detail')->with(compact('lessonDetail', 'student'));
+    }
+    public function updateScheduleDetail($id)
+    {
+        $input = Input::except('_token');
+        $lessonDetail = ScheduleDetail::find($id);
+        if ($input['status'] == '') {
+            return Redirect::back()->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
+            Phải chọn trạng thái!');
+        }
+        if ($input['status'] != CHANGE_LESSON) {
+            $lessonDetail->update($input);
+            //gui mail to hoc sinh neu đã status = WAIT_CONFIRM_FINISH
+            if ($input['status'] == WAIT_CONFIRM_FINISH) {
+                //gui mail
+                $studentId = $lessonDetail->student_id;
+                $student = Student::find($studentId);
+                $string = generateRandomString();
+                $data = [
+                    'string' => $string,
+                    'lessonDetail' => $lessonDetail
+                ];
+                Mail::send('emails.email_student', $data, function($message) use ($student, $data){
+                    $message->to($student->email)
+                            ->subject(SUBJECT_EMAIL);
+                });
+                //send mail to admin
+                // Mail::send('emails.email_student', $data, function($message) use ($student, $data){
+                //     $message->to('trantunghn196@gmail.com')
+                //             ->subject(SUBJECT_EMAIL);
+                // });
+            }
+            return Redirect::action('PublishController@showScheduleStudent', $lessonDetail->schedule_id);
+        }
+        if ($input['status'] == CHANGE_LESSON) {
+            $lessonChange = $lessonDetail->toArray();
+            $lessonChange['schedule_detail_id'] = $lessonDetail->id;
+            $changeId = ScheduleDetailChange::create($lessonChange)->id;
+            $lessonDetail->update($input);
+            return Redirect::action('PublishController@showScheduleStudent', $lessonDetail->schedule_id);
+        }
+ 
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return Response
      */
+    public function confirmEmail($token, $id)
+    {
+        $lessonDetail = ScheduleDetail::find($id);
+        if ($lessonDetail) {
+            $lessonDetail->update(['status' => FINISH_LESSON]);
+            return 'Bạn đã xác nhận hoàn thành buổi học';
+        }
+        return 'Mã xác nhận sai';
+    } 
     public function destroy($id)
     {
         //

@@ -78,7 +78,15 @@ function getAllPermissions(){
             'name' => 'Xem chi tiết học sinh publish',
             'description' => 'Xem chi tiết học sinh publish',
             'accept' => ['PublishController@show','PublishController@update', 
-                'PublishController@privateStudent', 'PublishController@showScheduleStudent'],
+                'PublishController@privateStudent', 'PublishController@showScheduleStudent',
+                'PublishController@showScheduleDetail','PublishController@updateScheduleDetail'
+            ],
+            'callback_function' => '',
+        ],
+        'teacher.schedule' => [
+            'name' => 'Xem lịch dạy',
+            'description' => 'Xem lịch dạy',
+            'accept' => ['TeacherController@showSchedule'],
             'callback_function' => '',
         ],
 
@@ -200,4 +208,53 @@ function getRoleAdmin()
 {
     $list = Role::lists('name', 'id');
     return $list;
+}
+function getStatusScheduleDetail($status)
+{
+    if ($status == REGISTER_LESSON) {
+        return 'Chưa học';
+    }
+    if ($status == CANCEL_LESSON) {
+        return 'Huỷ buổi học';
+    }
+    if ($status == WAIT_CONFIRM_FINISH) {
+        return 'Học sinh chưa xác nhận';
+    }
+    if ($status == FINISH_LESSON) {
+        return 'Hoàn thành học';
+    }
+    if ($status == CHANGE_LESSON) {
+        return 'Đã thay đổi lịch học';
+    }
+
+    return null;
+}
+function getStatusLesson()
+{
+    $array = [
+        '' => 'Chọn',
+        WAIT_CONFIRM_FINISH => 'Xác nhận hoàn thành',
+        CANCEL_LESSON => 'Huỷ',
+        CHANGE_LESSON => 'Thay đổi lịch học',
+    ];
+    return $array;
+}
+function getDurationLesson()
+{
+    $array = [
+        '' => '-- Chọn --',
+        30 => '30 phút', 
+        60 => '60 phút', 
+        90 => '90 phút'
+    ];
+    return $array;
+}
+function generateRandomString($length = 16) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }

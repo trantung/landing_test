@@ -213,4 +213,13 @@ class Common {
             5 => 'Level 5'
         ];
     }
+    
+    public static function getNumberLessonStatus($scheduleId, $status)
+    {
+        $count = ScheduleDetail::where('schedule_id', $scheduleId)
+            ->where('status', $status)
+            ->count();
+        return $count;
+    }
+
 }

@@ -16,6 +16,10 @@
 					<th>Email</th>
 					<th>Số điện thoại</th>
 					<th>Trình độ</th>
+					<th>Tổng số buổi của học sinh</th>
+					<th>Số buổi đã confirm</th>
+					<th>Số buổi đã hoàn thành</th>
+					<th>Số buổi đã huỷ</th>
 					<th>Thao tác</th>
 				</tr>
 					@foreach($data as $key => $schedule)
@@ -25,7 +29,10 @@
 							<td>{{ $schedule->student->email }}</td>
 							<td>{{ $schedule->student->phone }}</td>
 							<td>{{ Common::getLevelName($schedule->student->level) }}</td>
-							
+							<td>{{ $schedule->lesson_number }}</td>
+							<td>{{ Common::getNumberLessonStatus($schedule->id, WAIT_CONFIRM_FINISH) }}</td>
+							<td>{{ Common::getNumberLessonStatus($schedule->id, FINISH_LESSON) }}</td>
+							<td>{{ Common::getNumberLessonStatus($schedule->id, CANCEL_LESSON) }}</td>
 							<td>
 								{{ renderUrl('PublishController@showScheduleStudent', 'Xem danh sách lịch học', [$schedule->id], ['class' => 'btn btn-primary']) }}
 							</td>
