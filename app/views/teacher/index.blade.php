@@ -35,6 +35,7 @@
 					<td>{{ Common::getHourTeachOfTeacher($teacher->id) }}</td>
 					<td>{{ Common::getHourCancelOfTeacher($teacher->id) }}</td>
 					<td>
+						{{ renderUrl('PublishController@privateStudent', 'Danh sách học sinh', ['teacher_id' => $teacher->id], ['class' => 'btn btn-primary']) }}
 						{{ renderUrl('ManagerTeacherController@edit', 'Sửa', [$teacher->id], ['class' => 'btn btn-primary']) }}
 						<a href="{{ action('ManagerTeacherController@getResetPass', $teacher->id) }} " class="btn btn-warning">Đổi mật khẩu</a>
 				   		{{ Form::open(array('method'=>'DELETE', 'action' => array('ManagerTeacherController@destroy', $teacher->id), 'style' => 'display: inline-block;')) }}

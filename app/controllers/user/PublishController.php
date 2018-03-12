@@ -75,9 +75,10 @@ class PublishController extends AdminController {
         ScheduleDetail::where('schedule_id', $schedule->id)->update(['teacher_id' => $teacherId]);
         return Redirect::action('PublishController@index');
     }
-    public function privateStudent($teacherId = null)
+    public function privateStudent()
     {
-        if ($teacherId == null) {
+        $teacherId = Input::get('teacher_id');
+        if (!$teacherId) {
             $teacher = currentUser();
             $teacherId = $teacher->id;
         }
