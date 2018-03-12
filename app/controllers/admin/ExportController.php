@@ -57,9 +57,11 @@ class ExportController extends AdminController {
 		foreach ($query as $key => $value) {
 			$data[] = [
 				'STT' => $key+1,
+				'Họ tên' => $value->full_name,
 				'Username' => $value->phone,
 				'Email' => $value->email,
 				'Ngày đăng ký' => $value->created_at,
+				'Ghi chú' => $value->comment
 			];
 		}
 		Excel::create('student_export_'.date('d_m_y_H_i_s', time()), function($excel) use ($data) {
