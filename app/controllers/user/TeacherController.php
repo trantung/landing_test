@@ -10,7 +10,12 @@ class TeacherController extends AdminController {
      */
     public function showSchedule()
     {
-        
+        $teacherId = Input::get('teacher_id');
+        if (!$teacherId) {
+            $teacher = currentUser();
+            $teacherId = $teacher->id;
+        }
+        return View::make('teacher.schedule');
     }
     public function index()
     {
