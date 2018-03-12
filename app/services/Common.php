@@ -193,6 +193,18 @@ class Common {
         return Schedule::where('teacher_id', $teacherId)->count();
     }
 
+    public static function getTotalLessonOfStudent($studentId){
+        return (int)ScheduleDetail::where('student_id', $studentId)->count();
+    }
+
+    public static function getStudiedLessonOfStudent($studentId){
+        return (int)ScheduleDetail::where('student_id', $studentId)->where('status', FINISH)->count();
+    }
+
+    public static function getRemainLessonOfStudent($studentId){
+        return (int)ScheduleDetail::where('student_id', $studentId)->where('status', '<>', FINISH)->count();
+    }
+
     public static function getHourTeachOfTeacher($teacherId){
         $data = ScheduleDetail::select(DB::raw('SUM(lesson_duration) as sum'))->where('teacher_id', $teacherId)->where('status', FINISH)->first();
         return (int)$data->sum;
