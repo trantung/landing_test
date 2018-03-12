@@ -30,7 +30,7 @@ Route::group(['prefix' => 'publish'], function () {
     Route::get('/teacher/schedule_detail/{id}/show/{teacher_id}', 'PublishController@showScheduleDetail');
     Route::post('/teacher/schedule_detail/{id}/show/{teacher_id}', 'PublishController@updateScheduleDetail');
     Route::get('/confirm_student/{token}/{id}', 'PublishController@confirmEmail');
-    Route::get('/teacher/schedule/', 'TeacherController@showSchedule');
+    Route::get('/teacher/schedule_time/', 'TeacherController@showScheduleTime');
     Route::resource('/teacher', 'PublishController');
 });
 
