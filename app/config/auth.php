@@ -12,8 +12,8 @@ return array(
             'table' => 'users'
         ),
         'teacher' => array(
-            'driver' => 'database',
-            'table' => 'teachers'
+            'driver' => 'eloquent',
+            'model' => 'Teacher'
         ),
     ),
 

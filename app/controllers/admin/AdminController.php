@@ -53,7 +53,6 @@ class AdminController extends BaseController {
      */
     public function edit($id)
     {
-        dd('test');
         $admin = Admin::find($id);
         return View::make('administrator.edit')->with(compact('admin'));
     }
@@ -86,6 +85,7 @@ class AdminController extends BaseController {
     {
         return View::make('admin.layout.login');
     }
+
     public function doLogin()
     {
         $rules = array(
@@ -114,19 +114,24 @@ class AdminController extends BaseController {
         }
 
     }
+
     public function dashboard()
     {
         return View::make('admin.dashboard');
     }
+
     public function logout()
     {
         Auth::admin()->logout();
+        Auth::teacher()->logout();
         return Redirect::action('AdminController@login');
     }
+
     public function getResetPass($id)
     {
         return View::make('administrator.reset')->with(compact('id'));
     }
+
     public function postResetPass($id)
     {
         $input = Input::all();
