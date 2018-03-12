@@ -27,7 +27,7 @@
                             <td>{{ getStatusScheduleDetail($scheduleDetail->status) }}</td>
                             
                             <td>
-                                {{ renderUrl('PublishController@showScheduleDetail', 'Xem chi tiết', [$scheduleDetail->id], ['class' => 'btn btn-primary']) }}
+                                {{ renderUrl('PublishController@showScheduleDetail', 'Xem chi tiết', [$scheduleDetail->id, $teacherId], ['class' => 'btn btn-primary']) }}
                             </td>
                         </tr>
                     @endforeach

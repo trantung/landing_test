@@ -7,7 +7,7 @@
 @section('content')
 <div class="row margin-bottom">
     <div class="col-xs-12">
-        {{ renderUrl('PublishController@showScheduleStudent', 'Danh sách lịch học của học sinh', [$lessonDetail->schedule_id], ['class' => 'btn btn-primary']) }}
+        {{ renderUrl('PublishController@showScheduleStudent', 'Danh sách lịch học của học sinh', [$lessonDetail->schedule_id, $teacherId], ['class' => 'btn btn-primary']) }}
     </div>
 </div>
 

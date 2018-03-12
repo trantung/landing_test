@@ -34,7 +34,7 @@
 							<td>{{ Common::getNumberLessonStatus($schedule->id, FINISH_LESSON) }}</td>
 							<td>{{ Common::getNumberLessonStatus($schedule->id, CANCEL_LESSON) }}</td>
 							<td>
-								{{ renderUrl('PublishController@showScheduleStudent', 'Xem danh sách lịch học', [$schedule->id], ['class' => 'btn btn-primary']) }}
+								{{ renderUrl('PublishController@showScheduleStudent', 'Xem danh sách lịch học', [$schedule->id, $teacherId], ['class' => 'btn btn-primary']) }}
 							</td>
 						</tr>
 					@endforeach
