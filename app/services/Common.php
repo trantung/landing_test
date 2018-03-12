@@ -188,4 +188,13 @@ class Common {
         // dd(111);
         return false;
     }
+
+    public static function getNumberLessonStatus($scheduleId, $status)
+    {
+        $count = ScheduleDetail::where('schedule_id', $scheduleId)
+            ->where('status', $status)
+            ->count();
+        return $count;
+    }
+
 }

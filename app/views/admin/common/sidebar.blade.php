@@ -54,6 +54,13 @@
                     <span>Danh sách học sinh cá nhân</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ action('TeacherController@showSchedule') }}">
+                    <i class="fa fa-key"></i> 
+                    <span>Lịch dạy</span>
+                </a>
+            </li>
+
             @endif
 
         </ul>
