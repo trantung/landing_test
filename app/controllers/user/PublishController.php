@@ -90,24 +90,22 @@ class PublishController extends AdminController {
         $data = Schedule::where('teacher_id', $teacherId)->paginate(PAGINATE);
         return View::make('student.private_teacher')->with(compact('data', 'teacherId'));
     }
-    public function showScheduleStudent($id)
+    public function showScheduleStudent($id, $teacherId)
     {
-        $teacherId = $this->getTeacherId();
         $schedule = Schedule::find($id);
         $studentId = $schedule->student_id;
         $student = Student::find($studentId);
         $data = ScheduleDetail::where('schedule_id', $id)->paginate(PAGINATE);
         return View::make('student.schedule_detail')->with(compact('data', 'student', 'teacherId'));
     }
-    public function showScheduleDetail($id)
+    public function showScheduleDetail($id, $teacherId)
     {
-        $teacherId = $this->getTeacherId();
         $lessonDetail = ScheduleDetail::find($id);
         $studentId = $lessonDetail->student_id;
         $student = Student::find($studentId);
         return View::make('student.lesson_detail')->with(compact('lessonDetail', 'student', 'teacherId'));
     }
-    public function updateScheduleDetail($id)
+    public function updateScheduleDetail($id, $teacherId)
     {
         $input = Input::except('_token');
         $lessonDetail = ScheduleDetail::find($id);
