@@ -33,6 +33,7 @@
 							<td>{{ Common::getGenderName($student->gender) }}</td>
 							<td>{{ date('d/m/Y', strtotime($student->birth_day)) }}</td>
 							<td>
+								{{-- {{ renderUrl('PublishController@showScheduleStudent', 'Lịch học', [$student->schedules], ['class' => 'btn btn-primary']) }} --}}
 								{{ renderUrl('ManagerStudentController@edit', 'Sửa', [$student->id], ['class' => 'btn btn-primary']) }}
 								@if (userAccess('student.delete'))
 									{{ Form::open(array('method'=>'DELETE', 'action' => array('ManagerStudentController@destroy', $student->id), 'style' => 'display: inline-block;')) }}

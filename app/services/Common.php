@@ -189,6 +189,32 @@ class Common {
         return false;
     }
 
+    public static function getTotalStudentOfTeacher($teacherId){
+        return Schedule::where('teacher_id', $teacherId)->count();
+    }
+
+    public static function getHourTeachOfTeacher($teacherId){
+        $data = ScheduleDetail::select(DB::raw('SUM(lesson_duration) as sum'))
+            ->where('teacher_id', $teacherId)->where('status', FINISH)->first();
+        return (int)$data->sum/60;
+    }
+
+    public static function getHourCancelOfTeacher($teacherId){
+        $data = ScheduleDetail::select(DB::raw('SUM(lesson_duration) as sum'))->where('teacher_id', $teacherId)->where('status', CANCEL_LESSON)->first();
+        return (int)$data->sum/60;
+    }
+
+    public static function getLevelTeacherList(){
+        return [
+            '' => '-- Tất cả --',
+            1 => 'Level 1',
+            2 => 'Level 2',
+            3 => 'Level 3',
+            4 => 'Level 4',
+            5 => 'Level 5'
+        ];
+    }
+    
     public static function getNumberLessonStatus($scheduleId, $status)
     {
         $count = ScheduleDetail::where('schedule_id', $scheduleId)

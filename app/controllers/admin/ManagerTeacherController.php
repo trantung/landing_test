@@ -1,7 +1,7 @@
 <?php
 class ManagerTeacherController extends AdminController {
     public function __construct() {
-        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
+        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'getResetPass', 'postResetPass')));
     }
     /**
      * Display a listing of the resource.
@@ -10,7 +10,21 @@ class ManagerTeacherController extends AdminController {
      */
     public function index()
     {
-        $data = Teacher::all();
+    // global $user;
+    // dd($user);
+        $input = Input::all();
+        $data = Teacher::orderBy('created_at', 'desc');
+        if( !empty($input['full_name']) ){
+            $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
+        }
+        if( !empty($input['email']) ){
+            $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
+        }
+        if( !empty($input['phone']) ){
+            $data = $data->where('phone', 'LIKE', '%'.$input['phone'].'%');
+        }
+
+        $data = $data->paginate(PAGINATE);
         return View::make('teacher.index')->with(compact('data'));
     }
     /**

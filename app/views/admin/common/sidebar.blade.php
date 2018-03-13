@@ -55,7 +55,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ action('TeacherController@showSchedule') }}">
+                <a href="{{ action('TeacherController@showScheduleTime') }}">
                     <i class="fa fa-key"></i> 
                     <span>Lịch dạy</span>
                 </a>

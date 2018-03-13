@@ -25,7 +25,7 @@ class Teacher extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 	protected $fillable = array('email', 'password', 'role_id', 'username', 'image_url', 
-		'note', 'phone', 'date_register', 'banking_number'
+		'note', 'phone', 'date_register', 'banking_number', 'full_name', 'level'
 	);
     protected $dates = ['deleted_at'];
 

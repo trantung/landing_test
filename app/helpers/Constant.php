@@ -34,6 +34,8 @@ define('CN', 8);
 define('REGISTER_LESSON', 1);
 define('CANCEL_LESSON', 2);
 define('CHANGE_LESSON', 3);
+define('APPROVING', 4);
+define('FINISH', 5);
 define('WAIT_CONFIRM_FINISH', 4);
 define('FINISH_LESSON', 5);
 //hoc thu hoc that(type)
