@@ -2,6 +2,7 @@
 class AdminController extends BaseController {
     public function __construct() {
         $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'dashboard')));
+        $this->beforeFilter('user', array('only'=>array('dashboard')));
     }
     /**
      * Display a listing of the resource.
