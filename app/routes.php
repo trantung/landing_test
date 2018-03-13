@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/permission/{role}', 'PermissionController@editRole');
     Route::put('/permission/{role}', 'PermissionController@updateRole');
 	Route::resource('/permission', 'PermissionController');
+
+    Route::controller('/export', 'ExportController');
 });
 Route::group(['prefix' => 'publish'], function () {
     Route::get('/teacher/student', 'PublishController@privateStudent');

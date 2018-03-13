@@ -95,7 +95,7 @@ function getAllPermissions(){
 
 function function_calback(){
     $route = Request::segment(3);
-    dd($route);
+    // dd($route);
 }
 
 function hasRoleAccess($role, $permission){
@@ -140,10 +140,7 @@ function currentUser(){
         $user->model = 'Admin';
     }
     if( Auth::teacher()->check() ){
-        $teacher = Auth::teacher()->get();
-        $userId = $teacher->id;
-        // dd($user->role);
-        $user = Teacher::find($userId);
+        $user = Auth::teacher()->get();
         $user->model = 'Teacher';
     }
     return $user;

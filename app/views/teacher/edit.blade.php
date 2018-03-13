@@ -1,91 +1,75 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý admin' }}
+{{ $title='Sửa giáo viên | '.$teacher->username }}
 @stop
 @section('content')
 
 <div class="row margin-bottom">
-  <div class="col-xs-12">
-    <a href="{{ action('ManagerTeacherController@index') }}" class="btn btn-success">Danh sách giáo viên</a>
-  </div>
+    <div class="col-xs-12">
+        {{ renderUrl('ManagerTeacherController@index', 'Danh sách giáo viên', [], ['class' => 'btn btn-success']) }}
+    </div>
 </div>
 
 <div class="row">
-  <div class="col-xs-12">
-    <div class="box box-primary">
-        <!-- form start -->
-        {{ Form::open(array('action' => array('ManagerTeacherController@update', $teacher->id), 'method' => "PUT", 'files' => true)) }}
-          <div class="box-body">
-            <div class="form-group">
-              <label for="email">Email</label>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <input type="email" class="form-control" required id="email" placeholder="Email" name="email" 
-                    value="{{ $teacher->email }}">
-                  </div>
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <!-- form start -->
+            {{ Form::open(array('action' => array('ManagerTeacherController@update', $teacher->id), 'method' => "PUT", 'files' => true)) }}
+                <div class="box-body row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Họ tên <span class="text-warning">(*)</span></label>
+                            {{ Form::text('full_name', $teacher->full_name, array('class' => 'form-control', 'required' => true)) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Email <span class="text-warning">(*)</span></label>
+                            {{ Form::email('email', $teacher->email, array('class' => 'form-control', 'required' => true)) }}
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Tên đăng nhập <span class="text-warning">(*)</span></label>
+                            {{ Form::text('username', $teacher->username, array('class' => 'form-control', 'required' => true)) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Password <span class="text-warning">(*)</span></label>
+                            {{ Form::password('password', array('class' => 'form-control', 'required' => true)) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Ảnh đại diện</label>
+                            {{ Form::file('image_url', null, array('class' => 'form-control')) }}<br>
+                            <img src="{{ url(UPLOAD_DIR . UPLOADTEACHER . '/' . $teacher->id . '/' . $teacher->image_url) }}" width="200px" height="auto"  />
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            {{ Form::text('phone', $teacher->phone, array('class' => 'form-control')) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Ngày đăng ký</label>
+                            <input type="date" class="form-control" id="date_register" placeholder="date register" name="date_register" value="{{ $teacher->date }}">
+                        </div>
+                        <div class="form-group">
+                            <label>Số tài khoản ngân hàng</label>
+                            {{ Form::text('banking_number', $teacher->banking_number, array('class' => 'form-control')) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Trình độ</label>
+                            {{ Form::select('level', Common::getLevelTeacherList(), $teacher->level, ['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
+                            <label>Ghi chú</label>
+                            {{ Form::textarea('note', $teacher->note, array('class' => 'form-control', 'rows' => 3)) }}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-              <label for="username">Username</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  <input type="text" class="form-control" required id="username" placeholder="Username" name="username" value="{{ $teacher->username }}">
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="password">Phone</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{ Form::text('phone', $teacher->phone, array('class' => 'form-control')) }}
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="password">Note</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{ Form::textarea('note', $teacher->note, array('class' => 'form-control', 'row' => 4)) }}
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="password">Register date</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  <input type="date" class="form-control" id="date_register" placeholder="date register" name="date_register" value="{{ $teacher->date_register }}" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="password">Banking number</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{ Form::text('banking_number', $teacher->banking_number, array('class' => 'form-control')) }}
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="password">Image</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{ Form::file('image_url', null, array('class' => 'form-control')) }}
-                  <img src="{{ url(UPLOAD_DIR . UPLOADTEACHER . '/' . $teacher->id . '/' . $teacher->image_url) }}" width="200px" height="auto"  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.box-body -->
+                <!-- /.box-body -->
 
-          <div class="box-footer">
-            <input type="submit" class="btn btn-primary" value="Lưu lại" />
-            <input type="reset" class="btn btn-default" value="Nhập lại" />
-          </div>
-        {{ Form::close() }}
-      </div>
-      <!-- /.box -->
-  </div>
+                <div class="box-footer">
+                    <input type="submit" class="btn btn-primary" value="Lưu lại" />
+                    <input type="reset" class="btn btn-default" value="Nhập lại" />
+                </div>
+            {{ Form::close() }}
+        </div>
+        <!-- /.box -->
+    </div>
 </div>
-
 @stop
