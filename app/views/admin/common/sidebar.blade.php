@@ -9,6 +9,14 @@
             </li>
             @endif
 
+            @if(userAccess('gmo.view'))
+            <li>
+                <a href="{{ action('AdminController@gmoIndex') }}">
+                    <i class="fa fa-unlock-alt"></i> <span>Quản lý Gmo</span>
+                </a>
+            </li>
+            @endif
+
             @if(userAccess('teacher.view'))
             <li>
                 <a href="{{ action('ManagerTeacherController@index') }}">

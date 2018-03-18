@@ -24,7 +24,7 @@ class Admin extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
-	protected $fillable = array('role_id', 'email', 'password', 'username');
+	protected $fillable = array('role_id', 'email', 'password', 'username', 'full_name');
     protected $dates = ['deleted_at'];
 
     public static function isAdmin()

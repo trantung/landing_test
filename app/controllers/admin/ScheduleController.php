@@ -1,8 +1,5 @@
 <?php
 class ScheduleController extends AdminController {
-    public function __construct() {
-        $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout')));
-    }
     /**
      * Display a listing of the resource.
      *
@@ -65,7 +62,6 @@ class ScheduleController extends AdminController {
     public function update($id)
     {
         $input = Input::all();
-        $input['password'] = Hash::make($input['password']);
         Admin::findOrFail($id)->update($input);
         return Redirect::action('AdminController@index');
     }
@@ -79,20 +75,6 @@ class ScheduleController extends AdminController {
     {
         Admin::findOrFail($id)->delete();
         return Redirect::action('AdminController@index');
-    }
-
-    public function getResetPass($id)
-    {
-        return View::make('administrator.reset')->with(compact('id'));
-    }
-    public function postResetPass($id)
-    {
-        $input = Input::all();
-        $admin = Admin::find($id);
-        $password = Hash::make($input['password']);
-        $admin->update(['password' => $password]);
-        return Redirect::action('AdminController@index');
-
     }
 }
 

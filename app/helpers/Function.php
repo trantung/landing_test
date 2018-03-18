@@ -196,19 +196,45 @@ function getTimeId($time)
     }
     return false;
 }
+
 function getRoleIdBySlug($slug)
-{
-    $role = Role::findBySlug($slug);
+{   
+    if ( !Cache::has('role_'.$slug) ){
+        $role = Role::findBySlug($slug);
+        Cache::put('role_'.$slug, $role, 15);
+    }
+    $role = Cache::get('role_'.$slug);
+
     if ($role) {
         return $role->id;
     }
     return null;
 }
+
+function getRoleNameById($id)
+{   
+    if ( !Cache::has('role_name_'.$id) ){
+        $role = Role::find($id);
+        Cache::put('role_name_'.$id, $role, 15);
+    }
+    $role = Cache::get('role_name_'.$id);
+
+    if ($role) {
+        return $role->name;
+    }
+    return null;
+}
+
 function getRoleAdmin()
 {
-    $list = Role::lists('name', 'id');
-    return $list;
+    if ( !Cache::has('role_list') ){
+        $roles = Role::lists('name', 'id');
+        Cache::put('role_list', $roles, 30);
+    }
+    $roles = Cache::get('role_list');
+    return $roles;
 }
+
 function getStatusScheduleDetail($status)
 {
     if ($status == REGISTER_LESSON) {

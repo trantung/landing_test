@@ -14,6 +14,28 @@ class AdminController extends BaseController {
         $data = Admin::all();
         return View::make('administrator.index')->with(compact('data'));
     }
+
+    /**
+     * Display list of GMO
+     **/
+    public function gmoIndex(){
+        $input = Input::all();
+        $data = Admin::where('role_id', getRoleIdBySlug('gmo'))->orderBy('created_at', 'desc');
+        if( !empty($input['username']) ){
+            $data = $data->where('username', 'LIKE', '%'.$input['username'].'%');
+        }
+        if( !empty($input['full_name']) ){
+            $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
+        }
+        if( !empty($input['email']) ){
+            $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
+        }
+
+        $data = $data->paginate(PAGINATE);
+        return View::make('administrator.index')->with(compact('data'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -66,7 +88,7 @@ class AdminController extends BaseController {
     public function update($id)
     {
         $input = Input::all();
-        $input['password'] = Hash::make($input['password']);
+        // $input['password'] = Hash::make($input['password']);
         Admin::findOrFail($id)->update($input);
         return Redirect::action('AdminController@index');
     }
