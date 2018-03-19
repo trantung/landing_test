@@ -1,6 +1,7 @@
 <?php
 define('ADMIN', 'admin');
 define('WEBMASTER', 'webmaster');
+define('GMO', 'gmo');
 define('SALE', 'sale');
 define('TEACHER', 'teacher');
 define('UPLOADTEACHER', '/teacher');

@@ -1,13 +1,25 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Quản lý admin' }}
+@if( getRoleIdBySlug('gmo') == $admin->role_id )
+    {{ $title='Sửa GMO | '.$admin->username }}
+@else
+    {{ $title='Sửa Admin | '.$admin->username }}
+@endif
 @stop
 @section('content')
 
 <div class="row margin-bottom">
   <div class="col-xs-12">
-    <a href="{{ action('AdminController@index') }}" class="btn btn-success">Danh sách Admin</a>
+    <div class="row margin-bottom">
+        <div class="col-xs-12">
+            @if( getRoleIdBySlug('gmo') == $admin->role_id )
+                {{ renderUrl('AdminController@gmoIndex', 'Danh sách MMO', [], ['class' => 'btn btn-primary']) }}
+            @else
+                {{ renderUrl('AdminController@index', 'Danh sách Admin', [], ['class' => 'btn btn-primary']) }}
+            @endif
+        </div>
+    </div>
   </div>
 </div>
 
@@ -16,46 +28,25 @@
     <div class="box box-primary">
         <!-- form start -->
         {{ Form::open(array('action' => array('AdminController@update', $admin->id), 'method' => "PUT")) }}
-          <div class="box-body">
-
-            <div class="form-group">
-              <label for="role_id">Role id</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{  Form::select('role_id', getRoleAdmin(), $admin->role_id, array('class' => 'form-control', 'required' => 'required' )) }}
+        <div class="box-body col-sm-6">
+                <div class="form-group">
+                    <label for="username">Họ tên</label>
+                    {{  Form::text('full_name', $admin->full_name, array('class' => 'form-control', 'required' => 'required' )) }}
                 </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{  Form::text('email', $admin->email, array('class' => 'form-control', 'required' => 'required' )) }}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    {{  Form::text('username', $admin->username, array('class' => 'form-control', 'required' => 'required' )) }}
                 </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  <input type="password" class="form-control" required id="password" pattern="[0-9a-fA-F]{4,12}" placeholder="Password" name="password">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    {{  Form::text('email', $admin->email, array('class' => 'form-control', 'required' => 'required' )) }}
                 </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="username">Username</label>
-              <div class="row">
-                <div class="col-sm-6">
-                  {{  Form::text('username', $admin->username, array('class' => 'form-control', 'required' => 'required' )) }}
+                <div class="form-group disabled">
+                    <label for="role_id">Phân quyền</label>
+                    {{ Form::select('role_id', getRoleAdmin(), $admin->role_id, array('class' => 'form-control', 'required' => 'required' )) }}
                 </div>
-              </div>
             </div>
-
-          </div>
-          <!-- /.box-body -->
+            <div class="clear clearfix"></div>
 
           <div class="box-footer">
             <input type="submit" class="btn btn-primary" value="Lưu lại" />

@@ -76,8 +76,9 @@ Route::filter('admin', function()
 
 Route::filter('user', function()
 {
-    if (Auth::user()->guest()){
-        return Redirect::action('UserController@login');
+    $user = currentUser();
+    if( !$user ){
+        return Redirect::action('AdminController@login');
     }
     // $admin = Auth::admin()->get();
  //    if ($admin->role_id != ADMIN) {

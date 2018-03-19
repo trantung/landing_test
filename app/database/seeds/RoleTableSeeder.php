@@ -16,6 +16,12 @@ class RoleTableSeeder extends Seeder {
                 'slug'=>'webmaster'
             ]);
         }
+        if( Role::where('slug', 'gmo')->count() == 0 ){
+            Role::create([
+                'name'=>'Gmo',
+                'slug'=>'gmo'
+            ]);
+        }
         if( Role::where('slug', 'sale')->count() == 0 ){
             Role::create([
                 'name'=>'Sale',
