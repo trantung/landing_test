@@ -127,7 +127,7 @@ function hasRole($roleName, $user = null){
     if( !$user ){
         return false;
     }
-    if( Common::getObject($user->role, 'slug') == $roleName ){
+    if( Common::getObject($user->role, 'slug') == $roleName | Common::getObject($user->role, 'slug') == 'admin' ){
         return true;
     }
     return false;

@@ -6,8 +6,70 @@ class ExportController extends AdminController {
 	 *
 	 * @return Response
 	 */
-	public function getStudent(){
-		$query = Student::orderBy('created_at', 'DESC')->get();
+	public function getData(){
+		$model = Input::get('model');
+		$startDate = Input::get('start_date');
+		$endDate = Input::get('end_date');
+		switch ($model) {
+			case 'student':
+				if( !empty($startDate) && !empty($endDate) ){
+					$students = ScheduleDetail::whereBetween('lesson_date', [$startDate, $endDate])
+						->groupBy('student_id')
+						->OrderBy('created_at', 'DESC')
+						->get();
+					$data = [];
+					foreach ($students as $key => $value) {
+						$totalLesson = Common::getTotalLessonOfStudent($value->student_id);
+						$studiedLesson = Common::countScheduleByStatus($value->student_id, FINISH_LESSON, $startDate, $endDate);
+						$data[] = [
+							'STT' => $key+1,
+							'Họ tên' => Common::getObject($value->student, 'full_name'),
+							'Giáo viên' => Common::getObject($value->teacher, 'username'),
+							'GMO' => '',
+							'Tên bố mẹ' => Common::getObject($value->student, 'parent_name'),
+							'SĐT' => Common::getObject($value->student, 'phone'),
+							'Email' => Common::getObject($value->student, 'email'),
+							'Học thử' => Common::countScheduleByType($value->student_id, TRIAL, $startDate, $endDate),
+							'Hoãn' => Common::countScheduleByStatus($value->student_id, CHANGE_LESSON, $startDate, $endDate),
+							'Học thật' => Common::countScheduleByType($value->student_id, OFFICAL, $startDate, $endDate),
+							'Level' => Common::getLevelName($value->level),
+							'Tổng số buổi' => $totalLesson,
+							'Đã học' => $studiedLesson,
+							'Số buổi còn lại' => $totalLesson - $studiedLesson,
+							'Số lần kiểm tra trình độ' => '',
+							'Sự tiến bộ' => '',
+							'Ngày tham gia khóa học' => Common::getObject($value->student, 'start_date'),
+							'Ngày dự kiến kết thúc' => Common::getDateScheduleFinish($value->student_id),
+							'Kênh giới thiệu' => Common::getObject($value->student, 'source'),
+							'Ghi chú' => Common::getObject($value->student, 'comment'),
+						];
+					}
+					Common::exportDataExcel($data, 'export_student_'.$startDate.'__'.$endDate);
+				}
+				// $this->getStudent($startDate, $endDate);
+				break;
+				
+			case 'teacher':
+				# code...
+				break;
+				
+			case 'sale':
+				# code...
+				break;
+				
+			case 'gmo':
+				# code...
+				break;
+		}
+		return View::make('export.filter');
+	}
+
+	public function getStudent($startDate = null, $endDate = null){
+		if( !empty($startDate) && !empty($endDate) && strtotime($endDate) >= strtotime($startDate) ){
+			$query = Student::whereBetween('created_at', [$startDate, $endDate])->orderBy('created_at', 'DESC')->get();
+		} else{
+			$query = Student::orderBy('created_at', 'DESC')->get();
+		}
 		$data = [];
 		foreach ($query as $key => $value) {
 			$totalLesson = Common::getTotalLessonOfStudent($value->id);
@@ -30,20 +92,7 @@ class ExportController extends AdminController {
 				'Ghi chú' => $value->comment
 			];
 		}
-		Excel::create('student_export_'.date('d_m_y_H_i_s', time()), function($excel) use ($data) {
-			$excel->sheet('mySheet', function($sheet) use ($data){
-				$sheet->getStyle('1')->applyFromArray(array(
-					'fill' => array(
-				        'type'  => PHPExcel_Style_Fill::FILL_SOLID,
-				        'color' => array('rgb' => '3c8dbc'),
-				    ),
-			        'font-weight' => 'bold',
-			        'bold' => true,
-			        'color' => array('rgb' => 'FFFFFF'),
-				));
-				$sheet->fromArray($data);
-	        });
-		})->download('xlsx');
+		Common::exportDataExcel($data, 'student_export_'.date('d_m_y_H_i_s', time()));
 	}
 
 	/**
@@ -64,20 +113,7 @@ class ExportController extends AdminController {
 				'Ghi chú' => $value->comment
 			];
 		}
-		Excel::create('student_export_'.date('d_m_y_H_i_s', time()), function($excel) use ($data) {
-			$excel->sheet('mySheet', function($sheet) use ($data){
-				$sheet->getStyle('1')->applyFromArray(array(
-					'fill' => array(
-				        'type'  => PHPExcel_Style_Fill::FILL_SOLID,
-				        'color' => array('rgb' => '3c8dbc'),
-				    ),
-			        'font-weight' => 'bold',
-			        'bold' => true,
-			        'color' => array('rgb' => 'FFFFFF'),
-				));
-				$sheet->fromArray($data);
-	        });
-		})->download('xlsx');
+		Common::exportDataExcel($data, 'salse_export_'.date('d_m_y_H_i_s', time()));
 	}
 
 	/**
@@ -100,20 +136,7 @@ class ExportController extends AdminController {
 				'Ghi chú' => $value->note
 			];
 		}
-		Excel::create('teacher_export_'.date('d_m_y_H_i_s', time()), function($excel) use ($data) {
-			$excel->sheet('mySheet', function($sheet) use ($data){
-				$sheet->getStyle('1')->applyFromArray(array(
-					'fill' => array(
-				        'type'  => PHPExcel_Style_Fill::FILL_SOLID,
-				        'color' => array('rgb' => '3c8dbc'),
-				    ),
-			        'font-weight' => 'bold',
-			        'bold' => true,
-			        'color' => array('rgb' => 'FFFFFF'),
-				));
-				$sheet->fromArray($data);
-	        });
-		})->download('xlsx');
+		Common::exportDataExcel($data, 'teacher_export_'.date('d_m_y_H_i_s', time()));
 	}
 
 }
