@@ -290,4 +290,31 @@ class Common {
         return null;
     }
 
+    /**
+     * Add a comment
+     * @source: ModelName.id
+     * @target: ModelName.id
+     */
+    public static function saveComment($source, $target, $comment = '', $votes = null){
+        $source = explode('-', $source);
+        $target = explode('-', $target);
+        if( count($source) == 2 
+            && count($target) == 2
+            && class_exists($source[0])
+            && class_exists($target[0])
+            && is_numeric($source[1])
+            && is_numeric($target[1]) ){
+
+                return CommonNormal::create([
+                    'model_source' => $source[0],
+                    'source_id' => $source[1],
+                    'model_target' => $target[0],
+                    'target_id' => $target[1],
+                    'comment' => $comment,
+                    'votes' => $votes,
+                ], 'Comment');
+        }
+        return false;
+    }
+
 }

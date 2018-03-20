@@ -83,10 +83,17 @@ function getAllPermissions(){
             ],
             'callback_function' => '',
         ],
+
         'teacher.schedule' => [
             'name' => 'Xem lịch dạy',
             'description' => 'Xem lịch dạy',
             'accept' => ['TeacherController@showSchedule'],
+            'callback_function' => '',
+        ],
+        'teacher.comment' => [
+            'name' => 'Xem lịch dạy',
+            'description' => 'Xem lịch dạy',
+            'accept' => ['TeacherController@commentTeacher'],
             'callback_function' => '',
         ],
 

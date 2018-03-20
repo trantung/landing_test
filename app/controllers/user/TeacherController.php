@@ -17,6 +17,14 @@ class TeacherController extends AdminController {
         }
         return View::make('teacher.schedule');
     }
+
+    public function commentTeacher($id){
+        $user = currentUser();
+        $input = Input::all();
+        $commentId = Common::saveComment($user->model.'-'.$user->id, 'Teacher-'.$input['target_id'], $input['comment'], $input['votes']);
+        return Redirect::back()->withMessage('Gửi bình luận thành công!');
+    }
+
     public function index()
     {
     }

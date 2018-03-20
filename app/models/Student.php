@@ -8,7 +8,7 @@ class Student extends Eloquent
 
     protected $table = 'students';
     protected $fillable = [
-        'full_name', 'email', 'phone', 'address', 'gender',
+        'full_name', 'email', 'phone', 'address', 'gender', 'admin_id',
         'code', 'start_date', 'birth_day', 'avatar', 'level', 
         'source', 'comment', 'parent_name', 'parent_email', 'parent_phone',
     ];
