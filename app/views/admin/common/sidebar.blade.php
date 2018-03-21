@@ -47,12 +47,11 @@
                     <i class="fa fa-key"></i> <span>Phân quyền</span>
                 </a>
             </li>
-            <li class="treeview nav">
-                <a href="#">
-                    <i class="fa fa-flag"></i> <span>Thống kê</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-down pull-right"></i></span>
+            <li class="">
+                <a href="{{ action('ExportController@getData') }}">
+                    <i class="fa fa-flag"></i> <span>Báo cáo / thống kê</span>
                 </a>
-                <ul class="treeview-menu">
+                {{-- <ul class="treeview-menu">
                     <li>
                         <a href="{{ action('ExportController@getStudent') }}">
                             <i class="fa fa-download"></i> <span>Xuất dữ liệu học sinh</span>
@@ -68,7 +67,7 @@
                             <i class="fa fa-download"></i> <span>Xuất dữ liệu Sale</span>
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
             </li>
             @endif
 

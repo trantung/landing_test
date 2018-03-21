@@ -83,10 +83,17 @@ function getAllPermissions(){
             ],
             'callback_function' => '',
         ],
+
         'teacher.schedule' => [
             'name' => 'Xem lịch dạy',
             'description' => 'Xem lịch dạy',
             'accept' => ['TeacherController@showSchedule'],
+            'callback_function' => '',
+        ],
+        'teacher.comment' => [
+            'name' => 'Xem lịch dạy',
+            'description' => 'Xem lịch dạy',
+            'accept' => ['TeacherController@commentTeacher'],
             'callback_function' => '',
         ],
 
@@ -127,7 +134,7 @@ function hasRole($roleName, $user = null){
     if( !$user ){
         return false;
     }
-    if( Common::getObject($user->role, 'slug') == $roleName ){
+    if( Common::getObject($user->role, 'slug') == $roleName | Common::getObject($user->role, 'slug') == 'admin' ){
         return true;
     }
     return false;

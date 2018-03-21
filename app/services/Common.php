@@ -235,4 +235,87 @@ class Common {
         return $count;
     }
 
+    /**
+     * Export data Excel
+     */
+    public static function exportDataExcel($data, $fileName = null){
+        if( $fileName == null ){
+            $fileName = 'file_export_'.date('d_m_y__H_i_s', time());
+        }
+        Excel::create($fileName , function($excel) use ($data) {
+            $excel->sheet('mySheet', function($sheet) use ($data){
+                $sheet->getStyle('1')->applyFromArray(array(
+                    'fill' => array(
+                        'type'  => PHPExcel_Style_Fill::FILL_SOLID,
+                        'color' => array('rgb' => '3c8dbc'),
+                    ),
+                    'font-weight' => 'bold',
+                    'bold' => true,
+                    'color' => array('rgb' => 'FFFFFF'),
+                ));
+                $sheet->fromArray($data);
+            });
+        })->download('xlsx');
+    }
+
+    /**
+     * Count schedule of a student by status
+     */
+    public static function countScheduleByStatus($studentId, $status, $startDate = null, $endDate = null){
+        $schedule = ScheduleDetail::where('student_id', $studentId)->where('status', $status);
+        if( !empty($startDate) && !empty($endDate) ){
+            $schedule->whereBetween('lesson_date', [$startDate, $endDate]);
+        }
+        return $schedule->count();
+    }
+
+    /**
+     * Count schedule of a student by type
+     */
+    public static function countScheduleByType($studentId, $type, $startDate = null, $endDate = null){
+        $schedule = ScheduleDetail::where('student_id', $studentId)->where('type', $type);
+        if( !empty($startDate) && !empty($endDate) ){
+            $schedule->whereBetween('lesson_date', [$startDate, $endDate]);
+        }
+        return $schedule->count();
+    }
+
+    /**
+     * the date of schedule finish
+     */
+    public static function getDateScheduleFinish($studentId){
+        $schedule = ScheduleDetail::where('student_id', $studentId)->OrderBy('lesson_date', 'DESC')->first();
+        if( $schedule ){
+            return $schedule->lesson_date;
+        }
+        return null;
+    }
+
+    /**
+     * Add a comment
+     * @source: ModelName.id
+     * @target: ModelName.id
+     */
+    public static function saveComment($source, $target, $comment = '', $votes = null){
+        $source = explode('-', $source);
+        $target = explode('-', $target);
+        if( count($source) == 2 
+            && count($target) == 2
+            && class_exists($source[0])
+            && class_exists($target[0])
+            && is_numeric($source[1])
+            && is_numeric($target[1]) ){
+
+                return CommonNormal::create([
+                    'model_source' => $source[0],
+                    'source_id' => $source[1],
+                    'model_target' => $target[0],
+                    'target_id' => $target[1],
+                    'comment' => $comment,
+                    'votes' => $votes,
+                ], 'Comment');
+        }
+        return false;
+    }
+
 }
