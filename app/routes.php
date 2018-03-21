@@ -32,6 +32,9 @@ Route::group(['prefix' => 'admin'], function () {
 });
 Route::group(['prefix' => 'publish'], function () {
     Route::get('/teacher/student', 'PublishController@privateStudent');
+    Route::get('/teacher/schedule_student/{id}/stop/{teacher_id}', 'PublishController@stopScheduleStudent');
+    Route::post('/teacher/schedule_student/{id}/stop/{teacher_id}', 'PublishController@postStopScheduleStudent');
+    Route::post('/teacher/schedule_student/{id}/stop/{teacher_id}', 'PublishController@cancelStopScheduleStudent');
     Route::get('/teacher/schedule_student/{id}/show/{teacher_id}', 'PublishController@showScheduleStudent');
     Route::get('/teacher/schedule_detail/{id}/show/{teacher_id}', 'PublishController@showScheduleDetail');
     Route::post('/teacher/schedule_detail/{id}/show/{teacher_id}', 'PublishController@updateScheduleDetail');

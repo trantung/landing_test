@@ -79,7 +79,9 @@ function getAllPermissions(){
             'description' => 'Xem chi tiết học sinh publish',
             'accept' => ['PublishController@show','PublishController@update', 
                 'PublishController@privateStudent', 'PublishController@showScheduleStudent',
-                'PublishController@showScheduleDetail','PublishController@updateScheduleDetail'
+                'PublishController@showScheduleDetail','PublishController@updateScheduleDetail',
+                'PublishController@stopScheduleStudent', 'PublishController@postStopScheduleStudent',
+                'PublishController@cancelStopScheduleStudent'
             ],
             'callback_function' => '',
         ],

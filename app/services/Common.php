@@ -234,6 +234,20 @@ class Common {
             ->count();
         return $count;
     }
+    public static function getStatusSchedule($scheduleId)
+    {
+        $schedule = Schedule::find($scheduleId);
+        if ($schedule->status == STOP_LESSON) {
+            return 'Tạm dừng';
+        }
+        if ($schedule->status == PROCESS_LESSON) {
+            return 'Đang học';
+        }
+        if ($schedule->status == FINISH_LESSON_TOTAL) {
+            return 'Hoàn thành';
+        }
+
+    }
 
     /**
      * Export data Excel
@@ -316,6 +330,17 @@ class Common {
                 ], 'Comment');
         }
         return false;
+    }
+    public static function getGmo()
+    {
+        $array = [
+            '' => 'Chọn',
+        ];
+        $role = Role::where('slug', 'gmo')->first();
+        $roleId = $role->id;
+        $gmo = Admin::where('role_id', $roleId)->lists('username', 'id');
+        $gmo = $array + $gmo;
+        return $gmo;
     }
 
 }

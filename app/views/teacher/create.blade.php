@@ -43,15 +43,19 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Số tài khoản ngân hàng</label>
-                    {{ Form::text('banking_number', null, array('class' => 'form-control')) }}
+                    {{ Form::textarea('banking_number', null, array('class' => 'form-control', 'rows' => 9)) }}
                 </div>
                 <div class="form-group">
                     <label>Trình độ</label>
                     {{ Form::select('level', Common::getLevelTeacherList(), null, ['class' => 'form-control']) }}
                 </div>
                 <div class="form-group">
+                    <label>Chọn GMO</label>
+                    {{ Form::select('admin_id', Common::getGmo(), null, ['class' => 'form-control']) }}
+                </div>
+                <div class="form-group">
                     <label for="password">Ghi chú</label>
-                    {{ Form::textarea('note', null, array('class' => 'form-control', 'rows' => 3)) }}
+                    {{ Form::text('note', null, array('class' => 'form-control', 'rows' =>9, 'id' => 'editor1')) }}
                 </div>
             </div>
         </div>
@@ -63,5 +67,6 @@
         </div>
         {{ Form::close() }}
     </div>
+@include('admin.common.ckeditor')
     <!-- /.box -->
 @stop

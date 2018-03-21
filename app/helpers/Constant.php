@@ -39,10 +39,12 @@ define('APPROVING', 4);
 define('FINISH', 5);
 define('WAIT_CONFIRM_FINISH', 4);
 define('FINISH_LESSON', 5);
-//hoc thu hoc that(type)
+//hoc thu hoc that(type) schedule
 define('TRIAL', 1);
 define('OFFICAL', 2);
 //status trong bang schedule
+define('PROCESS_LESSON', 1);
 define('FINISH_LESSON_TOTAL', 2);
+define('STOP_LESSON', 3);
 //email
 define('SUBJECT_EMAIL', 'Mail gửi từ hệ thống');
