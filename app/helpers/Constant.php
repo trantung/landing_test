@@ -4,12 +4,15 @@ define('WEBMASTER', 'webmaster');
 define('GMO', 'gmo');
 define('SALE', 'sale');
 define('TEACHER', 'teacher');
-define('UPLOADTEACHER', '/teacher');
-define('UPLOADSTUDENT', '/student');
+
+define('UPLOADTEACHER', '/uploads/teacher/');
+define('UPLOADSTUDENT', '/uploads/student/');
+define('UPLOAD_DIR', '/uploads/');
+
+define('NO_IMG', '/custom/img/no-img.png');
 
 define('PAGINATE',20);
 
-define('UPLOAD_DIR', '/uploads/');
 /*
     Các role của nhân viên trung tâm
 */

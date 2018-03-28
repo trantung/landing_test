@@ -3,6 +3,7 @@ class PublishController extends AdminController {
     public function __construct() {
         $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'confirmEmail')));
     }
+    
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +18,7 @@ class PublishController extends AdminController {
         $data = Student::whereIn('id', $listStudentId)->paginate(PAGINATE);
         return View::make('student.publish')->with(compact('data'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,6 +28,7 @@ class PublishController extends AdminController {
     {
         return View::make('admin.user.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,6 +38,7 @@ class PublishController extends AdminController {
     {
         //
     }
+
     /**
      * Display the specified resource.
      *
@@ -46,6 +50,7 @@ class PublishController extends AdminController {
         $student = Student::findOrFail($id);
         return View::make('student.publish_detail')->with(compact('student'));
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -56,6 +61,7 @@ class PublishController extends AdminController {
     {
 
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -75,6 +81,7 @@ class PublishController extends AdminController {
         ScheduleDetail::where('schedule_id', $schedule->id)->update(['teacher_id' => $teacherId]);
         return Redirect::action('PublishController@index');
     }
+
     private function getTeacherId()
     {
         $teacherId = Input::get('teacher_id');
@@ -84,12 +91,14 @@ class PublishController extends AdminController {
         }
         return $teacherId;
     }
+
     public function privateStudent()
     {
         $teacherId = $this->getTeacherId();
         $data = Schedule::where('teacher_id', $teacherId)->paginate(PAGINATE);
         return View::make('student.private_teacher')->with(compact('data', 'teacherId'));
     }
+
     public function showScheduleStudent($id, $teacherId)
     {
         $schedule = Schedule::find($id);
@@ -98,6 +107,7 @@ class PublishController extends AdminController {
         $data = ScheduleDetail::where('schedule_id', $id)->paginate(PAGINATE);
         return View::make('student.schedule_detail')->with(compact('data', 'student', 'teacherId'));
     }
+
     public function showScheduleDetail($id, $teacherId)
     {
         $lessonDetail = ScheduleDetail::find($id);
@@ -105,6 +115,7 @@ class PublishController extends AdminController {
         $student = Student::find($studentId);
         return View::make('student.lesson_detail')->with(compact('lessonDetail', 'student', 'teacherId'));
     }
+
     public function updateScheduleDetail($id, $teacherId)
     {
         $input = Input::except('_token');
@@ -170,10 +181,12 @@ class PublishController extends AdminController {
         }
         return 'Mã xác nhận sai';
     } 
+
     public function destroy($id)
     {
         //
     }
+
     public function login()
     {
         $checkLogin = Auth::user()->check();
@@ -183,6 +196,7 @@ class PublishController extends AdminController {
             return View::make('user.layout.login');
         }
     }
+
     public function doLogin()
     {
         $rules = array(
@@ -205,6 +219,7 @@ class PublishController extends AdminController {
             }
         }
     }
+
     public function logout()
     {
         Auth::user()->logout();

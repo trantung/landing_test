@@ -7,7 +7,7 @@ class ScheduleController extends AdminController {
      */
     public function index()
     {
-        $data = Admin::all();
+        $data = Admin::paginate(PAGINATE);
         return View::make('administrator.index')->with(compact('data'));
     }
     /**

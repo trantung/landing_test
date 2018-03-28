@@ -4,7 +4,7 @@
             @if(userAccess('admin.view'))
             <li>
                 <a href="{{ action('AdminController@index') }}">
-                    <i class="fa fa-unlock-alt"></i> <span>Quản lý admin </span>
+                    <i class="fa fa-unlock-alt"></i> <span>Quản lý thành viên</span>
                 </a>
             </li>
             @endif
@@ -20,7 +20,7 @@
             @if(userAccess('teacher.view'))
             <li>
                 <a href="{{ action('ManagerTeacherController@index') }}">
-                    <i class="fa fa-bullhorn"></i> <span>Quản lý teacher </span>
+                    <i class="fa fa-bullhorn"></i> <span>Quản lý teacher</span>
                 </a>
             </li>
             @endif
@@ -84,7 +84,7 @@
             </li>
             <li>
                 <a href="{{ action('TeacherController@showSchedule') }}">
-                    <i class="fa fa-key"></i> <span>Lịch dạy</span>
+                    <i class="fa fa-key"></i> <span>Thời khóa biểu</span>
                 </a>
             </li>
             @endif

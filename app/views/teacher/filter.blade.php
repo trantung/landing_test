@@ -17,7 +17,7 @@
 			{{ Form::select('level', Common::getLevelTeacherList(), Input::get('level'), ['class' => 'form-control']) }}
 		</div>
 		<div class="input-group inline-block" style="vertical-align: bottom;">
-			<button type="submit" class="btn btn-primary">Tìm kiếm</button>
+			<button type="submit" class="btn btn-primary" title="Tìm kiếm"><i class="glyphicon glyphicon-search"></i></button>
         	{{ renderUrl('ManagerStudentController@index', 'Nhập lại', [], ['class' => 'btn btn-primary']) }}
 		</div>
 	{{ Form::close() }}
