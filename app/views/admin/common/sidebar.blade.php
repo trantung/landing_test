@@ -51,23 +51,6 @@
                 <a href="{{ action('ExportController@getData') }}">
                     <i class="fa fa-flag"></i> <span>Báo cáo / thống kê</span>
                 </a>
-                {{-- <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ action('ExportController@getStudent') }}">
-                            <i class="fa fa-download"></i> <span>Xuất dữ liệu học sinh</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ action('ExportController@getTeacher') }}">
-                            <i class="fa fa-download"></i> <span>Xuất dữ liệu giáo viên</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ action('ExportController@getSale') }}">
-                            <i class="fa fa-download"></i> <span>Xuất dữ liệu Sale</span>
-                        </a>
-                    </li>
-                </ul> --}}
             </li>
             @endif
 
@@ -83,7 +66,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ action('TeacherController@showSchedule') }}">
+                <a href="{{ action('TeacherController@showScheduleTime') }}">
                     <i class="fa fa-key"></i> <span>Thời khóa biểu</span>
                 </a>
             </li>
