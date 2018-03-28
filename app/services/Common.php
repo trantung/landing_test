@@ -206,13 +206,14 @@ class Common {
     }
 
     public static function getHourTeachOfTeacher($teacherId){
-        $data = ScheduleDetail::select(DB::raw('SUM(lesson_duration) as sum'))->where('teacher_id', $teacherId)->where('status', FINISH)->first();
-        return (int)$data->sum;
+        $data = ScheduleDetail::select(DB::raw('SUM(lesson_duration) as sum'))
+            ->where('teacher_id', $teacherId)->where('status', FINISH)->first();
+        return (int)$data->sum/60;
     }
 
     public static function getHourCancelOfTeacher($teacherId){
         $data = ScheduleDetail::select(DB::raw('SUM(lesson_duration) as sum'))->where('teacher_id', $teacherId)->where('status', CANCEL_LESSON)->first();
-        return (int)$data->sum;
+        return (int)$data->sum/60;
     }
 
     public static function getLevelTeacherList(){
@@ -232,6 +233,20 @@ class Common {
             ->where('status', $status)
             ->count();
         return $count;
+    }
+    public static function getStatusSchedule($scheduleId)
+    {
+        $schedule = Schedule::find($scheduleId);
+        if ($schedule->status == STOP_LESSON) {
+            return 'Tạm dừng';
+        }
+        if ($schedule->status == PROCESS_LESSON) {
+            return 'Đang học';
+        }
+        if ($schedule->status == FINISH_LESSON_TOTAL) {
+            return 'Hoàn thành';
+        }
+
     }
 
     /**
@@ -315,6 +330,17 @@ class Common {
                 ], 'Comment');
         }
         return false;
+    }
+    public static function getGmo()
+    {
+        $array = [
+            '' => 'Chọn',
+        ];
+        $role = Role::where('slug', 'gmo')->first();
+        $roleId = $role->id;
+        $gmo = Admin::where('role_id', $roleId)->lists('username', 'id');
+        $gmo = $array + $gmo;
+        return $gmo;
     }
 
     /**

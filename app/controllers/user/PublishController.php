@@ -108,6 +108,33 @@ class PublishController extends AdminController {
         return View::make('student.schedule_detail')->with(compact('data', 'student', 'teacherId'));
     }
 
+    public function stopScheduleStudent($id, $teacherId)
+    {
+        $scheduleId = $id;
+        return View::make('teacher.stop_schedule')->with(compact('scheduleId', 'teacherId'));
+    }
+    
+    public function postStopScheduleStudent($id, $teacherId)
+    {
+        $input = Input::except('_token');
+        // dd($input);
+        $schedule = Schedule::find($id);
+        $teacher = Teacher::find($teacherId);
+        $input['student_id'] = $schedule->student_id;
+        $input['admin_id'] = $teacher->admin_id;
+        $input['teacher_id'] = $teacherId;
+        StopSchedule::create($input);
+        $schedule->update(['status' => STOP_LESSON]);
+        return Redirect::action('PublishController@privateStudent');
+    }
+
+    public function cancelStopScheduleStudent($id, $teacherId)
+    {
+        $schedule = Schedule::find($id);
+        $schedule->update(['status' => PROCESS_LESSON]);
+        return Redirect::action('PublishController@privateStudent');
+    }
+
     public function showScheduleDetail($id, $teacherId)
     {
         $lessonDetail = ScheduleDetail::find($id);
@@ -120,15 +147,15 @@ class PublishController extends AdminController {
     {
         $input = Input::except('_token');
         $lessonDetail = ScheduleDetail::find($id);
+
+        $teacherId = $lessonDetail->teacher_id;
         if ($input['status'] == '') {
             return Redirect::back()->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
             Phải chọn trạng thái!');
         }
         if ($input['status'] != CHANGE_LESSON) {
-            $lessonDetail->update($input);
             //gui mail to hoc sinh neu đã status = WAIT_CONFIRM_FINISH
             if ($input['status'] == WAIT_CONFIRM_FINISH) {
-                
                 //gui mail
                 $studentId = $lessonDetail->student_id;
                 $student = Student::find($studentId);
@@ -141,20 +168,17 @@ class PublishController extends AdminController {
                     $message->to($student->email)
                             ->subject(SUBJECT_EMAIL);
                 });
-                //send mail to admin
-                // Mail::send('emails.email_student', $data, function($message) use ($student, $data){
-                //     $message->to('trantunghn196@gmail.com')
-                //             ->subject(SUBJECT_EMAIL);
-                // });
             }
-            return Redirect::action('PublishController@showScheduleStudent', $lessonDetail->schedule_id);
+            $lessonDetail->update($input);
+            // $
+            return Redirect::action('PublishController@showScheduleStudent', ['id' => $lessonDetail->schedule_id, 'teacher_id'=>$teacherId]);
         }
         if ($input['status'] == CHANGE_LESSON) {
             $lessonChange = $lessonDetail->toArray();
             $lessonChange['schedule_detail_id'] = $lessonDetail->id;
             $changeId = ScheduleDetailChange::create($lessonChange)->id;
             $lessonDetail->update($input);
-            return Redirect::action('PublishController@showScheduleStudent', $lessonDetail->schedule_id);
+            return Redirect::action('PublishController@showScheduleStudent', ['id' => $lessonDetail->schedule_id, 'teacher_id'=>$teacherId]);
         }
  
     }
