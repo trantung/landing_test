@@ -8,7 +8,7 @@ class TeacherController extends AdminController {
      *
      * @return Response
      */
-    public function showSchedule()
+    public function showScheduleTime()
     {
         $teacherId = Input::get('teacher_id');
         if (!$teacherId) {

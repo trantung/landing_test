@@ -18,4 +18,5 @@ class Schedule extends Eloquent
     {
         return $this->belongsTo('Student', 'student_id', 'id');
     }
+
 }

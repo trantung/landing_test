@@ -20,6 +20,7 @@
 					<th>Số buổi đã confirm</th>
 					<th>Số buổi đã hoàn thành</th>
 					<th>Số buổi đã huỷ</th>
+					<th>Tình trạng</th>
 					<th>Thao tác</th>
 				</tr>
 					@foreach($data as $key => $schedule)
@@ -33,8 +34,13 @@
 							<td>{{ Common::getNumberLessonStatus($schedule->id, WAIT_CONFIRM_FINISH) }}</td>
 							<td>{{ Common::getNumberLessonStatus($schedule->id, FINISH_LESSON) }}</td>
 							<td>{{ Common::getNumberLessonStatus($schedule->id, CANCEL_LESSON) }}</td>
+							<td>{{ Common::getStatusSchedule($schedule->id) }}</td>
 							<td>
 								{{ renderUrl('PublishController@showScheduleStudent', 'Xem danh sách lịch học', [$schedule->id, $teacherId], ['class' => 'btn btn-primary']) }}
+								{{ renderUrl('PublishController@stopScheduleStudent', 'Tạm dừng', [$schedule->id, $teacherId], ['class' => 'btn btn-danger']) }}
+								{{ Form::open(array('method'=>'POST', 'action' => array('PublishController@cancelStopScheduleStudent', $schedule->id, $teacherId), 'style' => 'display: inline-block;')) }}
+		                            <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn huỷ tạm dừng?');">Huỷ tạm dừng</button>
+		                        {{ Form::close() }}
 							</td>
 						</tr>
 					@endforeach

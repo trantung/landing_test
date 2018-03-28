@@ -31,10 +31,6 @@
                             {{ Form::text('username', $teacher->username, array('class' => 'form-control', 'required' => true)) }}
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            {{ Form::password('password', ['class' => 'form-control']) }}
-                        </div>
-                        <div class="form-group">
                             <label>Ảnh đại diện</label>
                             {{ Form::file('image_url', null, array('class' => 'form-control')) }}<br>
                             <img src="{{ file_exists(public_path().$teacher->image_url) ? url($teacher->image_url) : NO_IMG }}" width="150px" height="auto"  />
@@ -45,19 +41,23 @@
                         </div>
                         <div class="form-group">
                             <label>Ngày đăng ký</label>
-                            <input type="date" class="form-control" id="date_register" placeholder="date register" name="date_register" value="{{ $teacher->date }}">
+                            <input type="date" class="form-control" id="date_register" placeholder="date register" name="date_register" value="{{ $teacher->date_register }}">
                         </div>
                         <div class="form-group">
                             <label>Số tài khoản ngân hàng</label>
-                            {{ Form::text('banking_number', $teacher->banking_number, array('class' => 'form-control')) }}
+                            {{ Form::textarea('banking_number', $teacher->banking_number, array('class' => 'form-control', 'rows' => 9)) }}
                         </div>
                         <div class="form-group">
                             <label>Trình độ</label>
                             {{ Form::select('level', Common::getLevelTeacherList(), $teacher->level, ['class' => 'form-control']) }}
                         </div>
                         <div class="form-group">
+                            <label>Chọn GMO</label>
+                            {{ Form::select('admin_id', Common::getGmo(), $teacher->admin_id, ['class' => 'form-control']) }}
+                        </div>
+                        <div class="form-group">
                             <label>Ghi chú</label>
-                            {{ Form::textarea('note', $teacher->note, array('class' => 'form-control', 'rows' => 3)) }}
+                            {{ Form::textarea('note', $teacher->note, array('class' => 'form-control', 'rows'=>9, 'id' => 'editor1')) }}
                         </div>
                     </div>
                 </div>
@@ -72,4 +72,5 @@
         <!-- /.box -->
     </div>
 </div>
+@include('admin.common.ckeditor')
 @stop
