@@ -25,7 +25,7 @@
                 <th>Thao tác</th>
             </tr>
             @foreach($data as $key => $teacher)
-                <tr data-html="true" data-toggle="tooltip" data-placement="auto" title="<img src='{{ file_exists(public_path().$teacher->image_url) ? url($teacher->image_url) : NO_IMG }}' width='150px'>" >
+                <tr data-html="true" data-toggle="tooltip" data-placement="auto" title="<img src='{{ !empty($teacher->image_url) ? url($teacher->image_url) : NO_IMG }}' width='150px'>" >
                     <td>#{{ $key + 1 + ($data->getPerPage() * ($data->getCurrentPage() -1)) }}</td>
                     <td>{{ $teacher->full_name }}</td>
                     <td>{{ $teacher->username }}</td>
