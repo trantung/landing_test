@@ -135,5 +135,13 @@ class ManagerStudentController extends AdminController {
         return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Approve thành công!');
 
     }
+    public function rejectStudent($scheduleId)
+    {
+        $schedule = Schedule::find($scheduleId);
+        $schedule->update(['status' => PROCESS_LESSON, 'teacher_id' => null]);
+        return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Reject thành công!');
+
+    }
+
 }
 

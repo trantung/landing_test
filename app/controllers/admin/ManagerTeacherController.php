@@ -28,7 +28,9 @@ class ManagerTeacherController extends AdminController {
         if( !empty($input['phone']) ){
             $data = $data->where('phone', 'LIKE', '%'.$input['phone'].'%');
         }
-
+        if( !empty($input['admin_id']) ){
+            $data = $data->where('admin_id', $input['admin_id']);
+        }
         $data = $data->paginate(PAGINATE);
         return View::make('teacher.index')->with(compact('data'));
     }

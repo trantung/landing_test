@@ -436,4 +436,23 @@ class Common {
         $teacher = Teacher::find($teacherId);
         return $teacher->$field;
     }
+    public static function getGmoList($slug)
+    {
+        $role = Role::findBySlug($slug);
+        if (!$role) {
+            return null;
+        }
+        $roleId = $role->id;
+        $list = Admin::where('role_id', 5)->lists('full_name', 'id');
+        return $list;
+    }
+    public static function getGmoOfTeacher($teacher, $field)
+    {
+        $gmoId = $teacher->admin_id;
+        $gmo = Admin::find($gmoId);
+        if (!$gmo) {
+            return null;
+        }
+        return $gmo->$field;
+    }
 }

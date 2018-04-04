@@ -57,9 +57,9 @@ function getAllPermissions(){
             'callback_function' => '',
         ],
         'student.approve' => [
-            'name' => 'Approve học sinh cho giáo viên',
-            'description' => 'Approve học sinh cho giáo viên',
-            'accept' => ['ManagerStudentController@approveStudent'],
+            'name' => 'Approve, reject học sinh cho giáo viên',
+            'description' => 'Approve, reject học sinh cho giáo viên',
+            'accept' => ['ManagerStudentController@approveStudent', 'ManagerStudentController@rejectStudent'],
             'callback_function' => '',
         ],
 
