@@ -13,7 +13,12 @@ class ManagerTeacherController extends AdminController {
     // global $user;
     // dd($user);
         $input = Input::all();
-        $data = Teacher::orderBy('created_at', 'desc');
+        $user = currentUser();
+        if (checkPermissionBySlug('gmo')) {
+            $data = Teacher::where('admin_id', $user->id)->orderBy('created_at', 'desc');
+        } else {
+            $data = Teacher::orderBy('created_at', 'desc');
+        }
         if( !empty($input['full_name']) ){
             $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
         }

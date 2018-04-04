@@ -89,12 +89,12 @@ function getAllPermissions(){
         'teacher.schedule' => [
             'name' => 'Xem lịch dạy',
             'description' => 'Xem lịch dạy',
-            'accept' => ['TeacherController@showSchedule'],
+            'accept' => ['TeacherController@showSchedule', 'TeacherController@showScheduleTime'],
             'callback_function' => '',
         ],
         'teacher.comment' => [
-            'name' => 'Xem lịch dạy',
-            'description' => 'Xem lịch dạy',
+            'name' => 'Xem comment',
+            'description' => 'Xem comment',
             'accept' => ['TeacherController@commentTeacher'],
             'callback_function' => '',
         ],
@@ -292,4 +292,23 @@ function generateRandomString($length = 16) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+function checkPermissionBySlug($slug)
+{
+    $user = currentUser();
+    if ($user->model == 'Teacher') {
+        return false;
+    }
+    $role = Role::findBySlug($slug);
+    if (!$role) {
+        return false;
+    }
+    $roleId = $role->id;
+    $admin = Admin::where('id', $user->id)
+        ->where('role_id', $roleId)
+        ->first();
+    if (!$admin) {
+        return false;
+    }
+    return true;
 }

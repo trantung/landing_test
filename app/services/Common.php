@@ -408,5 +408,23 @@ class Common {
         }
         return self::getLevelName($schedule->student->level);
     }
+    public static function getRemainTimeStudent($lessonDetail)
+    {
+        $scheduleId = $lessonDetail->schedule_id;
+        $remainTimeStudent = ScheduleDetail::where('schedule_id', $scheduleId)
+            ->where('status', '!=',WAIT_CONFIRM_FINISH)
+            ->sum('lesson_duration');
+        $remainTimeStudentByHour = round($remainTimeStudent/60);
+        return $remainTimeStudentByHour;
+    }
+    public static function getRemainTimeStudentAfterConfirm($lessonDetail)
+    {
+        $scheduleId = $lessonDetail->schedule_id;
+        $remainTimeStudent = ScheduleDetail::where('schedule_id', $scheduleId)
+            ->where('status', '!=',WAIT_CONFIRM_FINISH)
+            ->sum('lesson_duration');
+        $remainTimeStudentAfterConfirm = $remainTimeStudent - $lessonDetail->lesson_duration;
+        return round($remainTimeStudentAfterConfirm/60);
+    }
 
 }
