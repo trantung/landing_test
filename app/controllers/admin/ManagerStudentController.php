@@ -182,7 +182,6 @@ class ManagerStudentController extends AdminController {
     {
         $input = Input::all();
         $user = currentUser();
-        // dd($input);
         $ob = Student::where('sale_id', $user->id)
             ->where('created_at', '>=', $input['start_date'])
             ->where('created_at', '<=', $input['end_date'])
@@ -193,15 +192,9 @@ class ManagerStudentController extends AdminController {
             $yearMonth = $yearMonth. '-' .date("m",strtotime($value->created_at));
             $array[$yearMonth][$key] = 1;
         }
-        // dd($array);
         foreach ($array as $yearMonth => $v) {
             $data[$yearMonth] = array_sum($v);
         }
-
-        // $data = [
-        //     '2018-01' => 5,
-        //     '2018-02' => 6,
-        // ];
         return View::make('sale.student_per_month')->with(compact('data'));
     }
 }

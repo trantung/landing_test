@@ -282,6 +282,7 @@ function getStatusScheduleDetail($status)
 
     return null;
 }
+
 function getStatusLesson()
 {
     $array = [
@@ -292,6 +293,7 @@ function getStatusLesson()
     ];
     return $array;
 }
+
 function getDurationLesson()
 {
     $array = [
@@ -349,4 +351,12 @@ function getEndMonthPrevious()
 {
     $monthEnd = strtotime('LAST DAY OF PREVIOUS MONTH', time());
     return date("Y-m-d H:i:s", $monthEnd);
+}
+function convertToHoursMins($time, $format = '%02d:%02d') {
+    if ($time < 1) {
+        return;
+    }
+    $hours = floor($time / 60);
+    $minutes = ($time % 60);
+    return sprintf($format, $hours, $minutes);
 }
