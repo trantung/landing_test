@@ -40,6 +40,10 @@
                             {{ Form::text('phone', $teacher->phone, array('class' => 'form-control')) }}
                         </div>
                         <div class="form-group">
+                            <label>Skype<span class="text-warning"></span></label>
+                            {{  Form::text('skype', $teacher->skype, array('class' => 'form-control' )) }}
+                        </div>
+                        <div class="form-group">
                             <label>Ngày đăng ký</label>
                             <input type="date" class="form-control" id="date_register" placeholder="date register" name="date_register" value="{{ $teacher->date_register }}">
                         </div>

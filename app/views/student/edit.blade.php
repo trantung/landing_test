@@ -38,6 +38,10 @@
                                     {{  Form::text('phone', $student->phone, array('class' => 'form-control', 'required' => 'required' )) }}
                                 </div>
                                 <div class="form-group">
+                                    <label>Skype<span class="text-warning"></span></label>
+                                    {{  Form::text('skype', $student->skype, array('class' => 'form-control' )) }}
+                                </div>
+                                <div class="form-group">
                                     <label>Địa chỉ <span class="text-warning">(*)</span></label>
                                     {{  Form::text('address', $student->address, array('class' => 'form-control', 'required' => 'required' )) }}
                                 </div>
@@ -48,6 +52,10 @@
                                 <div class="form-group">
                                     <label>Ngày sinh <span class="text-warning">(*)</span></label>
                                     <input type="date" name="birth_day" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control" required value="{{ $student->birth_day }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Sale<span class="text-warning"></span></label>
+                                    {{ Form::select('sale_id', Common::getSaleId(), $student->sale_id, ['class' => 'form-control']); }}
                                 </div>
                                 <legend>Thông tin đính kèm</legend>
                                 <div class="form-group">

@@ -38,8 +38,12 @@
                                     {{  Form::text('phone', '', array('class' => 'form-control', 'required' => 'required' )) }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Địa chỉ <span class="text-warning">(*)</span></label>
-                                    {{  Form::text('address', '', array('class' => 'form-control', 'required' => 'required' )) }}
+                                    <label>Skype<span class="text-warning"></span></label>
+                                    {{  Form::text('skype', '', array('class' => 'form-control' )) }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ <span class="text-warning"></span></label>
+                                    {{  Form::text('address', '', array('class' => 'form-control')) }}
                                 </div>
                                 <div class="form-group">
                                     <label>Giới tính <span class="text-warning">(*)</span></label>
@@ -51,7 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Sale<span class="text-warning"></span></label>
-                                    {{ Form::select('sale_id', Common::getSaleId(), '', ['class' => 'form-control', 'required' => 'required']); }}
+                                    {{ Form::select('sale_id', Common::getSaleId(), '', ['class' => 'form-control']); }}
                                 </div>
                             </fieldset>
                         </div>

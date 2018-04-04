@@ -11,7 +11,7 @@ class Student extends Eloquent
         'full_name', 'email', 'phone', 'address', 'gender', 'admin_id',
         'code', 'start_date', 'birth_day', 'avatar', 'level', 
         'source', 'comment', 'parent_name', 'parent_email', 'parent_phone',
-        'sale_id'
+        'sale_id', 'skype'
     ];
 
     protected $dates = ['deleted_at'];
