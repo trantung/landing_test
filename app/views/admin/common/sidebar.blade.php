@@ -4,7 +4,7 @@
             @if(userAccess('admin.view'))
             <li>
                 <a href="{{ action('AdminController@index') }}">
-                    <i class="fa fa-unlock-alt"></i> <span>Quản lý admin </span>
+                    <i class="fa fa-unlock-alt"></i> <span>Quản lý thành viên</span>
                 </a>
             </li>
             @endif
@@ -20,7 +20,7 @@
             @if(userAccess('teacher.view'))
             <li>
                 <a href="{{ action('ManagerTeacherController@index') }}">
-                    <i class="fa fa-bullhorn"></i> <span>Quản lý teacher </span>
+                    <i class="fa fa-bullhorn"></i> <span>Quản lý teacher</span>
                 </a>
             </li>
             @endif
@@ -51,23 +51,6 @@
                 <a href="{{ action('ExportController@getData') }}">
                     <i class="fa fa-flag"></i> <span>Báo cáo / thống kê</span>
                 </a>
-                {{-- <ul class="treeview-menu">
-                    <li>
-                        <a href="{{ action('ExportController@getStudent') }}">
-                            <i class="fa fa-download"></i> <span>Xuất dữ liệu học sinh</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ action('ExportController@getTeacher') }}">
-                            <i class="fa fa-download"></i> <span>Xuất dữ liệu giáo viên</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ action('ExportController@getSale') }}">
-                            <i class="fa fa-download"></i> <span>Xuất dữ liệu Sale</span>
-                        </a>
-                    </li>
-                </ul> --}}
             </li>
             @endif
 
@@ -86,8 +69,7 @@
             @endif
             <li>
                 <a href="{{ action('TeacherController@showScheduleTime') }}">
-                    <i class="fa fa-key"></i> 
-                    <span>Lịch dạy</span>
+                    <i class="fa fa-key"></i> <span>Thời khóa biểu</span>
                 </a>
             </li>
         </ul>

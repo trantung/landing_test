@@ -14,13 +14,26 @@
                     </div>
                     <div class="form-group">
                         <label>Bình luận</label>
-                        {{ Form::textarea('comment', null, ['class' => 'form-control', 'required' => 'required', 'rows' => 5]) }}
+                        {{ Form::textarea('comment', null, ['class' => 'form-control', 'required' => 'required', 'rows' => 3]) }}
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     <button type="submit" class="btn btn-primary">Lưu lại</button>
                 </div>
+                <?php $comments = Common::getComments('Admin', $teacher->id, 3); ?>
+                @if( count($comments) )
+                    <div class="modal-body well well-sm clearfix">
+                        @foreach($comments as $comment)
+                            {{ Common::renderStarHtml($comment->votes) }}
+                            <p><b>{{ Common::getObject($comment->author, 'username') }}</b>,
+                                <i>{{ date('d/m/Y', strtotime($comment->created_at)) }}</i>
+                            </p>
+                            <p>{{ $comment->comment }}</p>
+                            <hr>
+                        @endforeach
+                    </div>
+                @endif
             {{ Form::close() }}
         </div>
     </div>

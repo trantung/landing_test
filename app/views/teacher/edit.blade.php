@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label>Ảnh đại diện</label>
                             {{ Form::file('image_url', null, array('class' => 'form-control')) }}<br>
-                            <img src="{{ url(UPLOAD_DIR . UPLOADTEACHER . '/' . $teacher->id . '/' . $teacher->image_url) }}" width="200px" height="auto"  />
+                            <img src="{{ !empty($teacher->image_url) ? url($teacher->image_url) : NO_IMG }}" width="150px" height="auto"  />
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại</label>

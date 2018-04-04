@@ -47,7 +47,7 @@ class ManagerTeacherController extends AdminController {
         $input['password'] = Hash::make($input['password']);
         $input['role_id'] = getRoleIdBySlug(TEACHER);
         $teacherId = Teacher::create($input)->id;
-        $input['image_url'] = CommonUpload::uploadImage($teacherId, UPLOAD_DIR, 'image_url',UPLOADTEACHER);
+        $input['image_url'] = CommonUpload::uploadImage(UPLOADTEACHER.$teacherId, 'image_url');
         CommonNormal::update($teacherId, ['image_url' => $input['image_url']] );
         return Redirect::action('ManagerTeacherController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
             Teacher đã được tạo!');
@@ -83,7 +83,12 @@ class ManagerTeacherController extends AdminController {
     {
         $input = Input::all();
         $teacher = Teacher::find($id);
-        $input['image_url'] = CommonUpload::uploadImage($id, UPLOAD_DIR, 'image_url',UPLOADTEACHER,$teacher->image_url);
+        if( !empty($input['password']) ){
+            $input['password'] = Hash::make($input['password']);
+        } else{
+           unset($input['password']); 
+        }
+        $input['image_url'] = CommonUpload::uploadImage(UPLOADTEACHER.$id, 'image_url', $teacher->image_url);
         $teacher->update($input);
         return Redirect::action('ManagerTeacherController@index');
     }

@@ -40,7 +40,7 @@ class ManagerStudentController extends AdminController {
     {
         $input = Input::all();
         $studentId = CommonNormal::create($input, 'Student');
-        $input['avatar'] = CommonUpload::uploadImage($studentId, UPLOAD_DIR, 'avatar',UPLOADSTUDENT);
+        $input['avatar'] = CommonUpload::uploadImage(UPLOADSTUDENT.$studentId, 'avatar');
         CommonNormal::update($studentId, ['avatar' => $input['avatar']] );
 
         //create schedules
@@ -110,24 +110,8 @@ class ManagerStudentController extends AdminController {
     public function update($id)
     {
         $input = Input::all();
-        // if( Input::hasFile('avatar') ){
-        //     ////////// Xoa anh cu
-        //     $student = Student::find($id);
-        //     if( !empty($student->avatar) ){
-        //         @unlink(public_path().$student->avatar);
-        //     }
-
-        //     $file = Input::file('avatar');
-        //     $fileName = $file->getClientOriginalName();
-        //     $fileUrl = UPLOAD_DIR.$fileName;
-        //     $uploadSuccess = $file->move(public_path().UPLOAD_DIR, $fileName);
-        //     if( $uploadSuccess ){
-        //         ////////// Neu upload thanh cong thi luu url vao database
-        //         $input['avatar'] = $fileUrl;
-        //     }
-        // }
         $student = Student::find($id);
-        $input['avatar'] = CommonUpload::uploadImage($id, UPLOAD_DIR, 'avatar',UPLOADSTUDENT,$student->avatar);
+        $input['avatar'] = CommonUpload::uploadImage(UPLOADSTUDENT.$id, 'avatar', $student->avatar);
         $student->update($input);
 
         // CommonNormal::update($id, $input, 'Student');

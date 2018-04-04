@@ -155,8 +155,8 @@ function currentUser(){
     return $user;
 }
 
-function renderUrl($action, $title, $parameter = [], $attribute = []){
-    $link = app('html')->linkAction($action, $title, $parameter, $attribute);
+function renderUrl($action, $title, $parameter = [], $attributes = []){
+    $link = '<a href="'.action($action, $parameter).'"'.HTML::attributes($attributes).'>'.$title.'</a>';
     $user = currentUser();
     if( !$user ){
         return false;

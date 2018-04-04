@@ -62,7 +62,8 @@ App::error( function(Exception $exception, $code){
     }
 });
 
-// Route::controller('/ajax', 'AjaxController');
+Route::controller('/ajax', 'AjaxController');
+Route::controller('/test', 'TestController');
 
 
 // App::error( function(Exception $exception, $code){
