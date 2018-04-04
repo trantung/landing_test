@@ -59,11 +59,26 @@
                 </li>
                 @endif
             @endif
-            <li>
-                <a href="{{ action('TeacherController@showScheduleTime') }}">
-                    <i class="fa fa-key"></i> <span>Thời khóa biểu</span>
-                </a>
-            </li>
+            @if(!hasRole('admin'))
+                @if(hasRole('sale'))
+                <li>
+                    <a href="{{ action('ManagerStudentController@saleStudent') }}">
+                        <i class="fa fa-key"></i> <span>Danh sách học sinh tất cả</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ action('ManagerStudentController@saleStudentMonth') }}">
+                        <i class="fa fa-key"></i> <span>Thống kê học sinh hiện tại</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ action('ManagerStudentController@saleStudentPerMonth') }}">
+                        <i class="fa fa-key"></i> <span>Thống kê học sinh</span>
+                    </a>
+                </li>
+
+                @endif
+            @endif
         </ul>
     </section>
 </aside>

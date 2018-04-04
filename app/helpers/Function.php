@@ -62,6 +62,14 @@ function getAllPermissions(){
             'accept' => ['ManagerStudentController@approveStudent', 'ManagerStudentController@rejectStudent'],
             'callback_function' => '',
         ],
+        'student.sale' => [
+            'name' => 'Dành riêng cho sale',
+            'description' => 'Sale xem danh sách học sinh',
+            'accept' => ['ManagerStudentController@saleStudent', 'ManagerStudentController@saleStudentMonth', 
+                'ManagerStudentController@saleStudentPerMonth'
+            ],
+            'callback_function' => '',
+        ],
 
         'schedule.view' => [
             'name' => 'Xem lịch học của học sinh',
@@ -321,4 +329,24 @@ function checkPermissionBySlug($slug)
         return false;
     }
     return true;
+}
+function getStartMonth()
+{
+    $monthStart = strtotime('first day of this month', time());
+    return date("Y-m-d H:i:s", $monthStart);
+}
+function getEndMonth()
+{
+    $monthEnd = strtotime('last day of this month', time());
+    return date("Y-m-d H:i:s", $monthEnd);
+}
+function getStartMonthPrevious()
+{
+    $monthStart = strtotime('FIRST DAY OF PREVIOUS MONTH', time());
+    return date("Y-m-d H:i:s", $monthStart);
+}
+function getEndMonthPrevious()
+{
+    $monthEnd = strtotime('LAST DAY OF PREVIOUS MONTH', time());
+    return date("Y-m-d H:i:s", $monthEnd);
 }

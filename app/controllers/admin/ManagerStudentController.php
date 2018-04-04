@@ -142,6 +142,67 @@ class ManagerStudentController extends AdminController {
         return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Reject thành công!');
 
     }
+    public function saleStudent()
+    {
+        $user = currentUser();
+        $input = Input::all();
+        $data = Student::where('sale_id', $user->id)->orderBy('created_at', 'desc');
+        if( !empty($input['full_name']) ){
+            $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
+        }
+        if( !empty($input['email']) ){
+            $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
+        }
+        if( !empty($input['phone']) ){
+            $data = $data->where('phone', 'LIKE', '%'.$input['phone'].'%');
+        }
 
+        $data = $data->paginate(PAGINATE);
+        return View::make('sale.index')->with(compact('data'));
+    }
+    public function saleStudentMonth()
+    {
+        $user = currentUser();
+        $input = Input::all();
+        $monthStart = getStartMonth();
+        $monthEnd = getEndMonth();
+        $monthStartPrevious = getStartMonthPrevious();
+        $monthEndPrevious = getEndMonthPrevious();
+        $dataNow = Student::where('sale_id', $user->id)
+            ->where('created_at', '>=', $monthStart)
+            ->where('created_at', '<=', $monthEnd)
+            ->get();
+        $dataPrevious = Student::where('sale_id', $user->id)
+            ->where('created_at', '>=', $monthStartPrevious)
+            ->where('created_at', '<=', $monthEndPrevious)
+            ->get();
+        return View::make('sale.student_month')->with(compact('dataNow', 'dataPrevious'));
+    }
+    public function saleStudentPerMonth()
+    {
+        $input = Input::all();
+        $user = currentUser();
+        // dd($input);
+        $ob = Student::where('sale_id', $user->id)
+            ->where('created_at', '>=', $input['start_date'])
+            ->where('created_at', '<=', $input['end_date'])
+            ->get();
+        $array = $data = [];
+        foreach ($ob as $key => $value) {
+            $yearMonth = date("Y",strtotime($value->created_at));
+            $yearMonth = $yearMonth. '-' .date("m",strtotime($value->created_at));
+            $array[$yearMonth][$key] = 1;
+        }
+        // dd($array);
+        foreach ($array as $yearMonth => $v) {
+            $data[$yearMonth] = array_sum($v);
+        }
+
+        // $data = [
+        //     '2018-01' => 5,
+        //     '2018-02' => 6,
+        // ];
+        return View::make('sale.student_per_month')->with(compact('data'));
+    }
 }
 

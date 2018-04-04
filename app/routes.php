@@ -25,6 +25,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/gmo', 'AdminController@gmoIndex');
 
+    Route::get('/student_sale/per_month', 'ManagerStudentController@saleStudentPerMonth');
+    Route::get('/student_sale/month', 'ManagerStudentController@saleStudentMonth');
+    Route::get('/student_sale', 'ManagerStudentController@saleStudent');
     Route::post('/student_publish/schedule/reject/{schedule_id}', 'ManagerStudentController@rejectStudent');
     Route::post('/student_publish/schedule/approve/{schedule_id}', 'ManagerStudentController@approveStudent');
     Route::get('/student_publish', 'ManagerStudentController@publish');
