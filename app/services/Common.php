@@ -371,5 +371,5 @@ class Common {
         }
         return self::getLevelName($schedule->student->level);
     }
-
+    
 }

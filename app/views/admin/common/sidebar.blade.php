@@ -33,14 +33,6 @@
             </li>
             @endif
 
-            @if(userAccess('schedule.view'))
-            <li>
-                <a href="{{ action('ScheduleController@index') }}">
-                    <i class="fa fa-flag-checkered"></i> <span>Quản lý lịch học</span>
-                </a>
-            </li>
-            @endif
-
             @if(hasRole('admin'))
             <li>
                 <a href="{{ action('PermissionController@index') }}">
