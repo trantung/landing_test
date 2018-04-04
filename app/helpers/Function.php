@@ -264,6 +264,7 @@ function getStatusScheduleDetail($status)
 
     return null;
 }
+
 function getStatusLesson()
 {
     $array = [
@@ -274,6 +275,7 @@ function getStatusLesson()
     ];
     return $array;
 }
+
 function getDurationLesson()
 {
     $array = [
@@ -292,4 +294,13 @@ function generateRandomString($length = 16) {
         $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
+}
+
+function convertToHoursMins($time, $format = '%02d:%02d') {
+    if ($time < 1) {
+        return;
+    }
+    $hours = floor($time / 60);
+    $minutes = ($time % 60);
+    return sprintf($format, $hours, $minutes);
 }
