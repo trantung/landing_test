@@ -56,6 +56,13 @@ function getAllPermissions(){
             'accept' => ['ManagerStudentController@destroy'],
             'callback_function' => '',
         ],
+        'student.approve' => [
+            'name' => 'Approve học sinh cho giáo viên',
+            'description' => 'Approve học sinh cho giáo viên',
+            'accept' => ['ManagerStudentController@approveStudent'],
+            'callback_function' => '',
+        ],
+
         'schedule.view' => [
             'name' => 'Xem lịch học của học sinh',
             'description' => 'Được phép xem thông tin lịch học tất cả học sinh',

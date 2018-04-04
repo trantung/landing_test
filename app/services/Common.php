@@ -246,6 +246,10 @@ class Common {
         if ($schedule->status == FINISH_LESSON_TOTAL) {
             return 'Hoàn thành';
         }
+        if ($schedule->status == WAIT_APPROVE_GMO) {
+            return 'Chờ GMO duyệt';
+        }
+
 
     }
 
@@ -426,5 +430,10 @@ class Common {
         $remainTimeStudentAfterConfirm = $remainTimeStudent - $lessonDetail->lesson_duration;
         return round($remainTimeStudentAfterConfirm/60);
     }
-
+    public static function getNameTeacherBySchedule($schedule, $field)
+    {
+        $teacherId = $schedule->teacher_id;
+        $teacher = Teacher::find($teacherId);
+        return $teacher->$field;
+    }
 }

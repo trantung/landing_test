@@ -19,7 +19,7 @@
 					<th>STT</th>
 					<th>Họ tên</th>
 					<th>Email</th>
-					<th>Số điện thoại</th>
+					<th>Phone</th>
 					<th>Trình độ</th>
 					<th>Tổng số buổi của học sinh</th>
 					<th>Số buổi đã confirm</th>
@@ -39,9 +39,16 @@
 							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, WAIT_CONFIRM_FINISH) }}</td>
 							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
 							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, CANCEL_LESSON) }}</td>
+							@if(Common::getScheduleByStudent($student)->status == WAIT_APPROVE_GMO)
+								<td>
+								{{ Form::open(array('method'=>'POST', 'action' => array('ManagerStudentController@approveStudent', Common::getScheduleByStudent($student)->id), 'style' => 'display: inline-block;')) }}
+		                            <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn approve?');">Approve giáo viên {{ Common::getNameTeacherBySchedule(Common::getScheduleByStudent($student), 'full_name') }}</button>
+		                        {{ Form::close() }}
+								</td>
+							@else
 							<td>{{ Common::getStatusSchedule(Common::getScheduleByStudent($student)->id) }}</td>
+							@endif
 							<td>
-								{{-- {{ renderUrl('PublishController@showScheduleStudent', 'Lịch học', [$student->schedules], ['class' => 'btn btn-primary']) }} --}}
 								{{ renderUrl('ManagerStudentController@edit', 'Sửa', [$student->id], ['class' => 'btn btn-warning']) }}
 								@if (userAccess('student.delete'))
 									{{ Form::open(array('method'=>'DELETE', 'action' => array('ManagerStudentController@destroy', $student->id), 'style' => 'display: inline-block;')) }}

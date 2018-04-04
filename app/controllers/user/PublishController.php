@@ -76,7 +76,7 @@ class PublishController extends AdminController {
             ->whereNull('teacher_id')->first();
         $teacher = currentUser();
         $teacherId = $teacher->id;
-        $schedule->update(['teacher_id' => $teacherId]);
+        $schedule->update(['teacher_id' => $teacherId, 'status' => WAIT_APPROVE_GMO]);
         //update vao bang schedule detail
         ScheduleDetail::where('schedule_id', $schedule->id)->update(['teacher_id' => $teacherId]);
         return Redirect::action('PublishController@index');

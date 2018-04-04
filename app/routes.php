@@ -15,6 +15,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/gmo', 'AdminController@gmoIndex');
 
+    Route::post('/student_publish/schedule/approve/{schedule_id}', 'ManagerStudentController@approveStudent');
     Route::get('/student_publish', 'ManagerStudentController@publish');
     Route::get('student_publish/{id}', 'ManagerStudentController@getPublishShow');
     Route::post('student_publish/{id}', 'ManagerStudentController@postPublishShow');
