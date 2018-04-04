@@ -82,13 +82,14 @@
                     <i class="fa fa-key"></i> <span>Danh sách học sinh cá nhân</span>
                 </a>
             </li>
+            
+            @endif
             <li>
                 <a href="{{ action('TeacherController@showScheduleTime') }}">
                     <i class="fa fa-key"></i> 
                     <span>Lịch dạy</span>
                 </a>
             </li>
-            @endif
         </ul>
     </section>
 </aside>
