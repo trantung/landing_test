@@ -49,6 +49,10 @@
                                     <label>Ngày sinh <span class="text-warning">(*)</span></label>
                                     <input type="date" name="birth_day" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control" required>
                                 </div>
+                                <div class="form-group">
+                                    <label>Sale<span class="text-warning"></span></label>
+                                    {{ Form::select('sale_id', Common::getSaleId(), '', ['class' => 'form-control', 'required' => 'required']); }}
+                                </div>
                             </fieldset>
                         </div>
 

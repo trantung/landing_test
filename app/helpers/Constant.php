@@ -4,15 +4,12 @@ define('WEBMASTER', 'webmaster');
 define('GMO', 'gmo');
 define('SALE', 'sale');
 define('TEACHER', 'teacher');
-
-define('UPLOADTEACHER', '/uploads/teacher/');
-define('UPLOADSTUDENT', '/uploads/student/');
-define('UPLOAD_DIR', '/uploads/');
-
-define('NO_IMG', '/custom/img/no-img.png');
+define('UPLOADTEACHER', '/teacher');
+define('UPLOADSTUDENT', '/student');
 
 define('PAGINATE',20);
 
+define('UPLOAD_DIR', '/uploads/');
 /*
     Các role của nhân viên trung tâm
 */
@@ -49,5 +46,8 @@ define('OFFICAL', 2);
 define('PROCESS_LESSON', 1);
 define('FINISH_LESSON_TOTAL', 2);
 define('STOP_LESSON', 3);
+//giáo viên chưa được approve(giáo viên nhận học sinh nhưng chưa được gmo đồng ý)
+define('WAIT_APPROVE_GMO', 4);
 //email
 define('SUBJECT_EMAIL', 'Mail gửi từ hệ thống');
+define('NO_IMG', 'no image');

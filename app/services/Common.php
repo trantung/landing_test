@@ -342,42 +342,34 @@ class Common {
         $gmo = $array + $gmo;
         return $gmo;
     }
-
-    /**
-     * Add list comment of an user
-     * @source: ModelName.id
-     * @target: ModelName.id
-     */
-    public static function getComments($sourceName, $targetId, $limit = null){
-        $comments = Comment::OrderBy('created_at', 'desc')->where('target_id', $targetId);
-        if( !is_array($sourceName) ){
-            $comments->where('model_source', $sourceName);
-        } else{
-            foreach ($sourceName as $value) {
-                $comments->where('model_source', $value);
-            }
-        }
-        if( $limit ){
-            $comments->limit($limit);
-        }
-        $comments = $comments->get();
-        $commentRender = [];
-        foreach ($comments as $key => $comment) {
-            $modelSource = $comment->model_source;
-            $comment->author = ($modelSource) ? $modelSource::find($comment->source_id) : null;
-            $commentRender[] = $comment;
-        }
-        return $comments;
+    public static function getSaleId()
+    {
+        $array = [
+            '' => 'Chọn',
+        ];
+        $role = Role::where('slug', 'sale')->first();
+        $roleId = $role->id;
+        $sale = Admin::where('role_id', $roleId)->lists('username', 'id');
+        $sale = $array + $sale;
+        return $sale;
     }
-
-    public static function renderStarHtml($star){
-        $star = (float)$star;
-        $output = '<span class="start-area inline-block" style="text-shadow: -1px 1px 5px #d0d0d0;font-size: 16px;">';
-        for ($i = 1; $i <= 5 ; $i++) {
-            $output .= '<i class="fa fa-'.( ($star > $i && $star < $i+1) ? 'star-half' : 'star' ).'" style="color: '.(($star >= $i) ? 'yellow' : '#c3c3c3').'; margin: 1px;"></i>';
+    public static function getScheduleByStudent($student)
+    {
+        $schedule = Schedule::where('student_id', $student->id)
+            ->where('status', '!=', FINISH_LESSON_TOTAL)
+            ->first();
+        if ($schedule) {
+            return $schedule;
         }
-        $output .= '</span>';
-        return $output;
+        return null;
+    }
+    public static function getLevelNameByStudent($student)
+    {
+        $schedule = self::getScheduleByStudent($student);
+        if (!$schedule) {
+            return null;
+        }
+        return self::getLevelName($schedule->student->level);
     }
 
 }
