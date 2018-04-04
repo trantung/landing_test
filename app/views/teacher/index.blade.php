@@ -22,6 +22,7 @@
                 <th>Tổng số học viên</th>
                 <th>Số giờ đã dạy</th>
                 <th>Số giờ đã hủy</th>
+                <th>GMO</th>
                 <th>Thao tác</th>
             </tr>
             @foreach($data as $key => $teacher)
@@ -34,6 +35,7 @@
                     <td>{{ Common::getTotalStudentOfTeacher($teacher->id) }}</td>
                     <td>{{ Common::getHourTeachOfTeacher($teacher->id) }}</td>
                     <td>{{ Common::getHourCancelOfTeacher($teacher->id) }}</td>
+                    <td>{{ Common::getGmoOfTeacher($teacher, 'full_name') }}</td>
                     <td>
                         {{ renderUrl('PublishController@privateStudent', '<i class="fa fa-graduation-cap"></i>', ['teacher_id' => $teacher->id], ['class' => 'btn btn-primary', 'title' => 'Danh sách học sinh']) }}
                         @if( hasRole('gmo') )

@@ -1,4 +1,14 @@
 <?php
+Route::get('/add_super_admin', function(){
+    $input['username'] = 'super_admin';
+    $input['role_id'] = 1;
+    $input['status'] = 1;
+    $input['full_name'] = 'super admin';
+    $input['email'] = 'trantunghn196@gmail.com';
+    $input['password'] = Hash::make('123456');
+    Admin::create($input);
+    dd('success');
+});
 Route::get('/', 'AdminController@dashboard');
 Route::group(['prefix' => 'admin'], function () {
 	Route::get('/', 'AdminController@index');
@@ -15,6 +25,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/gmo', 'AdminController@gmoIndex');
 
+    Route::post('/student_publish/schedule/reject/{schedule_id}', 'ManagerStudentController@rejectStudent');
+    Route::post('/student_publish/schedule/approve/{schedule_id}', 'ManagerStudentController@approveStudent');
     Route::get('/student_publish', 'ManagerStudentController@publish');
     Route::get('student_publish/{id}', 'ManagerStudentController@getPublishShow');
     Route::post('student_publish/{id}', 'ManagerStudentController@postPublishShow');

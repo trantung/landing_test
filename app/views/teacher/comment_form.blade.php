@@ -9,7 +9,7 @@
                 <div class="modal-body">
                     {{ Form::hidden('target_id', $teacher->id) }}
                     <div class="form-group">
-                        <label>Chấm điểm đánh giá</label>
+                        <label>Chấm điểm đánh giá111</label>
                         {{ Form::select('votes', ['-- Cho điểm --']+[1=>1,2=>2,3=>3,4=>4,5=>5], null, ['class' => 'form-control', 'required' => 'required']) }}
                     </div>
                     <div class="form-group">

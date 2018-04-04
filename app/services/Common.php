@@ -2,11 +2,22 @@
 class Common {
 
     public static function getLevelName($level){
-        if( $level == BEGINING ){
-            return 'Begining';
-        } elseif( $level == ADVANCE ){
-            return 'Advance';
+        if( $level == 1 ){
+            return 'Level 1';
+        } 
+        if( $level == 2 ){
+            return 'Level 2';
         }
+        if( $level == 3 ){
+            return 'Level 3';
+        }
+        if( $level == 4 ){
+            return 'Level 4';
+        }
+        if( $level == 5 ){
+            return 'Level 5';
+        }
+
         return '';
     }
 
@@ -246,6 +257,10 @@ class Common {
         if ($schedule->status == FINISH_LESSON_TOTAL) {
             return 'Hoàn thành';
         }
+        if ($schedule->status == WAIT_APPROVE_GMO) {
+            return 'Chờ GMO duyệt';
+        }
+
 
     }
 
@@ -379,5 +394,88 @@ class Common {
         $output .= '</span>';
         return $output;
     }
-
+    public static function getSaleId()
+    {
+        $array = [
+            '' => 'Chọn',
+        ];
+        $role = Role::where('slug', 'sale')->first();
+        $roleId = $role->id;
+        $sale = Admin::where('role_id', $roleId)->lists('username', 'id');
+        $sale = $array + $sale;
+        return $sale;
+    }
+    public static function getScheduleByStudent($student)
+    {
+        $schedule = Schedule::where('student_id', $student->id)
+            ->where('status', '!=', FINISH_LESSON_TOTAL)
+            ->first();
+        if ($schedule) {
+            return $schedule;
+        }
+        return null;
+    }
+    public static function getLevelNameByStudent($student)
+    {
+        $schedule = self::getScheduleByStudent($student);
+        if (!$schedule) {
+            return null;
+        }
+        return self::getLevelName($schedule->student->level);
+    }
+    public static function getRemainTimeStudent($lessonDetail)
+    {
+        $scheduleId = $lessonDetail->schedule_id;
+        $remainTimeStudent = ScheduleDetail::where('schedule_id', $scheduleId)
+            ->where('status', '!=',WAIT_CONFIRM_FINISH)
+            ->sum('lesson_duration');
+        $remainTimeStudentByHour = round($remainTimeStudent/60);
+        return $remainTimeStudentByHour;
+    }
+    public static function getRemainTimeStudentAfterConfirm($lessonDetail)
+    {
+        $scheduleId = $lessonDetail->schedule_id;
+        $remainTimeStudent = ScheduleDetail::where('schedule_id', $scheduleId)
+            ->where('status', '!=',WAIT_CONFIRM_FINISH)
+            ->sum('lesson_duration');
+        $remainTimeStudentAfterConfirm = $remainTimeStudent - $lessonDetail->lesson_duration;
+        return round($remainTimeStudentAfterConfirm/60);
+    }
+    public static function getNameTeacherBySchedule($schedule, $field)
+    {
+        $teacherId = $schedule->teacher_id;
+        $teacher = Teacher::find($teacherId);
+        return $teacher->$field;
+    }
+    public static function getGmoList($slug)
+    {
+        $role = Role::findBySlug($slug);
+        if (!$role) {
+            return null;
+        }
+        $roleId = $role->id;
+        $list = Admin::where('role_id', 5)->lists('full_name', 'id');
+        return $list;
+    }
+    public static function getGmoOfTeacher($teacher, $field)
+    {
+        $gmoId = $teacher->admin_id;
+        $gmo = Admin::find($gmoId);
+        if (!$gmo) {
+            return null;
+        }
+        return $gmo->$field;
+    }
+    public static function getLevelSchedule()
+    {
+        $array = ['
+            ' => '-- Chọn --', 
+            1 => 'level 1', 
+            2 => 'level 2',
+            3 => 'level 3',
+            4 => 'level 4',
+            5 => 'level 5',
+        ];
+        return $array;
+    }
 }

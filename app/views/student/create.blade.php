@@ -38,8 +38,12 @@
                                     {{  Form::text('phone', '', array('class' => 'form-control', 'required' => 'required' )) }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Địa chỉ <span class="text-warning">(*)</span></label>
-                                    {{  Form::text('address', '', array('class' => 'form-control', 'required' => 'required' )) }}
+                                    <label>Skype<span class="text-warning"></span></label>
+                                    {{  Form::text('skype', '', array('class' => 'form-control' )) }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ <span class="text-warning"></span></label>
+                                    {{  Form::text('address', '', array('class' => 'form-control')) }}
                                 </div>
                                 <div class="form-group">
                                     <label>Giới tính <span class="text-warning">(*)</span></label>
@@ -48,6 +52,10 @@
                                 <div class="form-group">
                                     <label>Ngày sinh <span class="text-warning">(*)</span></label>
                                     <input type="date" name="birth_day" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Sale<span class="text-warning"></span></label>
+                                    {{ Form::select('sale_id', Common::getSaleId(), '', ['class' => 'form-control']); }}
                                 </div>
                             </fieldset>
                         </div>
@@ -68,7 +76,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Trình độ</label>
-                                    {{  Form::select('level', ['' => '-- Chọn --', BEGINING => 'Begining', ADVANCE => 'Advance'], '', array('class' => 'form-control', 'rows' => 3 )) }}
+                                    {{  Form::select('level', Common::getLevelSchedule(), '', array('class' => 'form-control', 'rows' => 3 )) }}
                                 </div>
 
                                 <div class="form-group">

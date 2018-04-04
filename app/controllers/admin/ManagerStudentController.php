@@ -128,6 +128,20 @@ class ManagerStudentController extends AdminController {
         CommonNormal::delete($id, 'Student');
         return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
     }
+    public function approveStudent($scheduleId)
+    {
+        $schedule = Schedule::find($scheduleId);
+        $schedule->update(['status' => PROCESS_LESSON]);
+        return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Approve thành công!');
+
+    }
+    public function rejectStudent($scheduleId)
+    {
+        $schedule = Schedule::find($scheduleId);
+        $schedule->update(['status' => PROCESS_LESSON, 'teacher_id' => null]);
+        return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Reject thành công!');
+
+    }
 
 }
 

@@ -1,12 +1,21 @@
 <div style="padding:60px 5%;background-color:#e74c3c;max-width:820px">
     <div style="max-width:560px;text-align:center;margin:auto;padding-bottom:20px;border-bottom:3px solid #16b53b">
+<<<<<<< HEAD
         <img src="{{ asset('custom/img/logo.png') }}" style="width:250px;margin:auto">
+=======
+        <img src="/20180324_084211.png" style="width:130px;margin:auto">
+>>>>>>> master
     </div>
     <div style="max-width:560px;background-color:#fff;margin:auto">
         <div style="background-color:#fff;padding:40px 40px">
             <p style="font-size:14px;line-height:20px"><b>Hi {{ ucwords(Common::getObject($lessonDetail->student, 'full_name')) }}!</b></p>
+<<<<<<< HEAD
             <p style="font-size:14px;line-height:20px">StayHome English xin chào</p>
             <p style="font-size:14px;line-height:20px">Chúc mừng Bạn vừa hoàn thành 01 buổi học trên StayHome English với nội dung như sau:</p>
+=======
+            <p style="font-size:14px;line-height:20px">Stayhomeenglish xin chào</p>
+            <p style="font-size:14px;line-height:20px">Chúc mừng Bạn vừa hoàn thành 01 buổi học trên Stayhomeenglish  với nội dung như sau:</p>
+>>>>>>> master
             <p style="color:#16b53b;font-size:14px;font-weight:bold;text-decoration:none;text-transform:uppercase;line-height:20px">Thông tin chi tiết:</p>
             <div style="background-color:#e8e8e8;padding:15px 20px;margin-bottom:30px">
                 <table>
@@ -20,6 +29,10 @@
                             <td>{{ ucwords(Common::getObject($lessonDetail->teacher, 'full_name')) }}</td>
                         </tr>
                         <tr>
+                            <td>Trình độ (Level):</td>
+                            <td>{{ $lessonDetail->level }}</td>
+                        </tr>
+                        <tr>
                             <td>Duration (Thời lượng):</td>
                             <td>{{ $lessonDetail->lesson_duration }} minute(s) (phút)</td>
                         </tr>
@@ -29,13 +42,13 @@
                         </tr>
                         <tr>
                             <td>Remaining hours (Số giờ còn lại):</td>
-                            <td>{{ convertToHoursMins( (Common::getRemainLessonOfStudent($lessonDetail->student_id)*$lessonDetail->lesson_duration), '%02d hour(s) (giờ) %02d minute(s) (phút)' ) }}</td>
+                            <td>{{ Common::getRemainTimeStudent($lessonDetail) }}</td>
                         </tr>
                         <tr>
                             <td>
                                 Course's remaining hours after confirm this session (Số giờ còn lại của khóa học sau khi xác nhận buổi học này):
                             </td>
-                            <td>{{ convertToHoursMins( Common::getRemainLessonOfStudent($lessonDetail->student_id)*$lessonDetail->lesson_duration - $lessonDetail->lesson_duration, '%02d hour(s) (giờ) %02d minute(s) (phút)' ) }}</td>
+                            <td>{{ Common::getRemainTimeStudentAfterConfirm($lessonDetail) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -61,6 +74,5 @@
         </div>
     </div>
     <div style="border-top:3px solid #16b53b;text-align:center;padding:40px 0">
-        
     </div>
 </div>

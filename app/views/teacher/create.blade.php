@@ -38,6 +38,10 @@
                     {{ Form::text('phone', null, array('class' => 'form-control')) }}
                 </div>
                 <div class="form-group">
+                    <label>Skype<span class="text-warning"></span></label>
+                    {{  Form::text('skype', '', array('class' => 'form-control' )) }}
+                </div>
+                <div class="form-group">
                     <label for="password">Ngày đăng ký</label>
                     <input type="date" class="form-control" id="date_register" placeholder="date register" name="date_register" value="{{ date('Y-m-d', time()) }}">
                 </div>

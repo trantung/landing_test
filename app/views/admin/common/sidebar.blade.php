@@ -33,14 +33,6 @@
             </li>
             @endif
 
-            @if(userAccess('schedule.view'))
-            <li>
-                <a href="{{ action('ScheduleController@index') }}">
-                    <i class="fa fa-flag-checkered"></i> <span>Quản lý lịch học</span>
-                </a>
-            </li>
-            @endif
-
             @if(hasRole('admin'))
             <li>
                 <a href="{{ action('PermissionController@index') }}">
@@ -53,24 +45,25 @@
                 </a>
             </li>
             @endif
-
-            @if(hasRole('teacher'))
-            <li>
-                <a href="{{ action('PublishController@index') }}">
-                    <i class="fa fa-key"></i> <span>Danh sách học sinh chung</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ action('PublishController@privateStudent') }}">
-                    <i class="fa fa-key"></i> <span>Danh sách học sinh cá nhân</span>
-                </a>
-            </li>
+            @if(!hasRole('admin'))
+                @if(hasRole('teacher'))
+                <li>
+                    <a href="{{ action('PublishController@index') }}">
+                        <i class="fa fa-key"></i> <span>Danh sách học sinh chung</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ action('PublishController@privateStudent') }}">
+                        <i class="fa fa-key"></i> <span>Danh sách học sinh cá nhân</span>
+                    </a>
+                </li>
+                @endif
+            @endif
             <li>
                 <a href="{{ action('TeacherController@showScheduleTime') }}">
                     <i class="fa fa-key"></i> <span>Thời khóa biểu</span>
                 </a>
             </li>
-            @endif
         </ul>
     </section>
 </aside>
