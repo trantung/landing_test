@@ -11,7 +11,7 @@ class AdminController extends BaseController {
      */
     public function index()
     {
-        $data = Admin::paginate(PAGINATE);
+        $data = Admin::where('status', '!=', 1)->paginate(PAGINATE);
         return View::make('administrator.index')->with(compact('data'));
     }
 
