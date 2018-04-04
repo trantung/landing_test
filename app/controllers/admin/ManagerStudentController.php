@@ -182,11 +182,18 @@ class ManagerStudentController extends AdminController {
     {
         $input = Input::all();
         $user = currentUser();
-        $ob = Student::where('sale_id', $user->id)
-            ->where('created_at', '>=', $input['start_date'])
-            ->where('created_at', '<=', $input['end_date'])
-            ->get();
         $array = $data = [];
+        if (empty($input['start_date']) && empty($input['end_date'])) {
+            return View::make('sale.student_per_month')->with(compact('data'));
+        }
+        $ob = Student::where('sale_id', $user->id);
+        if (!empty($input['start_date'])) {
+            $ob = $ob->where('created_at', '>=', $input['start_date']);
+        }
+        if (!empty($input['end_date'])) {
+            $ob = $ob->where('created_at', '<=', $input['end_date']);
+        }
+        $ob = $ob->orderBy('created_at', 'desc')->get();
         foreach ($ob as $key => $value) {
             $yearMonth = date("Y",strtotime($value->created_at));
             $yearMonth = $yearMonth. '-' .date("m",strtotime($value->created_at));

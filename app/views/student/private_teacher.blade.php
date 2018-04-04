@@ -24,7 +24,7 @@
 					<th>Thao tác</th>
 				</tr>
 					@foreach($data as $key => $schedule)
-						<tr>
+						<tr data-html="true" data-toggle="tooltip" data-placement="auto" title="<img src='{{ !empty($schedule->student->avatar) ? url($schedule->student->avatar) : NO_IMG }}' width='150px'>" >
 							<td>#{{ $key + 1 + ($data->getPerPage() * ($data->getCurrentPage() -1)) }}</td>
 							<td>{{ $schedule->student->full_name }}</td>
 							<td>{{ $schedule->student->email }}</td>

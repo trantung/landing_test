@@ -16,10 +16,12 @@
             <label>Trình độ</label>
             {{ Form::select('level', Common::getLevelTeacherList(), Input::get('level'), ['class' => 'form-control']) }}
         </div>
+        @if(hasRole('admin'))
         <div class="input-group inline-block">
             <label>GMO</label>
             {{ Form::select('admin_id', Common::getGmoList('gmo'), Input::get('admin_id'), ['class' => 'form-control']) }}
         </div>
+        @endif
         <div class="input-group inline-block" style="vertical-align: bottom;">
             <button type="submit" class="btn btn-primary" title="Tìm kiếm"><i class="glyphicon glyphicon-search"></i></button>
             {{ renderUrl('ManagerStudentController@index', 'Nhập lại', [], ['class' => 'btn btn-primary']) }}

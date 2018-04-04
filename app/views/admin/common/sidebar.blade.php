@@ -49,7 +49,7 @@
                 @if(hasRole('teacher'))
                 <li>
                     <a href="{{ action('PublishController@index') }}">
-                        <i class="fa fa-key"></i> <span>Danh sách học sinh chung</span>
+                        <i class="fa fa-key"></i> <span>Danh sách học sinh mới</span>
                     </a>
                 </li>
                 <li>
