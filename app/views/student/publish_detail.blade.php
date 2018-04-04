@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Ảnh đại diện</label><br/>
-                                    <img src="{{ url(UPLOAD_DIR . UPLOADSTUDENT . '/' . $student->id . '/' . $student->avatar) }}" width="200px" height="auto"  />
+                                    <img src="{{ !empty($student->avatar) ? url($student->avatar) : NO_IMG }}" width="150px" height="auto"  />
                                 </div>
                                 <div class="form-group">
                                     <label>Email :</label>
