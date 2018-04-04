@@ -2,11 +2,22 @@
 class Common {
 
     public static function getLevelName($level){
-        if( $level == BEGINING ){
-            return 'Begining';
-        } elseif( $level == ADVANCE ){
-            return 'Advance';
+        if( $level == 1 ){
+            return 'Level 1';
+        } 
+        if( $level == 2 ){
+            return 'Level 2';
         }
+        if( $level == 3 ){
+            return 'Level 3';
+        }
+        if( $level == 4 ){
+            return 'Level 4';
+        }
+        if( $level == 5 ){
+            return 'Level 5';
+        }
+
         return '';
     }
 
@@ -454,5 +465,17 @@ class Common {
             return null;
         }
         return $gmo->$field;
+    }
+    public static function getLevelSchedule()
+    {
+        $array = ['
+            ' => '-- Chọn --', 
+            1 => 'level 1', 
+            2 => 'level 2',
+            3 => 'level 3',
+            4 => 'level 4',
+            5 => 'level 5',
+        ];
+        return $array;
     }
 }

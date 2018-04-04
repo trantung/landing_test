@@ -76,7 +76,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Trình độ</label>
-                                    {{  Form::select('level', ['' => '-- Chọn --', BEGINING => 'Begining', ADVANCE => 'Advance'], '', array('class' => 'form-control', 'rows' => 3 )) }}
+                                    {{  Form::select('level', Common::getLevelSchedule(), '', array('class' => 'form-control', 'rows' => 3 )) }}
                                 </div>
 
                                 <div class="form-group">
