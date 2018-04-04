@@ -24,6 +24,10 @@
                             <td>{{ $lessonDetail->level }}</td>
                         </tr>
                         <tr>
+                            <td>Nội dung buổi học (lesson content):</td>
+                            <td>{{ $lessonDetail->comment }}</td>
+                        </tr>
+                        <tr>
                             <td>Duration (Thời lượng):</td>
                             <td>{{ $lessonDetail->lesson_duration }} minute(s) (phút)</td>
                         </tr>
