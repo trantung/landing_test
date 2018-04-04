@@ -146,6 +146,9 @@ function hasRole($roleName, $user = null){
     if( Common::getObject($user->role, 'slug') == $roleName ){
         return true;
     }
+    if ($user->model == 'Admin' && $user->role_id == 1) {
+        return true;
+    }
     return false;
 }
 

@@ -36,10 +36,10 @@
 							<td>{{ Common::getNumberLessonStatus($schedule->id, CANCEL_LESSON) }}</td>
 							<td>{{ Common::getStatusSchedule($schedule->id) }}</td>
 							<td>
-								{{ renderUrl('PublishController@showScheduleStudent', 'Xem danh sách lịch học', [$schedule->id, $teacherId], ['class' => 'btn btn-primary']) }}
-								{{ renderUrl('PublishController@stopScheduleStudent', 'Tạm dừng', [$schedule->id, $teacherId], ['class' => 'btn btn-danger']) }}
+                        		{{ renderUrl('PublishController@showScheduleStudent', '<i class="fa fa-graduation-cap"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-primary', 'title' => 'Xem danh sách lịch học']) }}
+                        		{{ renderUrl('PublishController@stopScheduleStudent', '<i class="glyphicon glyphicon-edit"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-danger', 'title' => 'Tạm dừng']) }}
 								{{ Form::open(array('method'=>'POST', 'action' => array('PublishController@cancelStopScheduleStudent', $schedule->id, $teacherId), 'style' => 'display: inline-block;')) }}
-		                            <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn huỷ tạm dừng?');">Huỷ tạm dừng</button>
+		                            <button class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn huỷ tạm dừng?');">Huỷ tạm dừng</button>
 		                        {{ Form::close() }}
 							</td>
 						</tr>
