@@ -171,14 +171,15 @@ class PublishController extends AdminController {
                 $teacher = Teacher::find($teacherId);
                 $gmoId = $teacher->admin_id;
                 $gmo = Admin::find($gmoId);
+                // dd($teacher->email);
                 if ($teacher) {
-                    Mail::send('emails.email_student', $data, function($message) use ($student, $data){
+                    Mail::send('emails.email_student', $data, function($message) use ($teacher, $data){
                         $message->to($teacher->email)
                             ->subject(SUBJECT_EMAIL);
                     });
                 } 
                 if ($gmo) {
-                    Mail::send('emails.email_student', $data, function($message) use ($student, $data){
+                    Mail::send('emails.email_student', $data, function($message) use ($gmo, $data){
                         $message->to($gmo->email)
                             ->subject(SUBJECT_EMAIL);
                     });
