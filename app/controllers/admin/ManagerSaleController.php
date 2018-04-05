@@ -21,7 +21,7 @@ class ManagerSaleController extends AdminController {
                 $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
             }
             if( !empty($input['email']) ){
-                $data = $data->where('email', '=', '%'.$input['email'].'%');
+                $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
             }
             if( !empty($input['phone']) ){
                 $data = $data->where('phone', 'LIKE', '%'.$input['phone'].'%');
