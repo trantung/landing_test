@@ -16,6 +16,8 @@
                 <th>Email</th>
                 <th>Số điện thoại</th>
                 <th>Tổng số học viên</th>
+                <th>Tổng số học viên tháng trước</th>
+                <th>Tổng số học viên hiện tại</th>
                 <th>Thao tác</th>
             </tr>
             @foreach($data as $key => $sale)
@@ -25,7 +27,9 @@
                     <td>{{ $sale->username }}</td>
                     <td>{{ $sale->email }}</td>
                     <td>{{ $sale->phone }}</td>
-                    <td>tong so hoc sinh trong tháng</td>
+                    <td>{{ Common::getStudentOfSale($sale->id) }}</td>
+                    <td>{{ Common::getStudentOfSalePrevious($sale->id) }}</td>
+                    <td>{{ Common::getStudentOfSaleCurrent($sale->id) }}</td>
                     <td>
                         {{ renderUrl('ManagerStudentController@saleStudent', '<i class="fa fa-graduation-cap"></i>', ['sale_id' => $sale->id], ['class' => 'btn btn-primary', 'title' => 'Danh sách học sinh']) }}
                         {{ renderUrl('ManagerStudentController@saleStudentPerMonth', '<i class="glyphicon glyphicon-edit"></i>', ['sale_id' => $sale->id], ['class' => 'btn btn-primary', 'title' => 'Xem thống kê sale']) }}

@@ -478,4 +478,31 @@ class Common {
         ];
         return $array;
     }
+    public static function getStudentOfSale($saleId)
+    {
+        $data = Student::where('sale_id', $saleId)->count();
+        return $data;
+    }
+    public static function getStudentOfSaleCurrent($saleId)
+    {
+        $monthStart = getStartMonth();
+        $monthEnd = getEndMonth();
+        $dataNow = Student::where('sale_id', $saleId)
+            ->where('created_at', '>=', $monthStart)
+            ->where('created_at', '<=', $monthEnd)
+            ->get();
+        return $dataNow;
+    }
+    public static function getStudentOfSalePrevious($saleId)
+    {
+        $monthStartPrevious = getStartMonthPrevious();
+        $monthEndPrevious = getEndMonthPrevious();
+        $dataPrevious = Student::where('sale_id', $saleId)
+            ->where('created_at', '>=', $monthStartPrevious)
+            ->where('created_at', '<=', $monthEndPrevious)
+            ->get();
+        return $dataPrevious;
+    }
+
+
 }

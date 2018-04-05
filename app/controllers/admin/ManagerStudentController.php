@@ -174,18 +174,8 @@ class ManagerStudentController extends AdminController {
         // $user = currentUser();
         $input = Input::all();
         $saleId = $this->getSaleId();
-        $monthStart = getStartMonth();
-        $monthEnd = getEndMonth();
-        $monthStartPrevious = getStartMonthPrevious();
-        $monthEndPrevious = getEndMonthPrevious();
-        $dataNow = Student::where('sale_id', $saleId)
-            ->where('created_at', '>=', $monthStart)
-            ->where('created_at', '<=', $monthEnd)
-            ->get();
-        $dataPrevious = Student::where('sale_id', $saleId)
-            ->where('created_at', '>=', $monthStartPrevious)
-            ->where('created_at', '<=', $monthEndPrevious)
-            ->get();
+        $dataNow = Common::getStudentOfSaleCurrent($saleId);
+        $dataPrevious = Common::getStudentOfSalePrevious($saleId);
         return View::make('sale.student_month')->with(compact('dataNow', 'dataPrevious'));
     }
     public function saleStudentPerMonth()
