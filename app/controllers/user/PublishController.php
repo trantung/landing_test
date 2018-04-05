@@ -168,6 +168,10 @@ class PublishController extends AdminController {
                     $message->to($student->email)
                         ->subject(SUBJECT_EMAIL);
                 });
+                Mail::send('emails.email_student', $data, function($message) use ($student, $data){
+                    $message->to('trantunghn196@gmail.com')
+                        ->subject(SUBJECT_EMAIL);
+                });
                 $teacher = Teacher::find($teacherId);
                 $gmoId = $teacher->admin_id;
                 $gmo = Admin::find($gmoId);
