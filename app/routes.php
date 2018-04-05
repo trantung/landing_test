@@ -18,6 +18,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('administrator/{id}/reset', 'AdminController@getResetPass');
     Route::post('/administrator/{id}/reset', 'AdminController@postResetPass');
 
+    Route::resource('/sale', 'ManagerSaleController');
     Route::get('teacher/{id}/reset', 'ManagerTeacherController@getResetPass');
     Route::post('/teacher/{id}/reset', 'ManagerTeacherController@postResetPass');
     Route::post('/teacher/{id}/comment', 'TeacherController@commentTeacher');

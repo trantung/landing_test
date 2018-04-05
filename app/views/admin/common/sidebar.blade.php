@@ -16,7 +16,13 @@
                 </a>
             </li>
             @endif
-
+            @if(userAccess('sale.view'))
+            <li>
+                <a href="{{ action('ManagerSaleController@index') }}">
+                    <i class="fa fa-bullhorn"></i> <span>Quản lý sale</span>
+                </a>
+            </li>
+            @endif
             @if(userAccess('teacher.view'))
             <li>
                 <a href="{{ action('ManagerTeacherController@index') }}">

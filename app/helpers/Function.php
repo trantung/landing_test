@@ -7,6 +7,12 @@ function getAllPermissions(){
             'accept' => ['AdminController@index'],
             'callback_function' => 'function_calback',
         ],
+        'sale.view' => [
+            'name' => 'Xem sale',
+            'description' => 'Được phép xem danh sách tất cả các sale',
+            'accept' => ['ManagerSaleController@index'],
+            'callback_function' => '',
+        ],
         'teacher.view' => [
             'name' => 'Xem danh sách giáo viên',
             'description' => 'Được phép xem danh sách tất cả các giáo viên',

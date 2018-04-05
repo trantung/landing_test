@@ -6,7 +6,6 @@
 @section('content')
     <div class="box well">
         {{ Form::open(['action' => 'ManagerStudentController@saleStudentPerMonth', 'method' => 'GET']) }}
-            {{ Form::hidden('sale_id', Input::get('sale_id')) }}
             <div class="input-group inline-block">
                 <label>Ngày bắt đầu</label>
                 <input type="date" name="start_date" value="{{ Input::get('start_date') }}" required="" class="form-control">
