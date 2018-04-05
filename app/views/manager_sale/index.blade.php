@@ -5,7 +5,7 @@
 @stop
 @section('content')
     <div class="margin-bottom">
-        @include('sale.filter')
+        @include('manager_sale.filter')
     </div>
     <div class="box box-primary">
         <table class ="table table-bordered table-striped table-hover">
