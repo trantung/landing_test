@@ -423,23 +423,34 @@ class Common {
         }
         return self::getLevelName($schedule->student->level);
     }
+    public static function getDurationTimeStudent($lessonDetail)
+    {
+        $scheduleId = $lessonDetail->schedule_id;
+        $schedule = Schedule::find($scheduleId);
+        $lessonNumber = $schedule->lesson_number;
+        $lessonDuration = $schedule->lesson_duration;
+        $totalCourse = $lessonNumber * $lessonDuration;
+
+        $durationFinish = ScheduleDetail::where('schedule_id', $scheduleId)
+            ->where('status',FINISH_LESSON)
+            ->sum('lesson_duration');
+        $duration = $totalCourse - $durationFinish;
+        return $duration;
+    }
     public static function getRemainTimeStudent($lessonDetail)
     {
-        $scheduleId = $lessonDetail->schedule_id;
-        $remainTimeStudent = ScheduleDetail::where('schedule_id', $scheduleId)
-            ->where('status', '!=',WAIT_CONFIRM_FINISH)
-            ->sum('lesson_duration');
-        $remainTimeStudentByHour = round($remainTimeStudent/60);
-        return $remainTimeStudentByHour;
+        $remainTimeStudent = self::getDurationTimeStudent($lessonDetail);
+        return convertMinToHours($remainTimeStudent);
     }
-    public static function getRemainTimeStudentAfterConfirm($lessonDetail)
+    public static function getRemainTimeStudentAfterConfirm($lessonDetail, $lessonDuration = null)
     {
-        $scheduleId = $lessonDetail->schedule_id;
-        $remainTimeStudent = ScheduleDetail::where('schedule_id', $scheduleId)
-            ->where('status', '!=',WAIT_CONFIRM_FINISH)
-            ->sum('lesson_duration');
-        $remainTimeStudentAfterConfirm = $remainTimeStudent - $lessonDetail->lesson_duration;
-        return round($remainTimeStudentAfterConfirm/60);
+        $remainTimeStudent = self::getDurationTimeStudent($lessonDetail);
+        if ($lessonDuration) {
+            $remainTimeStudentAfterConfirm = $remainTimeStudent - $lessonDuration;
+        } else {
+            $remainTimeStudentAfterConfirm = $remainTimeStudent - $lessonDetail->lesson_duration;
+        }
+        return convertMinToHours($remainTimeStudentAfterConfirm);
     }
     public static function getNameTeacherBySchedule($schedule, $field)
     {

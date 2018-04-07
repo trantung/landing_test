@@ -162,7 +162,8 @@ class PublishController extends AdminController {
                 $string = generateRandomString();
                 $data = [
                     'string' => $string,
-                    'lessonDetail' => $lessonDetail
+                    'lessonDetail' => $lessonDetail,
+                    'lessonDuration' => $input['lesson_duration'],
                 ];
                 Mail::send('emails.email_student', $data, function($message) use ($student, $data){
                     $message->to($student->email)
@@ -215,8 +216,8 @@ class PublishController extends AdminController {
         if ($lessonDetail->status == WAIT_CONFIRM_FINISH) {
             //update so buoi hoc con lai cua hoc sinh vao bang schedule
             $scheduleUpdate = Schedule::find($lessonDetail->schedule_id);
-            if ($scheduleUpdate->lesson_number > 1) {
-                $scheduleUpdate->update(['remain_lesson' => $scheduleUpdate->lesson_number - 1]);
+            if ($scheduleUpdate->remain_lesson > 1) {
+                $scheduleUpdate->update(['remain_lesson' => $scheduleUpdate->remain_lesson - 1]);
             } else {
                 $scheduleUpdate->update(['remain_lesson' => 0, 'status' => FINISH_LESSON_TOTAL]);
             }

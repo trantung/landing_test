@@ -29,7 +29,7 @@
                         </tr>
                         <tr>
                             <td>Duration (Thời lượng):</td>
-                            <td>{{ $lessonDetail->lesson_duration }} minute(s) (phút)</td>
+                            <td>{{ $lessonDuration }} minute(s) (phút)</td>
                         </tr>
                         <tr>
                             <td>Date (Ngày, giờ):</td>
@@ -43,7 +43,7 @@
                             <td>
                                 Course's remaining hours after confirm this session (Số giờ còn lại của khóa học sau khi xác nhận buổi học này):
                             </td>
-                            <td>{{ Common::getRemainTimeStudentAfterConfirm($lessonDetail) }}</td>
+                            <td>{{ Common::getRemainTimeStudentAfterConfirm($lessonDetail, $lessonDuration) }}</td>
                         </tr>
                     </tbody>
                 </table>

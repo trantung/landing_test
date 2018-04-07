@@ -138,6 +138,9 @@ $(document).ready(function(){
         var lesson_status = $(this).val();
         if(lesson_status == 3){
             $('.time_disable').find('input, select').removeAttr('disabled');
+        } 
+        else if(lesson_status == 4){
+            $('.time_disable').find('select').removeAttr('disabled');
         }
         else{
             $('.time_disable').find('input, select').attr('disabled', 'disabled');
