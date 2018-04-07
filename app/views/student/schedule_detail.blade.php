@@ -27,10 +27,14 @@
                                 {{ Common::getNameDateByTimeId($scheduleDetail->time_id) }}
                             </td>
                             <td>{{ getStatusScheduleDetail($scheduleDetail->status) }}</td>
-                            
                             <td>
-                                {{ renderUrl('PublishController@showScheduleDetail', 'Xem chi tiết', [$scheduleDetail->id, $teacherId], ['class' => 'btn btn-primary']) }}
+                                @if(Common::checkTimeConfirm($scheduleDetail->id, $teacherId))
+                                    {{ renderUrl('PublishController@showScheduleDetail', 'Xem chi tiết', [$scheduleDetail->id, $teacherId], ['class' => 'btn btn-primary']) }}
+                                @else
+                                    Chưa được xem
+                                @endif
                             </td>
+
                         </tr>
                     @endforeach
             </table>

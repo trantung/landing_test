@@ -539,5 +539,15 @@ class Common {
         }
 
     }
-
+    public static function checkTimeConfirm($lessonId, $teacherId)
+    {
+        $now = time();
+        $time = date('Y-m-d', $now);
+        $lesson = ScheduleDetail::find($lessonId);
+        $lessonDate = $lesson->lesson_date;
+        if ($time >= $lessonDate ) {
+           return true;
+        }
+        return false;
+    }
 }
