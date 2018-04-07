@@ -23,7 +23,9 @@
                         <tr>
                             <td>#{{ $key + 1 + ($data->getPerPage() * ($data->getCurrentPage() -1)) }}</td>
                             <td>{{ $scheduleDetail->lesson_date }} {{ $scheduleDetail->lesson_hour }}</td>
-                            <td>Thứ {{ $scheduleDetail->time_id }}</td>
+                            <td>
+                                {{ Common::getNameDateByTimeId($scheduleDetail->time_id) }}
+                            </td>
                             <td>{{ getStatusScheduleDetail($scheduleDetail->status) }}</td>
                             
                             <td>

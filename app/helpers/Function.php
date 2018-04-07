@@ -72,7 +72,7 @@ function getAllPermissions(){
             'name' => 'Dành riêng cho sale',
             'description' => 'Sale xem danh sách học sinh',
             'accept' => ['ManagerStudentController@saleStudent', 'ManagerStudentController@saleStudentMonth', 
-                'ManagerStudentController@saleStudentPerMonth'
+                'ManagerStudentController@saleStudentPerMonth', 'ManagerStudentController@index'
             ],
             'callback_function' => '',
         ],
@@ -102,7 +102,7 @@ function getAllPermissions(){
                 'PublishController@privateStudent', 'PublishController@showScheduleStudent',
                 'PublishController@showScheduleDetail','PublishController@updateScheduleDetail',
                 'PublishController@stopScheduleStudent', 'PublishController@postStopScheduleStudent',
-                'PublishController@cancelStopScheduleStudent'
+                'PublishController@cancelStopScheduleStudent', 'ManagerStudentController@index'
             ],
             'callback_function' => '',
         ],

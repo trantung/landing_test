@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nhận xét</label>
+                                    <label>Nội dung buổi học và nhận xét</label>
                                     {{  Form::textarea('comment', '', array('class' => 'form-control', 'rows' => 3 )) }}
                                 </div>
                                 <div class="input-group inline-block col-sm-4" >

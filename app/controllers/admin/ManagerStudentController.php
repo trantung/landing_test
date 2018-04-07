@@ -8,15 +8,38 @@ class ManagerStudentController extends AdminController {
     public function index()
     {
         $input = Input::all();
-        $data = Student::orderBy('created_at', 'desc');
+        $user = currentUser();
+        if ($user->model == 'Admin') {
+            if (empty($input['teacher_id'])) {
+                $data = Student::orderBy('created_at', 'desc');
+            }
+            if (!empty($input['teacher_id'])) {
+                $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id');
+                $data = $data->where('schedules.teacher_id', $input['teacher_id']);
+            }
+        }
+        if ($user->model == 'Teacher') {
+            $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id');
+            $data = $data->where('schedules.teacher_id', $user->id);
+        }
         if( !empty($input['full_name']) ){
-            $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
+            $data = $data->where('students.full_name', 'LIKE', '%'.$input['full_name'].'%');
         }
         if( !empty($input['email']) ){
-            $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
+            $data = $data->where('students.email', 'LIKE', '%'.$input['email'].'%');
         }
         if( !empty($input['phone']) ){
-            $data = $data->where('phone', 'LIKE', '%'.$input['phone'].'%');
+            $data = $data->where('students.phone', 'LIKE', '%'.$input['phone'].'%');
+        }
+        if( !empty($input['sale_id']) ){
+            $data = $data->where('students.sale_id', $input['sale_id']);
+        }
+        $roleSale = Role::findBySlug('sale');
+        if ($roleSale) {
+            $roleSaleId = $roleSale->id;
+            if ($user->role_id = $roleSaleId) {
+                $data = $data->where('students.sale_id', $user->id);
+            }
         }
 
         $data = $data->paginate(PAGINATE);

@@ -1,5 +1,5 @@
 <div class="box alert">
-    {{ Form::open(['action' => 'ManagerTeacherController@index', 'method' => 'GET', 'class' => '']) }}
+    {{ Form::open(['action' => 'ManagerStudentController@index', 'method' => 'GET', 'class' => '']) }}
         <div class="input-group inline-block">
             <label>Tên</label>
             {{ Form::text('full_name', Input::get('full_name'), ['class' => 'form-control', 'placeholder' => 'Họ tên']) }}

@@ -503,6 +503,30 @@ class Common {
             ->get();
         return $dataPrevious;
     }
+    public static function getNameDateByTimeId($timeId)
+    {
+        if ($timeId == T2) {
+            return 'Thứ 2';
+        }
+        if ($timeId == T3) {
+            return 'Thứ 3';
+        }
+        if ($timeId == T4) {
+            return 'Thứ 4';
+        }
+        if ($timeId == T5) {
+            return 'Thứ 5';
+        }
+        if ($timeId == T6) {
+            return 'Thứ 6';
+        }
+        if ($timeId == T7) {
+            return 'Thứ 7';
+        }
+        if ($timeId == CN) {
+            return 'Chủ nhật';
+        }
 
+    }
 
 }

@@ -10,7 +10,7 @@
 	    </div>
 	</div>
 	<div class="margin-bottom">
-	    @include('sale.filter')
+	    @include('student.filter')
 	</div>
 	@if( count($data) )
 		<div class="box box-primary">
@@ -40,18 +40,6 @@
 							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
 							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, CANCEL_LESSON) }}</td>
 							<td>{{ Common::getScheduleByStudent($student)->lesson_number - Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
-							@if(Common::getScheduleByStudent($student)->status == WAIT_APPROVE_GMO)
-								<td>
-								{{ Form::open(array('method'=>'POST', 'action' => array('ManagerStudentController@approveStudent', Common::getScheduleByStudent($student)->id), 'style' => 'display: inline-block;')) }}
-		                            <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn approve?');">Approve giáo viên {{ Common::getNameTeacherBySchedule(Common::getScheduleByStudent($student), 'full_name') }}</button>
-		                        {{ Form::close() }}
-		                        {{ Form::open(array('method'=>'POST', 'action' => array('ManagerStudentController@rejectStudent', Common::getScheduleByStudent($student)->id), 'style' => 'display: inline-block;')) }}
-		                            <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn reject?');">Reject giáo viên {{ Common::getNameTeacherBySchedule(Common::getScheduleByStudent($student), 'full_name') }}</button>
-		                        {{ Form::close() }}
-								</td>
-							@else
-							<td>{{ Common::getStatusSchedule(Common::getScheduleByStudent($student)->id) }}</td>
-							@endif
 						</tr>
 					@endforeach
 			</table>
