@@ -129,7 +129,7 @@ class AdminController extends BaseController {
                 $checkLoginTeacher = Auth::teacher()->attempt($input, true);
                 if ($checkLoginTeacher) {
                     // dd(111);
-                    return Redirect::action('PublishController@index');
+                    return Redirect::action('PublishController@privateStudent');
                 } else {
                     return Redirect::action('AdminController@login');
                 }
