@@ -131,6 +131,7 @@ class Common {
         }
         return null;
     }
+
     public static function getNumberLesson($studentId)
     {
         $ob = Schedule::where('student_id', $studentId)
@@ -260,8 +261,6 @@ class Common {
         if ($schedule->status == WAIT_APPROVE_GMO) {
             return 'Chờ GMO duyệt';
         }
-
-
     }
 
     /**
@@ -549,5 +548,16 @@ class Common {
            return true;
         }
         return false;
+    }
+    // public static function getTimeIdAndHourLessonOfStudent($studentId)
+    // {
+    //     ScheduleDetail::where('');
+    // }
+    public static function getNumberLessonRemainTeacher($teacherId)
+    {
+        $data = ScheduleDetail::where('teacher_id', $teacherId)
+            ->whereIn('status', [REGISTER_LESSON,CANCEL_LESSON,CHANGE_LESSON])
+            ->count();
+        return $data;
     }
 }
