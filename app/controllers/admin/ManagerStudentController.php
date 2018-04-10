@@ -10,6 +10,7 @@ class ManagerStudentController extends AdminController {
         $input = Input::all();
         $user = currentUser();
         if ($user->model == 'Admin') {
+            // dd(22);
             if (empty($input['teacher_id'])) {
                 $data = Student::orderBy('created_at', 'desc');
             }
@@ -37,11 +38,10 @@ class ManagerStudentController extends AdminController {
         $roleSale = Role::findBySlug('sale');
         if ($roleSale) {
             $roleSaleId = $roleSale->id;
-            if ($user->role_id = $roleSaleId) {
+            if ($user->role_id == $roleSaleId) {
                 $data = $data->where('students.sale_id', $user->id);
             }
         }
-
         $data = $data->paginate(PAGINATE);
         return View::make('student.index')->with(compact('data'));
     }
@@ -101,7 +101,7 @@ class ManagerStudentController extends AdminController {
             $scheduleDetail['lesson_hour'] = $lessonDate[$i][1];
             $scheduleDetailId = ScheduleDetail::create($scheduleDetail)->id;
         }
-        return Redirect::action('ManagerStudentController@index')->withMesage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
+        return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
     }
     /**
      * Display the specified resource.
