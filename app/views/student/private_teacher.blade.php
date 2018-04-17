@@ -17,7 +17,7 @@
 					<th>Số điện thoại</th>
 					<th>Trình độ</th>
 					<th>Tổng số buổi của học sinh</th>
-					<th>Số buổi đã confirm</th>
+					<th>Số buổi còn lại</th>
 					<th>Số buổi đã hoàn thành</th>
 					<th>Số buổi đã huỷ</th>
 					<th>Tình trạng</th>
@@ -31,7 +31,7 @@
 							<td>{{ $schedule->student->phone }}</td>
 							<td>{{ Common::getLevelName($schedule->student->level) }}</td>
 							<td>{{ $schedule->lesson_number }}</td>
-							<td>{{ Common::getNumberLessonStatus($schedule->id, WAIT_CONFIRM_FINISH) }}</td>
+							<td>{{ Common::getNumberLessonRemainTeacher($schedule->teacher_id, $schedule->student_id) }}</td>
 							<td>{{ Common::getNumberLessonStatus($schedule->id, FINISH_LESSON) }}</td>
 							<td>{{ Common::getNumberLessonStatus($schedule->id, CANCEL_LESSON) }}</td>
 							<td>{{ Common::getStatusSchedule($schedule->id) }}</td>

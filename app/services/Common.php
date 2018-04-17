@@ -553,8 +553,15 @@ class Common {
     // {
     //     ScheduleDetail::where('');
     // }
-    public static function getNumberLessonRemainTeacher($teacherId)
+    public static function getNumberLessonRemainTeacher($teacherId, $studentId = null)
     {
+        if ($studentId) {
+            $data = ScheduleDetail::where('teacher_id', $teacherId)
+                ->where('student_id', $studentId)
+                ->whereIn('status', [REGISTER_LESSON,CANCEL_LESSON,CHANGE_LESSON])
+                ->count();
+            return $data;
+        }
         $data = ScheduleDetail::where('teacher_id', $teacherId)
             ->whereIn('status', [REGISTER_LESSON,CANCEL_LESSON,CHANGE_LESSON])
             ->count();
