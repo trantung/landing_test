@@ -133,6 +133,46 @@ class ManagerStudentController extends AdminController {
     public function update($id)
     {
         $input = Input::all();
+        //lấy các buổi học từ sau thời gian hiện tại để update lại lịch học(những buổi trước không quan tâm)
+        // xoá hết các buổi học từ thời gian hiện tại trở về sau
+        $dateNow = date('Y-m-d', time());
+        $data = ScheduleDetail::where('student_id', $id)
+            ->where('lesson_date', '>=', $dateNow);
+        $lessonNumberUpdate = count($data->get());
+        $data->delete();
+        //update theo lịch mới
+        $lessonDate = [];
+        $schedule = Schedule::where('student_id', $id)
+            ->where('status', PROCESS_LESSON)
+            ->first();
+        $scheduleId = $schedule->id;
+        $typeId = $schedule->type;
+        $levelId = $schedule->level;
+        $teacherId = $schedule->teacher_id;
+        $duration = $schedule->lesson_duration;
+        for ($i=0; $i < $lessonNumberUpdate; $i++) { 
+            foreach ($input['time_id'] as $key => $value) {
+                if ($value != '' && count($lessonDate) < $lessonNumberUpdate) {
+                    $number = $i*7;
+                    $text = ' + '.$number.' days';
+                    $lessonDate[] = [date('Y-m-d', strtotime($value.$text)), $input['hours'][$key]];
+                }
+            }
+        }
+        for ($i=0; $i < $lessonNumberUpdate; $i++) { 
+            $scheduleDetail['teacher_id'] = $teacherId;
+            $scheduleDetail['type'] = $typeId;
+            $scheduleDetail['level'] = $levelId;
+            $scheduleDetail['lesson_duration'] = $duration;
+            $scheduleDetail['student_id'] = $id;
+            $scheduleDetail['schedule_id'] = $scheduleId;
+            $scheduleDetail['time_id'] = getTimeId($lessonDate[$i][0]);
+            $scheduleDetail['status'] = REGISTER_LESSON;
+            $scheduleDetail['lesson_date'] = $lessonDate[$i][0];
+            $scheduleDetail['lesson_hour'] = $lessonDate[$i][1];
+            $scheduleDetailId = ScheduleDetail::create($scheduleDetail)->id;
+        }
+
         $student = Student::find($id);
         $input['avatar'] = CommonUpload::uploadImage(UPLOADSTUDENT.$id, 'avatar', $student->avatar);
         $student->update($input);

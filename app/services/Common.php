@@ -91,7 +91,7 @@ class Common {
     public static function getLessonTypeByStudent($student)
     {
         $schedule = $student->schedules()
-            ->whereNull('teacher_id')
+            // ->whereNull('teacher_id')
             ->where('status', REGISTER_LESSON)->first();
         if (!$schedule) {
             return null;
@@ -112,7 +112,7 @@ class Common {
     public static function getDurationByStudent($studentId)
     {
         $ob = Schedule::where('student_id', $studentId)
-            ->whereNull('teacher_id')
+            // ->whereNull('teacher_id')
             ->where('status', REGISTER_LESSON)
             ->first();
         if ($ob) {
@@ -123,7 +123,7 @@ class Common {
     public static function getStartDateByStudent($studentId)
     {
         $ob = Schedule::where('student_id', $studentId)
-            ->whereNull('teacher_id')
+            // ->whereNull('teacher_id')
             ->where('status', REGISTER_LESSON)
             ->first();
         if ($ob) {
@@ -135,7 +135,7 @@ class Common {
     public static function getNumberLesson($studentId)
     {
         $ob = Schedule::where('student_id', $studentId)
-            ->whereNull('teacher_id')
+            // ->whereNull('teacher_id')
             ->where('status', REGISTER_LESSON)
             ->first();
         if ($ob) {
@@ -146,7 +146,7 @@ class Common {
     public static function getLessonPerWeekByStudent($studentId)
     {
         $ob = Schedule::where('student_id', $studentId)
-            ->whereNull('teacher_id')
+            // ->whereNull('teacher_id')
             ->where('status', REGISTER_LESSON)
             ->first();
         if ($ob) {
@@ -549,10 +549,6 @@ class Common {
         }
         return false;
     }
-    // public static function getTimeIdAndHourLessonOfStudent($studentId)
-    // {
-    //     ScheduleDetail::where('');
-    // }
     public static function getNumberLessonRemainTeacher($teacherId, $studentId = null)
     {
         if ($studentId) {
@@ -567,4 +563,33 @@ class Common {
             ->count();
         return $data;
     }
+    public static function getNameDateByTimeIdByStudent($student)
+    {
+        $dateNow = date('Y-m-d', time());
+        $studentId = $student->id;
+        $data = ScheduleDetail::where('student_id', $studentId)
+            ->where('status', '!=', FINISH_LESSON)
+            ->where('lesson_date', '<=', $dateNow)
+            ->groupBy('time_id')->groupBy('lesson_hour')->lists('lesson_hour', 'time_id');
+        $text = '';
+        foreach ($data as $timeId => $lessonHour) {
+            $text = $text . self::getNameDateByTimeId($timeId) . '--Giờ học: ' . $lessonHour . '; ';
+        }
+        return $text;
+    }
+    public static function getNameDateByTimeIdByStudentCurrent($student)
+    {
+        $dateNow = date('Y-m-d', time());
+        $studentId = $student->id;
+        $data = ScheduleDetail::where('student_id', $studentId)
+            ->where('status', '!=', FINISH_LESSON)
+            ->where('lesson_date', '>=', $dateNow)
+            ->groupBy('time_id')->groupBy('lesson_hour')->lists('lesson_hour', 'time_id');
+        $text = '';
+        foreach ($data as $timeId => $lessonHour) {
+            $text = $text . self::getNameDateByTimeId($timeId) . '--Giờ học: ' . $lessonHour . '; ';
+        }
+        return $text;
+    }
 }
+
