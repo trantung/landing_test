@@ -448,9 +448,19 @@ class Common {
         }
         return self::getLevelName($schedule->student->level);
     }
-    public static function getDurationTimeStudent($lessonDetail)
+    public static function getDurationTimeStudentByStudent($studentId)
     {
-        $scheduleId = $lessonDetail->schedule_id;
+        $schedule = Schedule::where('student_id', $studentId)
+            ->where('status', PROCESS_LESSON)
+            ->first();
+        if (!$schedule) {
+            return null;
+        }
+        $duration = self::getDurationTimeStudentBySchedule($schedule->id);
+        return convertMinToHours($duration);
+    }
+    public static function getDurationTimeStudentBySchedule($scheduleId)
+    {
         $schedule = Schedule::find($scheduleId);
         $lessonNumber = $schedule->lesson_number;
         $lessonDuration = $schedule->lesson_duration;
@@ -460,6 +470,12 @@ class Common {
             ->where('status',FINISH_LESSON)
             ->sum('lesson_duration');
         $duration = $totalCourse - $durationFinish;
+        return $duration;
+    }
+    public static function getDurationTimeStudent($lessonDetail)
+    {
+        $scheduleId = $lessonDetail->schedule_id;
+        $duration = self::getDurationTimeStudentBySchedule($scheduleId);
         return $duration;
     }
     public static function getRemainTimeStudent($lessonDetail)

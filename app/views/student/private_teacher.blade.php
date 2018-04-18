@@ -18,6 +18,7 @@
 					<th>Trình độ</th>
 					<th>Tổng số buổi của học sinh</th>
 					<th>Số buổi còn lại</th>
+					<th>Số giờ còn lại</th>
 					<th>Số buổi đã hoàn thành</th>
 					<th>Số buổi đã huỷ</th>
 					<th>Tình trạng</th>
@@ -32,6 +33,7 @@
 							<td>{{ Common::getLevelName($schedule->student->level) }}</td>
 							<td>{{ $schedule->lesson_number }}</td>
 							<td>{{ Common::getNumberLessonRemainTeacher($schedule->teacher_id, $schedule->student_id) }}</td>
+							<td>{{ Common::getDurationTimeStudentByStudent($schedule->student_id) }}</td>
 							<td>{{ Common::getNumberLessonStatus($schedule->id, FINISH_LESSON) }}</td>
 							<td>{{ Common::getNumberLessonStatus($schedule->id, CANCEL_LESSON) }}</td>
 							<td>{{ Common::getStatusSchedule($schedule->id) }}</td>

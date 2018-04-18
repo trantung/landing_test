@@ -22,10 +22,10 @@
 					<th>Phone</th>
 					<th>Trình độ</th>
 					<th>Tổng số buổi của học sinh</th>
-					<th>Số buổi đã confirm</th>
 					<th>Số buổi đã hoàn thành</th>
 					<th>Số buổi đã huỷ</th>
 					<th>Số buổi còn lại</th>
+					<th>Số giờ còn lại</th>
 					<th>Tình trạng</th>
 					<th>Thao tác</th>
 				</tr>
@@ -38,10 +38,10 @@
 							<td>{{ Common::getLevelNameByStudent($student) }}</td>
 							@if(Common::getScheduleByStudent($student))
 								<td>{{ Common::getScheduleByStudent($student)->lesson_number }}</td>
-								<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, WAIT_CONFIRM_FINISH) }}</td>
 								<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
 								<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, CANCEL_LESSON) }}</td>
 								<td>{{ Common::getScheduleByStudent($student)->lesson_number - Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
+								<td>{{ Common::getDurationTimeStudentByStudent($student->id) }}</td>
 								
 								@if(Common::getScheduleByStudent($student)->status == WAIT_APPROVE_GMO)
 									@if(Common::checkTeacherOfGmo($student))

@@ -10,9 +10,18 @@ class ManagerStudentController extends AdminController {
         $input = Input::all();
         $user = currentUser();
         if ($user->model == 'Admin') {
-            // dd(22);
+            $roleAdmin = Role::findBySlug('admin');
+            $roleGmo = Role::findBySlug('gmo');
+
             if (empty($input['teacher_id'])) {
-                $data = Student::orderBy('created_at', 'desc');
+                if ($user->role_id == $roleAdmin->id) {
+                    $data = Student::orderBy('created_at', 'desc');
+                }
+                if ($user->role_id == $roleGmo->id) {
+                    $listTeacherId = Teacher::where('admin_id', $user->id)->lists('id');
+                    $data = Student::whereNull('teacher_id')
+                        ->orWhereIn('teacher_id', $listTeacherId);
+                }
             }
             if (!empty($input['teacher_id'])) {
                 $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id');
@@ -42,6 +51,7 @@ class ManagerStudentController extends AdminController {
                 $data = $data->where('students.sale_id', $user->id);
             }
         }
+        $data = $data->select('students.*');
         $data = $data->paginate(PAGINATE);
         return View::make('student.index')->with(compact('data'));
     }
