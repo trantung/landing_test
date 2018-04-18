@@ -35,7 +35,27 @@
 							<td>{{ $student->full_name }}</td>
 							<td>{{ $student->email }}</td>
 							<td>{{ $student->phone }}</td>
+							<td>{{ Common::getLevelNameByStudent($student) }}</td>
+							<td>{{ Common::getScheduleByStudent($student)->lesson_number }}</td>
 							
+							
+							@if(Common::getScheduleByStudent($student)->status == WAIT_APPROVE_GMO)
+								@if(Common::checkTeacherOfGmo($student))
+								<td>
+								{{ Form::open(array('method'=>'POST', 'action' => array('ManagerStudentController@approveStudent', Common::getScheduleByStudent($student)->id), 'style' => 'display: inline-block;')) }}
+		                            <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn approve?');">Approve giáo viên {{ Common::getNameTeacherBySchedule(Common::getScheduleByStudent($student), 'full_name') }}</button>
+		                        {{ Form::close() }}
+		                        {{ Form::open(array('method'=>'POST', 'action' => array('ManagerStudentController@rejectStudent', Common::getScheduleByStudent($student)->id), 'style' => 'display: inline-block;')) }}
+		                            <button class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn reject?');">Reject giáo viên {{ Common::getNameTeacherBySchedule(Common::getScheduleByStudent($student), 'full_name') }}</button>
+		                        {{ Form::close() }}
+								</td>
+								@else
+								<td>Không đượt duyệt</td>
+								@endif
+							@else
+							<td>{{ Common::getStatusSchedule(Common::getScheduleByStudent($student)->id) }}</td>
+							@endif
+							<td>
 								{{ renderUrl('ManagerStudentController@edit', 'Sửa', [$student->id], ['class' => 'btn btn-warning']) }}
 								@if (userAccess('student.delete'))
 									{{ Form::open(array('method'=>'DELETE', 'action' => array('ManagerStudentController@destroy', $student->id), 'style' => 'display: inline-block;')) }}
