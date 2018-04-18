@@ -414,6 +414,32 @@ class Common {
         }
         return null;
     }
+    public static function checkTeacherOfGmo($student)
+    {
+        $admin = $gmo = Auth::admin()->get();
+        $roleAdmin = Role::findBySlug('admin');
+        if (!$admin) {
+            return false;
+        }
+        if ($admin->role_id == $roleAdmin->id) {
+            return true;
+        }
+        $roleGmo = Role::findBySlug('gmo');
+        if ($admin->role_id != $roleGmo->id) {
+            return false;
+        }
+        $schedule = self::getScheduleByStudent($student);
+        if (!$schedule) {
+            return false;
+        }
+        $listTeacherId = Teacher::where('admin_id', $gmo->id)->lists('id');
+        $teacherId = $schedule->teacher_id;
+        if (!in_array($teacherId, $listTeacherId)) {
+            return false;
+        }
+        return true;
+    }
+
     public static function getLevelNameByStudent($student)
     {
         $schedule = self::getScheduleByStudent($student);
