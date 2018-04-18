@@ -82,11 +82,12 @@ class ManagerStudentController extends AdminController {
         $scheduleInput['lesson_per_week'] = $input['lesson_per_week'];
         $scheduleInput['lesson_duration'] = $input['lesson_duration'];
         $scheduleInput['lesson_number'] = $input['lesson_number'];
+        $scheduleInput['remain_lesson'] = $input['lesson_number'];
         $scheduleInput['type'] = $input['type'];
         $scheduleInput['start_date'] = $input['start_date'];
         $scheduleInput['level'] = $input['level'];
         $scheduleInput['student_id'] = $studentId;
-        $scheduleInput['status'] = REGISTER_LESSON;
+        $scheduleInput['status'] = PROCESS_LESSON;
         $scheduleId = Schedule::create($scheduleInput)->id;
         //create schedule_details
         $lessonDate = [];
