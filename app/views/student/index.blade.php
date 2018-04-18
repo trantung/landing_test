@@ -35,15 +35,7 @@
 							<td>{{ $student->full_name }}</td>
 							<td>{{ $student->email }}</td>
 							<td>{{ $student->phone }}</td>
-							<td>{{ Common::getLevelNameByStudent($student) }}</td>
-							<td>{{ Common::getScheduleByStudent($student)->lesson_number }}</td>
-							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, WAIT_CONFIRM_FINISH) }}</td>
-							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
-							<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, CANCEL_LESSON) }}</td>
-							<td>{{ Common::getScheduleByStudent($student)->lesson_number - Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
 							
-							
-							<td>
 								{{ renderUrl('ManagerStudentController@edit', 'Sửa', [$student->id], ['class' => 'btn btn-warning']) }}
 								@if (userAccess('student.delete'))
 									{{ Form::open(array('method'=>'DELETE', 'action' => array('ManagerStudentController@destroy', $student->id), 'style' => 'display: inline-block;')) }}
