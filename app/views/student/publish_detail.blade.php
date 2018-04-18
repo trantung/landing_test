@@ -37,6 +37,10 @@
                                     {{ $student->phone }}
                                 </div>
                                 <div class="form-group">
+                                    <label>Skype</label>
+                                    {{ $student->skype }}
+                                </div>
+                                <div class="form-group">
                                     <label>Địa chỉ :</label>
                                     {{ $student->address }}
                                 </div>
