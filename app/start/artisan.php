@@ -12,3 +12,4 @@
 */
 
 // Artisan::add(new ModelMake);
+Artisan::add(new FirstCommand);
