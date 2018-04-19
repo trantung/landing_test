@@ -25,7 +25,7 @@ class AddSkypeIntoTeacher extends Migration {
 	public function down()
 	{
 		Schema::table('teachers', function(Blueprint $table) {
-            $table->dropColumn('status');
+            $table->dropColumn('skype');
         });
 	}
 

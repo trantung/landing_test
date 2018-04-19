@@ -15,6 +15,7 @@
 	{{ HTML::style('adminlte/plugins/datetimepicker/bootstrap-datetimepicker.min.css') }}
 	{{ HTML::style('adminlte/plugins/jQueryUI/jquery-ui.css') }}
 	{{ HTML::style('adminlte/plugins/bootstrap-select/bootstrap-select.min.css') }}
+	{{ HTML::style('custom/css/animate.css') }}
 	{{ HTML::style('custom/css/style.css') }}
 	@yield('style_header')
 
@@ -29,6 +30,7 @@
 	{{ HTML::script('adminlte/plugins/bootstrap-select/bootstrap-select.min.js') }}
 	{{ HTML::script('custom/js/form-control.js') }}
 	{{ HTML::script('custom/js/ajax.js') }}
+	{{ HTML::script('custom/js/notification.js') }}
 
 	@yield('js_header')
 

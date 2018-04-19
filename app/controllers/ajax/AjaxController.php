@@ -1,6 +1,91 @@
 <?php 
 class AjaxController extends \BaseController {
 
+    /*
+    |-----------------------------------------------
+    | GET NOTIFICATION UNREAD OF AN USER
+    |-----------------------------------------------
+    | @params
+    | @Method POST
+    | @author tantan
+    */
+    public function postMakeNotificationReaded($id){
+        $data = Notification::find($id);
+        if( $data != null ){
+            $data->update(['read' => 1]);
+            return Response::json(true);
+        }
+        return Response::json(false);
+    }
+
+    /*
+    |-----------------------------------------------
+    | GET NOTIFICATION UNREAD OF AN USER
+    |-----------------------------------------------
+    | @params
+    | @Method POST
+    | @author tantan
+    */
+    public function postUnreadNotification(){
+        $user = currentUser();
+        $output = [
+            'data' => null,
+            'count' => 0,
+        ];
+
+        if( $user ){
+            $data = Notification::where('receiver_model', $user->model)
+            ->where('receiver_id', $user->id)
+            ->where('read', 0)->orderBy('created_at', 'ASC')->get();
+
+            foreach ($data as $key => $value) {
+                $value->html = '<li data-id="'.$value->id.'" class="unread">
+                    <p class="title">'.$value->title.'</p>
+                    <p class="message">'.str_limit($value->message, 100, '...').'</p>
+                    <span class="date text-muted"><i>'. date('H:i d/m/Y', strtotime($value->created_at)) .'</i></span>
+                </li>';
+                $output['count']++;
+                $output['data'][] = $value->toArray();
+            }
+        }
+        return Response::json($output);
+    }
+
+
+    /*
+    |-----------------------------------------------
+    | GET LIST NOTIFICATION WITH PAGINATION
+    |-----------------------------------------------
+    | @params
+    | @Method POST
+    | @author tantan
+    */
+    public function getGetNotificationPaginate($skip = 0, $perpage = 10, $notIn = []){
+        $user = currentUser();
+        $output = [
+            'data' => [],
+            'count' => 0,
+        ];
+
+        if( Input::get('not_in') ){
+            $notIn = Input::get('not_in');
+        }
+        if( $user ){
+            $data = CommonNotification::getUserNotification($user->model, $user->id, $skip, $perpage, $notIn, 'DESC');
+
+            foreach ($data as $key => $value) {
+                $value->html = '<li data-id="'.$value->id.'" class="'.( ($value->read == 0 | !$value->read) ? 'unread' : '' ).'">
+                    <p class="title">'.$value->title.'</p>
+                    <p class="message">'.str_limit($value->message, 100, '...').'</p>
+                    <span class="date text-muted"><i>'. date('H:i d/m/Y', strtotime($value->created_at)) .'</i></span>
+                </li>';
+                $output['count']++;
+                $output['data'][] = $value->toArray();
+            }
+        }
+        return Response::json($output);
+    }
+
     /**
      * Get suggest list CVHT 
      */

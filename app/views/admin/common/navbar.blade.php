@@ -16,6 +16,23 @@
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <li class="dropdown notifi-dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"></i> <span class="badge count-unread-notifi"></span></a>
+                    <div class="dropdown-menu notification-area">
+                        <ul class="nav menu list-notifications">
+                            @foreach( CommonNotification::getUserNotification() as $value )
+                                <li data-id="{{ $value->id }}" class="{{ ($value->read == 0 | !$value->read) ? 'unread' : '' }}">
+                                    <p class="title">{{ $value->title }}</p>
+                                    <p class="message">{{ str_limit($value->message, 100, '...') }}</p>
+                                    <span class="date text-muted"><i>{{ date('H:i d/m/Y', strtotime($value->created_at)) }}</i></span>
+                                </li>
+                            @endforeach
+                        </ul>
+                        <div class="notifi-footer cleafix text-center">
+                            <a class="btn btn-default" id="view-all" href="#">Xem hết</a>
+                        </div>
+                    </div>
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Tài khoản: {{ currentUser()->username }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">

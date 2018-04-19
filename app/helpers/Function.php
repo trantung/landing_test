@@ -319,6 +319,7 @@ function generateRandomString($length = 16) {
     }
     return $randomString;
 }
+
 function checkPermissionBySlug($slug)
 {
     $user = currentUser();
