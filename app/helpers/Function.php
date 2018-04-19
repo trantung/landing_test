@@ -56,6 +56,13 @@ function getAllPermissions(){
             'accept' => ['ManagerStudentController@destroy'],
             'callback_function' => '',
         ],
+        'student.approve' => [
+            'name' => 'Approve, reject học sinh cho giáo viên',
+            'description' => 'Approve, reject học sinh cho giáo viên',
+            'accept' => ['ManagerStudentController@approveStudent', 'ManagerStudentController@rejectStudent'],
+            'callback_function' => '',
+        ],
+
         'schedule.view' => [
             'name' => 'Xem lịch học của học sinh',
             'description' => 'Được phép xem thông tin lịch học tất cả học sinh',
@@ -89,12 +96,12 @@ function getAllPermissions(){
         'teacher.schedule' => [
             'name' => 'Xem lịch dạy',
             'description' => 'Xem lịch dạy',
-            'accept' => ['TeacherController@showSchedule'],
+            'accept' => ['TeacherController@showSchedule', 'TeacherController@showScheduleTime'],
             'callback_function' => '',
         ],
         'teacher.comment' => [
-            'name' => 'Xem lịch dạy',
-            'description' => 'Xem lịch dạy',
+            'name' => 'Xem comment',
+            'description' => 'Xem comment',
             'accept' => ['TeacherController@commentTeacher'],
             'callback_function' => '',
         ],
@@ -136,7 +143,10 @@ function hasRole($roleName, $user = null){
     if( !$user ){
         return false;
     }
-    if( Common::getObject($user->role, 'slug') == $roleName | Common::getObject($user->role, 'slug') == 'admin' ){
+    if( Common::getObject($user->role, 'slug') == $roleName ){
+        return true;
+    }
+    if ($user->model == 'Admin' && $user->role_id == 1) {
         return true;
     }
     return false;
@@ -303,4 +313,23 @@ function convertToHoursMins($time, $format = '%02d:%02d') {
     $hours = floor($time / 60);
     $minutes = ($time % 60);
     return sprintf($format, $hours, $minutes);
+
+function checkPermissionBySlug($slug)
+{
+    $user = currentUser();
+    if ($user->model == 'Teacher') {
+        return false;
+    }
+    $role = Role::findBySlug($slug);
+    if (!$role) {
+        return false;
+    }
+    $roleId = $role->id;
+    $admin = Admin::where('id', $user->id)
+        ->where('role_id', $roleId)
+        ->first();
+    if (!$admin) {
+        return false;
+    }
+    return true;
 }

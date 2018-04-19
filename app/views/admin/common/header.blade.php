@@ -41,7 +41,7 @@
 
 			$('.timepicker').timepicker({
 				'minTime': '6:00am',
-				'maxTime': '10:00pm',
+				'maxTime': '00:00am',
 				'show2400': true,
 				'timeFormat': 'H:i'
 			})
