@@ -15,6 +15,56 @@ img{
 	clear: both;
 }
 
+.notifi-dropdown .list-notifications{
+    color: #999;
+    min-width: 380px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.notifi-dropdown .list-notifications >li{
+    padding: 0 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+    font-size: 13px;
+}
+.notifi-dropdown .list-notifications >li.unread{
+    color: #333;
+}
+.notifi-dropdown .list-notifications >li.unread .title{
+    font-weight: 600;
+    font-size: 14px;
+}
+.notifi-dropdown .list-notifications li p{
+    margin-bottom: 5px;
+}
+.notifi-dropdown .list-notifications .message{
+    
+}
+.notifi-dropdown .list-notifications .date{
+    
+}
+.notifi-dropdown .notifi-footer{
+    padding: 0 10px;
+    display: inline-block;
+    width: 100%;
+}
+.notifi-dropdown .btn#view-load-more-notifi{
+    
+}
+.notifi-dropdown .btn#view-all{
+    
+}
+.notifi-dropdown{
+    
+}
+.notifi-dropdown{
+    
+}
+.notifi-dropdown{
+    
+}
+
 .js-multi-field{
 	position: relative;
 	display: inline-block;
