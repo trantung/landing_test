@@ -1,5 +1,5 @@
-<div style="padding:60px 5%;background-color:#e74c3c;max-width:820px">
-    <div style="max-width:560px;text-align:center;margin:auto;padding-bottom:20px;border-bottom:3px solid #16b53b">
+<div style="padding:60px 5%;background-color:#f0f0f0;max-width:820px">
+    <div style="max-width:560px;text-align:center;margin:auto;padding-bottom:20px;border-bottom:3px solid #F44336">
         <img src="{{ asset('custom/img/logo.png') }}" style="width:250px;margin:auto">
     </div>
     <div style="max-width:560px;background-color:#fff;margin:auto">
@@ -7,7 +7,7 @@
             <p style="font-size:14px;line-height:20px"><b>Hi {{ ucwords(Common::getObject($lessonDetail->student, 'full_name')) }}!</b></p>
             <p style="font-size:14px;line-height:20px">Stayhomeenglish xin chào</p>
             <p style="font-size:14px;line-height:20px">Chúc mừng Bạn vừa hoàn thành 01 buổi học trên Stayhomeenglish  với nội dung như sau:</p>
-            <p style="color:#16b53b;font-size:14px;font-weight:bold;text-decoration:none;text-transform:uppercase;line-height:20px">Thông tin chi tiết:</p>
+            <p style="color:#F44336;font-size:14px;font-weight:bold;text-decoration:none;text-transform:uppercase;line-height:20px">Thông tin chi tiết:</p>
             <div style="background-color:#e8e8e8;padding:15px 20px;margin-bottom:30px">
                 <table>
                     <tbody>
@@ -25,7 +25,7 @@
                         </tr>
                         <tr>
                             <td>Nội dung buổi học (lesson content):</td>
-                            <td>{{ $lessonDetail->comment }}</td>
+                            <td>{{ (isset($comment)) ? $comment : '' }}</td>
                         </tr>
                         <tr>
                             <td>Duration (Thời lượng):</td>
@@ -49,7 +49,7 @@
                 </table>
             </div>
             <p style="font-size:14px;line-height:20px">Nếu thông tin cập nhật đã chính xác, bạn vui lòng click vào nút dưới đây:</p>
-            <a href="{{ action('PublishController@confirmEmail', [$string, $lessonDetail->id]) }}" style="border-radius:25px;color:#fff;min-width:200px;font-size:14px;line-height:40px;text-align:center;font-weight:600;margin-right:10px;border:0;background-color:#16b53b;display:inline-block;height:40px;padding:0 20px;margin:15px 0 30px">Xác nhận thông tin chính xác</a>
+            <a href="{{ action('PublishController@confirmEmail', [$string, $lessonDetail->id]) }}" style="border-radius:25px;color:#fff;min-width:200px;font-size:14px;line-height:40px;text-align:center;font-weight:600;margin-right:10px;border:0;background-color:#F44336;display:inline-block;height:40px;padding:0 20px;margin:15px 0 30px">Xác nhận thông tin chính xác</a>
             <a href="" >
                 <img src="{{ asset('custom/img/banner.jpg') }}" style="max-width: 100%" alt="Banner Referral">
             </a>
@@ -68,6 +68,6 @@
             </div>
         </div>
     </div>
-    <div style="border-top:3px solid #16b53b;text-align:center;padding:40px 0">
+    <div style="border-top:3px solid #F44336;text-align:center;padding:40px 0">
     </div>
 </div>
