@@ -113,6 +113,11 @@ class ManagerStudentController extends AdminController {
             $scheduleDetail['lesson_hour'] = $lessonDate[$i][1];
             $scheduleDetailId = ScheduleDetail::create($scheduleDetail)->id;
         }
+        $listTeacher = Teacher::all();
+        $messageTeacher = '<a href="/publish/teacher">'.$input['email'].' học sinh vừa được thêm</a>';
+        $title = 'Học sinh'. $input['full_name'].' vừa được thêm mới';
+        CommonNotification::pushNotificationTeacher($title, $messageTeacher);
+
         return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
     }
     /**
@@ -206,7 +211,23 @@ class ManagerStudentController extends AdminController {
     public function approveStudent($scheduleId)
     {
         $schedule = Schedule::find($scheduleId);
+        $teacherId = $schedule->teacher_id;
         $schedule->update(['status' => PROCESS_LESSON]);
+        $admin = currentUser();
+        //luu vao bang notification
+        if ($admin) {
+            $student = Student::find($schedule->student_id);
+            $title = 'Bạn đã được GMO approve cho học sinh'.$student->full_name;
+            $message = 'Bạn đã được nhận học sinh';
+            Notification::create([
+                'sender_model' => 'Admin',
+                'sender_id' => $admin->id,
+                'receiver_model' => 'Teacher',
+                'receiver_id' => $teacherId,
+                'title' => $title,
+                'message' => $message,
+            ]);
+        }
         return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Approve thành công!');
 
     }
@@ -214,6 +235,21 @@ class ManagerStudentController extends AdminController {
     {
         $schedule = Schedule::find($scheduleId);
         $schedule->update(['status' => PROCESS_LESSON, 'teacher_id' => null]);
+        $admin = currentUser();
+        //luu vao bang notification
+        if ($admin) {
+            $student = Student::find($schedule->student_id);
+            $title = 'Bạn đã bị GMO reject cho học sinh'.$student->full_name;
+            $message = 'Bạn đã không được nhận học sinh';
+            Notification::create([
+                'sender_model' => 'Admin',
+                'sender_id' => $admin->id,
+                'receiver_model' => 'Teacher',
+                'receiver_id' => $teacherId,
+                'title' => $title,
+                'message' => $message,
+            ]);
+        }
         return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Reject thành công!');
 
     }

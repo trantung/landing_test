@@ -79,6 +79,20 @@ class PublishController extends AdminController {
         $schedule->update(['teacher_id' => $teacherId, 'status' => WAIT_APPROVE_GMO]);
         //update vao bang schedule detail
         ScheduleDetail::where('schedule_id', $schedule->id)->update(['teacher_id' => $teacherId]);
+        //tao moi trong bang notification
+        $gmo = Admin::find($teacher->admin_id);
+        $title = 'Giáo viên có email '.$teacher->email.' vừa nhận học sinh';
+        $message = 'Giáo viên '.$teacher->full_name. 'nhận học sinh'. $student->full_name;
+        if ($gmo) {
+            Notification::create([
+                'sender_model' => 'Teacher',
+                'sender_id' => $teacherId,
+                'receiver_model' => 'Admin',
+                'receiver_id' => $gmo->id,
+                'title' => $title,
+                'message' => $message,
+            ]);
+        }
         return Redirect::action('PublishController@index');
     }
 
@@ -164,6 +178,7 @@ class PublishController extends AdminController {
                     'string' => $string,
                     'lessonDetail' => $lessonDetail,
                     'lessonDuration' => $input['lesson_duration'],
+                    'comment' => $input['comment'],
                 ];
                 Mail::send('emails.email_student', $data, function($message) use ($student, $data){
                     $message->to($student->email)

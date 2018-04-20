@@ -37,7 +37,8 @@ class FirstCommand extends Command {
 	 */
 	public function fire()
 	{
-		echo "User Actived";
+		//chạy cron để update toàn bộ các học sinh nhận được email confirm buổi học nhưng chưa xác nhận vào lúc 23:59
+		ScheduleDetail::where('status', WAIT_CONFIRM_FINISH)->update(['status' => FINISH_LESSON]);
 	}
 
 	/**
