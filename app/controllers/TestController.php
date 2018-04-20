@@ -11,7 +11,8 @@ class TestController extends \BaseController {
 	{
 		$lessonDetail = ScheduleDetail::find(1);
 		$string = generateRandomString();
-		return View::make('emails.email_student')->with(compact('lessonDetail', 'string'));
+		$lessonDuration = 30;
+		return View::make('emails.email_student')->with(compact('lessonDetail', 'string', 'lessonDuration'));
 	}
 
 }
