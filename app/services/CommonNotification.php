@@ -34,13 +34,22 @@ class CommonNotification {
         return $data;
 	}
 
-	public static function pushNotification($title, $message, $model, $uid){
+	public static function pushNotification($title, $message, $model, $uid, $senderModel = null, $senderId = null){
 		Notification::create([
 			'receiver_model' 	=> $model,
 			'receiver_id' 		=> $uid,
 			'title' 			=> $title,
 			'message' 			=> $message,
+			'sender_model' 		=> $senderModel,
+			'sender_id' 		=> $senderId,
 		]);
+	}
+	public static function pushNotificationTeacher($title, $message, $senderModel = null, $senderId = null)
+	{
+		$listTeacher = Teacher::all();
+        foreach ($listTeacher as $key => $value) {
+            self::pushNotification($title, $message, 'Teacher', $value->id, $senderModel, $senderId);
+        }
 	}
 
 }

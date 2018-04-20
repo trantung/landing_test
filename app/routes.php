@@ -1,4 +1,6 @@
 <?php
+// $test = date('Y-m-d', time());
+// dd($test);
 Route::get('/add_super_admin', function(){
     $input['username'] = 'super_admin';
     $input['role_id'] = 1;
