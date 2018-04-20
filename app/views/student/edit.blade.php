@@ -121,7 +121,7 @@
                             <div class="schedule-create-form">
                                 <div class="form-group">
                                     <label>Thay đổi số buổi 1 tuần<span class="text-warning"></span></label>
-                                    {{ Form::select('lesson_per_week', Common::getLessonPerWeek(), '', ['class' => 'form-control', 'required' => 'required']); }}
+                                    {{ Form::select('lesson_per_week', Common::getLessonPerWeek(), '', ['class' => 'form-control']); }}
                                 </div>
                                 <div class="time-box-student">
                                     @foreach([1,2,3,4,5,6,7] as $value)
