@@ -233,6 +233,7 @@ class ManagerStudentController extends AdminController {
     public function rejectStudent($scheduleId)
     {
         $schedule = Schedule::find($scheduleId);
+        $teacherId = $schedule->teacher_id;
         $schedule->update(['status' => PROCESS_LESSON, 'teacher_id' => null]);
         $admin = currentUser();
         //luu vao bang notification

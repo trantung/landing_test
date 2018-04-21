@@ -446,6 +446,9 @@ class Common {
         if (!$schedule) {
             return null;
         }
+        if (!$schedule->student) {
+            return null;
+        }
         return self::getLevelName($schedule->student->level);
     }
     public static function getDurationTimeStudentByStudent($studentId)
