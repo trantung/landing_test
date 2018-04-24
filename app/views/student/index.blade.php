@@ -16,18 +16,18 @@
 		<div class="box box-primary">
 			<table class ="table table-bordered table-striped table-hover">
 				<tr>
-					<th>STT</th>
-					<th>Họ tên</th>
+					<th>{{ trans('common.order') }}</th>
+					<th>{{ trans('common.fullname') }}</th>
 					<th>Email</th>
 					<th>Phone</th>
-					<th>Trình độ</th>
-					<th>Tổng số buổi của học sinh</th>
-					<th>Số buổi đã hoàn thành</th>
-					<th>Số buổi đã huỷ</th>
-					<th>Số buổi còn lại</th>
-					<th>Số giờ còn lại</th>
-					<th>Tình trạng</th>
-					<th>Thao tác</th>
+					<th>{{ trans('common.level') }}</th>
+					<th>{{ trans('common.lesson_number') }}</th>
+					<th>{{ trans('common.lesson_number_finish') }}</th>
+					<th>{{ trans('common.lesson_number_cancel') }}</th>
+					<th>{{ trans('common.lesson_number_remain') }}</th>
+					<th>{{ trans('common.hour_remain') }}</th>
+					<th>{{ trans('common.student_status') }}</th>
+					<th>{{ trans('common.student_action') }}</th>
 				</tr>
 					@foreach($data as $key => $student)
 						<tr data-html="true" data-toggle="tooltip" data-placement="auto" title="<img src='{{ !empty($student->avatar) ? url($student->avatar) : NO_IMG }}' width='150px'>" >

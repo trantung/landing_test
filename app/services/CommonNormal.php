@@ -24,6 +24,9 @@ class CommonNormal
     {
         if ($name == NULL) {
             $name = Request::segment(2);
+            if ($name == 'vi' || $name == 'en') {
+                $name = Request::segment(3);
+            }
         } 
         if ($name == 'user') {
             return 'User';

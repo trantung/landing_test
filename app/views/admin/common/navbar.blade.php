@@ -29,26 +29,33 @@
                             @endforeach
                         </ul>
                         <div class="notifi-footer cleafix text-center">
-                            <a class="btn btn-default" id="view-all" href="#">Xem hết</a>
+                            <a class="btn btn-default" id="view-all" href="#">{{ trans('common.see_all') }}</a>
                         </div>
                     </div>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Tài khoản: {{ currentUser()->username }}<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> {{ trans('common.account') }}: {{ currentUser()->username }}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
                             @if (currentUser()->model == 'Admin')
-                                <a href="{{ action('AdminController@getResetPass', currentUser()->id) }}">Thay mật khẩu</a>
+                                <a href="{{ action('AdminController@getResetPass', currentUser()->id) }}">{{ trans('common.change_pass') }}</a>
                             @endif
                             @if (currentUser()->model == 'Teacher')
-                                <a href="{{ action('ManagerTeacherController@getResetPass', currentUser()->id) }}">Thay mật khẩu</a>
+                                <a href="{{ action('ManagerTeacherController@getResetPass', currentUser()->id) }}">{{ trans('common.change_pass') }}</a>
                             @endif
                         </li>
                     </ul>
                 </li>
                 <li class="user">
-                    <a href="{{ action('AdminController@logout') }}"><i class="fa fa-power-off"></i> Đăng xuất</a>
+                    <a href="{{ action('AdminController@logout') }}"><i class="fa fa-power-off"></i> {{ trans('common.logout') }}</a>
                 </li>
+                <li class="user">
+                    <a href="/vi"><i class=""></i> <img src="/vietnam.png" height="10" width="24"></a>
+                </li>
+                <li class="user">
+                    <a href="/en"><i class=""></i> <img src="/england.jpeg" height="10" width="24"></a>
+                </li>
+
             </ul>
         </div>
     </nav>

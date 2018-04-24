@@ -250,16 +250,16 @@ class Common {
     {
         $schedule = Schedule::find($scheduleId);
         if ($schedule->status == STOP_LESSON) {
-            return 'Tạm dừng';
+            return trans('common.student_pause');
         }
         if ($schedule->status == PROCESS_LESSON) {
-            return 'Đang học';
+            return trans('common.student_study');
         }
         if ($schedule->status == FINISH_LESSON_TOTAL) {
-            return 'Hoàn thành';
+            return trans('common.student_finish');
         }
         if ($schedule->status == WAIT_APPROVE_GMO) {
-            return 'Chờ GMO duyệt';
+            return trans('common.student_waitting_gmo');
         }
     }
 

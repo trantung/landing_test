@@ -55,7 +55,7 @@ class ManagerTeacherController extends AdminController {
         $input['role_id'] = getRoleIdBySlug(TEACHER);
         $teacherId = Teacher::create($input)->id;
         $input['image_url'] = CommonUpload::uploadImage(UPLOADTEACHER.$teacherId, 'image_url');
-        CommonNormal::update($teacherId, ['image_url' => $input['image_url']] );
+        CommonNormal::update($teacherId, ['image_url' => $input['image_url']], 'Teacher');
         return Redirect::action('ManagerTeacherController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
             Teacher đã được tạo!');
     }
