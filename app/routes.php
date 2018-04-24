@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/gmo', 'AdminController@gmoIndex');
 
+    Route::get('/waitting_gmo', 'ManagerStudentController@waittingGmo');
     Route::get('/student_sale/per_month', 'ManagerStudentController@saleStudentPerMonth');
     Route::get('/student_sale/month', 'ManagerStudentController@saleStudentMonth');
     Route::get('/student_sale', 'ManagerStudentController@saleStudent');

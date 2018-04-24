@@ -65,7 +65,7 @@ function getAllPermissions(){
         'student.approve' => [
             'name' => 'Approve, reject học sinh cho giáo viên',
             'description' => 'Approve, reject học sinh cho giáo viên',
-            'accept' => ['ManagerStudentController@approveStudent', 'ManagerStudentController@rejectStudent'],
+            'accept' => ['ManagerStudentController@approveStudent', 'ManagerStudentController@rejectStudent', 'ManagerStudentController@waittingGmo'],
             'callback_function' => '',
         ],
         'student.sale' => [

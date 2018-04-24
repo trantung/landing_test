@@ -56,6 +56,58 @@ class ManagerStudentController extends AdminController {
         $data = $data->paginate(PAGINATE);
         return View::make('student.index')->with(compact('data'));
     }
+    public function waittingGmo()
+    {
+        $input = Input::all();
+        $user = currentUser();
+        if ($user->model == 'Admin') {
+            $roleAdmin = Role::findBySlug('admin');
+            $roleGmo = Role::findBySlug('gmo');
+
+            if (empty($input['teacher_id'])) {
+                if ($user->role_id == $roleAdmin->id) {
+                    $data = Student::orderBy('created_at', 'desc');
+                }
+                if ($user->role_id == $roleGmo->id) {
+                    $listTeacherId = Teacher::where('admin_id', $user->id)->lists('id');
+                    $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id')
+                        ->whereNull('schedules.teacher_id')
+                        ->orWhereIn('schedules.teacher_id', $listTeacherId);
+                }
+            }
+            if (!empty($input['teacher_id'])) {
+                $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id');
+                $data = $data->where('schedules.teacher_id', $input['teacher_id']);
+            }
+        }
+        if ($user->model == 'Teacher') {
+            $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id');
+            $data = $data->where('schedules.teacher_id', $user->id);
+        }
+        if( !empty($input['full_name']) ){
+            $data = $data->where('students.full_name', 'LIKE', '%'.$input['full_name'].'%');
+        }
+        if( !empty($input['email']) ){
+            $data = $data->where('students.email', 'LIKE', '%'.$input['email'].'%');
+        }
+        if( !empty($input['phone']) ){
+            $data = $data->where('students.phone', 'LIKE', '%'.$input['phone'].'%');
+        }
+        if( !empty($input['sale_id']) ){
+            $data = $data->where('students.sale_id', $input['sale_id']);
+        }
+        $roleSale = Role::findBySlug('sale');
+        if ($roleSale) {
+            $roleSaleId = $roleSale->id;
+            if ($user->role_id == $roleSaleId) {
+                $data = $data->where('students.sale_id', $user->id);
+            }
+        }
+        $data = $data->select('students.*');
+        $data = $data->paginate(PAGINATE);
+        return View::make('student.waitting_gmo_index')->with(compact('data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -217,7 +269,7 @@ class ManagerStudentController extends AdminController {
         if ($admin) {
             $student = Student::find($schedule->student_id);
             $title = 'Bạn đã được GMO approve cho học sinh'.$student->full_name;
-            $message = 'Bạn đã được nhận học sinh';
+            $message = '<a href="/publish/teacher/student"> Bạn đã nhận học sinh'. $student->full_name.'</a>';
             Notification::create([
                 'sender_model' => 'Admin',
                 'sender_id' => $admin->id,

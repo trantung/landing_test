@@ -82,7 +82,7 @@ class PublishController extends AdminController {
         //tao moi trong bang notification
         $gmo = Admin::find($teacher->admin_id);
         $title = 'Giáo viên có email '.$teacher->email.' vừa nhận học sinh';
-        $message = 'Giáo viên '.$teacher->full_name. 'nhận học sinh'. $student->full_name;
+        $message = '<a href="/waitting_gmo"> '.$teacher->full_name. 'nhận học sinh'. $student->full_name.'</a>';
         if ($gmo) {
             Notification::create([
                 'sender_model' => 'Teacher',
