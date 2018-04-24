@@ -58,7 +58,7 @@
                                     {{ Form::select('sale_id', Common::getSaleId(), '', ['class' => 'form-control']); }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Sale<span class="text-warning"></span></label>
+                                    <label>Chọn giáo viên<span class="text-warning"></span></label>
                                     {{ Form::select('teacher_id', Common::getTeacherId(), '', ['class' => 'form-control']); }}
                                 </div>
 
