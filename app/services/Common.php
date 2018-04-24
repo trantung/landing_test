@@ -636,5 +636,11 @@ class Common {
         }
         return $text;
     }
+    public static function getTeacherId()
+    {
+        $array = ['' => 'Chọn teacher'];
+        $data = Teacher::lists('full_name', 'id');
+        return $array + $data;
+    }
 }
 
