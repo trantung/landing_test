@@ -177,11 +177,22 @@ class ManagerStudentController extends AdminController {
             $scheduleDetail['lesson_hour'] = $lessonDate[$i][1];
             $scheduleDetailId = ScheduleDetail::create($scheduleDetail)->id;
         }
-        $listTeacher = Teacher::all();
-        $messageTeacher = '<a href="/publish/teacher">'.$input['email'].' học sinh vừa được thêm</a>';
-        $title = 'Học sinh'. $input['full_name'].' vừa được thêm mới';
-        CommonNotification::pushNotificationTeacher($title, $messageTeacher);
-
+        //nếu chỉ định giáo viên($input['teacher_id']) thì chỉ notification tới giáo viên chỉ định
+        if (!empty($input['teacher_id'])) {
+            $messageTeacher = '<a href="/publish/teacher/student">'.$input['email'].' học sinh vừa được thêm</a>';
+            $title = 'Học sinh'. $input['full_name'].' vừa được thêm mới';
+            Notification::create([
+                'receiver_model'    => 'Teacher',
+                'receiver_id'       => $input['teacher_id'],
+                'title'             => $title,
+                'message'           => $messageTeacher,
+            ]);
+        } else {
+            $listTeacher = Teacher::all();
+            $messageTeacher = '<a href="/publish/teacher">'.$input['email'].' học sinh vừa được thêm</a>';
+            $title = 'Học sinh'. $input['full_name'].' vừa được thêm mới';
+            CommonNotification::pushNotificationTeacher($title, $messageTeacher);
+        }
         return Redirect::action('ManagerStudentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Học sinh đã được tạo!');
     }
     /**
