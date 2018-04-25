@@ -11,18 +11,18 @@
 		<div class="box box-primary">
 			<table class ="table table-bordered table-striped table-hover">
 				<tr>
-					<th>STT</th>
-					<th>Họ tên</th>
+					<th>{{ trans('common.order') }}</th>
+					<th>{{ trans('common.fullname') }}</th>
 					<th>Email</th>
-					<th>Số điện thoại</th>
-					<th>Trình độ</th>
-					<th>Tổng số buổi của học sinh</th>
-					<th>Số buổi còn lại</th>
-					<th>Số giờ còn lại</th>
-					<th>Số buổi đã hoàn thành</th>
-					<th>Số buổi đã huỷ</th>
-					<th>Tình trạng</th>
-					<th>Thao tác</th>
+					<th>Phone</th>
+					<th>{{ trans('common.level') }}</th>
+					<th>{{ trans('common.lesson_number') }}</th>
+					<th>{{ trans('common.lesson_number_remain') }}</th>
+					<th>{{ trans('common.hour_remain') }}</th>
+					<th>{{ trans('common.lesson_number_finish') }}</th>
+					<th>{{ trans('common.lesson_number_cancel') }}</th>
+					<th>{{ trans('common.student_status') }}</th>
+					<th>{{ trans('common.student_action') }}</th>
 				</tr>
 					@foreach($data as $key => $schedule)
 						@if($schedule->student)
@@ -40,10 +40,10 @@
 							<td>{{ Common::getStatusSchedule($schedule->id) }}</td>
 							<td>
 								@if($schedule->status != WAIT_APPROVE_GMO)
-                        		{{ renderUrl('PublishController@showScheduleStudent', '<i class="fa fa-graduation-cap"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-primary', 'title' => 'Xem danh sách lịch học']) }}
-                        		{{ renderUrl('PublishController@stopScheduleStudent', '<i class="glyphicon glyphicon-edit"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-danger', 'title' => 'Tạm dừng']) }}
+                        		{{ renderUrl('PublishController@showScheduleStudent', '<i class="fa fa-graduation-cap"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-primary', 'title' => trans('common.lesson_detail')]) }}
+                        		{{ renderUrl('PublishController@stopScheduleStudent', '<i class="glyphicon glyphicon-edit"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-danger', 'title' => trans('common.student_pause')]) }}
 								{{ Form::open(array('method'=>'POST', 'action' => array('PublishController@cancelStopScheduleStudent', $schedule->id, $teacherId), 'style' => 'display: inline-block;')) }}
-		                            <button class="btn btn-primary" onclick="return confirm('Bạn có chắc chắn muốn huỷ tạm dừng?');">Huỷ tạm dừng</button>
+		                            <button class="btn btn-primary" onclick="return confirm(trans('common.private_teacher_cancel_pause_message'));">{{ trans('common.private_teacher_cancel_pause') }}</button>
 		                        {{ Form::close() }}
 		                        @endif
 							</td>
@@ -55,6 +55,6 @@
 			{{ $data->appends(Request::except('page'))->links() }}
 		</div>
 	@else
-		<div class="alert alert-warning">Rất tiếc, không có dữ liệu hiển thị!</div>
+		<div class="alert alert-warning">{{ trans('common.no_data') }}</div>
 	@endif
 @stop

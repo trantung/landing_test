@@ -32,6 +32,20 @@ return array(
 	'student_pause' => 'Pause',
 	'student_finish' => 'Finished',
 	'student_waitting_gmo' => 'Waitting GMO approve',
-
+	'no_data' => 'Sorry, no data display',
+	//student_filter
+	//student.lesson_detail
+	'lesson_detail' => 'List lesson detail of student',
+	'lesson_detail_chosse_date' => 'Chosse date',
+	'lesson_detail_chosse_hour' => 'Chosse hour',
+	'lesson_detail_chosse_time' => 'Detail time',
+	'lesson_detail_comment' => 'detail lesson and comment',
+	'save' => 'Save',
+	'lesson_detail_detail' => 'Detail |',
+	//student.lesson_per_week
+	'lesson_per_week_number' => 'Number per week',
+	//student.private_teacher
+	'private_teacher_cancel_pause' => 'Cancel pause',
+	'private_teacher_cancel_pause_message' => 'Do you want to cancel pause?',
 
 );

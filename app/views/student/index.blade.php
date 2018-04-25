@@ -75,6 +75,6 @@
 			{{ $data->appends(Request::except('page'))->links() }}
 		</div>
 	@else
-		<div class="alert alert-warning">Rất tiếc, không có dữ liệu hiển thị!</div>
+		<div class="alert alert-warning">{{ trans('common.no_data') }}</div>
 	@endif
 @stop

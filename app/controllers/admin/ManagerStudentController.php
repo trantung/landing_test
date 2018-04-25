@@ -127,7 +127,7 @@ class ManagerStudentController extends AdminController {
         $input = Input::all();
         $studentId = CommonNormal::create($input, 'Student');
         $input['avatar'] = CommonUpload::uploadImage(UPLOADSTUDENT.$studentId, 'avatar');
-        CommonNormal::update($studentId, ['avatar' => $input['avatar']] );
+        CommonNormal::update($studentId, ['avatar' => $input['avatar']], 'Student');
 
         //create schedules
         $scheduleInput = [];
