@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Danh sách học sinh' }}
+{{ $title=trans('common.student_publish_detail_title') }}
 @stop
 @section('content')
 	<div class="margin-bottom">
