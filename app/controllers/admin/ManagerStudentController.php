@@ -71,9 +71,14 @@ class ManagerStudentController extends AdminController {
                 if ($user->role_id == $roleGmo->id) {
                     $listTeacherId = Teacher::where('admin_id', $user->id)->lists('id');
                     $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id')
-                        ->whereNull('schedules.teacher_id')
-                        ->orWhereIn('schedules.teacher_id', $listTeacherId)
-                        ->where('schedules.status', WAIT_APPROVE_GMO);
+                        ->where('schedules.status', WAIT_APPROVE_GMO)
+                        ->where(function ($query) use ($listTeacherId){
+                            $query = $query->whereNull('schedules.teacher_id')
+                                ->orWhereIn('schedules.teacher_id', $listTeacherId);
+                        });
+                        // ->whereNull('schedules.teacher_id')
+                        // ->orWhereIn('schedules.teacher_id', $listTeacherId)
+                        // ->where('schedules.status', WAIT_APPROVE_GMO);
                 }
             }
             if (!empty($input['teacher_id'])) {
