@@ -1,7 +1,7 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Reset mật khẩu người dùng' }}
+{{ $title=trans('common.password_reset_title') }}
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
             {{ Form::open(array('action' => array('ManagerTeacherController@postResetPass', $id))) }}
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="title">Mật khẩu mới</label>
+                        <label for="title">{{ trans('common.password_new') }}</label>
                         <div class="row">
                             <div class="col-sm-6">
                                {{ Form::password('password', null, array('class' => 'form-control')) }}
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        {{ Form::submit('Lưu lại', array('class' => 'btn btn-primary')) }}
+                        {{ Form::submit('Save', array('class' => 'btn btn-primary')) }}
                     </div>
                 </div>
             {{ Form::close() }}

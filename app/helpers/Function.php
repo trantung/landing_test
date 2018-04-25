@@ -271,19 +271,19 @@ function getRoleAdmin()
 function getStatusScheduleDetail($status)
 {
     if ($status == REGISTER_LESSON) {
-        return 'Chưa học';
+        return trans('common.not_study');
     }
     if ($status == CANCEL_LESSON) {
-        return 'Huỷ buổi học';
+        return trans('common.lesson_cancel');
     }
     if ($status == WAIT_CONFIRM_FINISH) {
-        return 'Học sinh chưa xác nhận';
+        return trans('common.lesson_not_confirm');
     }
     if ($status == FINISH_LESSON) {
-        return 'Hoàn thành học';
+        return trans('common.lesson_finish');
     }
     if ($status == CHANGE_LESSON) {
-        return 'Đã thay đổi lịch học';
+        return trans('common.lesson_change_schedule');
     }
 
     return null;

@@ -1,13 +1,13 @@
 @extends('admin.layout.default')
 
 @section('title')
-{{ $title='Xem | '.$student->full_name }}
+{{ $title=trans('common.see').' | '.$student->full_name }}
 @stop
 
 @section('content')
 <div class="row margin-bottom">
     <div class="col-xs-12">
-        {{ renderUrl('PublishController@index', 'Danh sách học sinh', [], ['class' => 'btn btn-primary']) }}
+        {{ renderUrl('PublishController@index', trans('common.student_publish_detail_title'), [], ['class' => 'btn btn-primary']) }}
     </div>
 </div>
 
@@ -19,13 +19,13 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <fieldset>
-                                <legend>Thông tin học sinh</legend>
+                                <legend>{{ trans('common.student_publish_detail_info') }}</legend>
                                 <div class="form-group">
-                                    <label>Họ và tên:</label>
+                                    <label>{{ trans('common.fullname') }}:</label>
                                     {{ $student->full_name }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Ảnh đại diện</label><br/>
+                                    <label>{{ trans('common.student_publish_detail_image_student') }}</label><br/>
                                     <img src="{{ !empty($student->avatar) ? url($student->avatar) : NO_IMG }}" width="150px" height="auto"  />
                                 </div>
                                 <div class="form-group">
@@ -33,7 +33,7 @@
                                     {{ $student->email }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Số điện thoại :</label>
+                                    <label>Phone :</label>
                                     {{ $student->phone }}
                                 </div>
                                 <div class="form-group">
@@ -41,32 +41,32 @@
                                     {{ $student->skype }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Địa chỉ :</label>
+                                    <label>{{ trans('common.student_publish_detail_address_student') }}: </label>
                                     {{ $student->address }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Giới tính :</label>
+                                    <label>{{ trans('common.student_publish_detail_sex_student') }}: </label>
                                     {{ Common::getGenderName($student->gender) }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Ngày sinh :</label>
+                                    <label>{{ trans('common.student_publish_detail_dob_student') }}: </label>
                                     {{ $student->birth_day }}
                                 </div>
-                                <legend>Thông tin đính kèm</legend>
+                                <legend>{{ trans('common.student_publish_detail_add_more') }}</legend>
                                 <div class="form-group">
-                                    <label>Họ tên bố/mẹ</label>
+                                    <label>{{ trans('common.student_publish_detail_parent_name_student') }}</label>
                                     {{ $student->parent_name }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Email bố/mẹ</label>
+                                    <label>{{ trans('common.student_publish_detail_parent_email_student') }}</label>
                                     {{ $student->parent_email }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Số điện thoại bố/mẹ</label>
+                                    <label>{{ trans('common.student_publish_detail_parent_phone_student') }}</label>
                                     {{ $student->parent_phone }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Ghi chú</label>
+                                    <label>{{ trans('common.student_publish_detail_parent_comment_student') }}</label>
                                     {{ $student->comment }}
                                 </div>
                             </fieldset>
@@ -74,24 +74,24 @@
                         <div class="col-sm-6">
                             <fieldset>
                                 <div class="form-group">
-                                    <label>Hình thức học:</label>
+                                    <label>{{ trans('common.student_publish_detail_type_student') }}: </label>
                                     {{ Common::getLessonTypeByStudent($student) }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Thời lượng buổi học:</label>
+                                    <label>{{ trans('common.student_publish_detail_duration_lesson') }}: </label>
                                     {{ Common::getDurationByStudent($student->id) }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Ngày bắt đầu học: </label>
+                                    <label>{{ trans('common.student_publish_detail_start_date') }}: </label>
                                     {{ Common::getStartDateByStudent($student->id) }}
                                 </div>
                                 <div class="form-group">
-                                    <label>Trình độ: </label>
+                                    <label>{{ trans('common.level') }}: </label>
                                     {{ Common::getLevelName($student->level) }}
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Số lượng buổi học: </label>
+                                    <label>{{ trans('common.student_publish_detail_lesson_number') }}: </label>
                                     {{ Common::getNumberLesson($student->id) }}
                                 </div>
                                 @include('student.schedule')
@@ -101,7 +101,7 @@
                 </div> 
                 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Nhận học sinh</button>
+                    <button type="submit" class="btn btn-primary">{{ trans('common.student_publish_detail_get_student') }}</button>
                 </div>
             {{ Form::close() }}
         </div>

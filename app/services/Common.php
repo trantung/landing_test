@@ -102,10 +102,10 @@ class Common {
     public static function getLessonType($type)
     {
         if ($type == TRIAL) {
-            return 'Học thử';
+            return trans('common.trial');
         }
         if ($type == OFFICAL) {
-            return 'Học thật';
+            return trans('common.official');
         }
         return null;    
     }
@@ -561,25 +561,25 @@ class Common {
     public static function getNameDateByTimeId($timeId)
     {
         if ($timeId == T2) {
-            return 'Thứ 2';
+            return trans('common.T2');
         }
         if ($timeId == T3) {
-            return 'Thứ 3';
+            return trans('common.T3');
         }
         if ($timeId == T4) {
-            return 'Thứ 4';
+            return trans('common.T4');
         }
         if ($timeId == T5) {
-            return 'Thứ 5';
+            return trans('common.T5');
         }
         if ($timeId == T6) {
-            return 'Thứ 6';
+            return trans('common.T6');
         }
         if ($timeId == T7) {
-            return 'Thứ 7';
+            return trans('common.T7');
         }
         if ($timeId == CN) {
-            return 'Chủ nhật';
+            return trans('common.CN');
         }
 
     }

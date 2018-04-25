@@ -22,13 +22,13 @@
 		<div class="input-group inline-block" style="vertical-align: bottom;">
 			<button type="submit" class="btn btn-primary" title="Tìm kiếm"><i class="glyphicon glyphicon-search"></i></button>
 			@if(Input::get('teacher_id'))
-				{{ renderUrl('ManagerStudentController@index', 'Nhập lại', ['teacher_id' => Input::get('teacher_id')], ['class' => 'btn btn-primary']) }}
+				{{ renderUrl('ManagerStudentController@index', trans('common.reset'), ['teacher_id' => Input::get('teacher_id')], ['class' => 'btn btn-primary']) }}
 			@endif
 			@if(Input::get('sale_id'))
-				{{ renderUrl('ManagerStudentController@index', 'Nhập lại', ['sale_id' => Input::get('sale_id')], ['class' => 'btn btn-primary']) }}
+				{{ renderUrl('ManagerStudentController@index', trans('common.reset'), ['sale_id' => Input::get('sale_id')], ['class' => 'btn btn-primary']) }}
 			@endif
 			@if(empty(Input::get('teacher_id')) && empty(Input::get('sale_id')))
-				{{ renderUrl('ManagerStudentController@index', 'Nhập lại', [], ['class' => 'btn btn-primary']) }}
+				{{ renderUrl('ManagerStudentController@index', trans('common.reset'), [], ['class' => 'btn btn-primary']) }}
 			@endif
 		</div>
 	{{ Form::close() }}
