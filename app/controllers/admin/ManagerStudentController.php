@@ -72,7 +72,8 @@ class ManagerStudentController extends AdminController {
                     $listTeacherId = Teacher::where('admin_id', $user->id)->lists('id');
                     $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id')
                         ->whereNull('schedules.teacher_id')
-                        ->orWhereIn('schedules.teacher_id', $listTeacherId);
+                        ->orWhereIn('schedules.teacher_id', $listTeacherId)
+                        ->where('schedules.status', WAIT_APPROVE_GMO);
                 }
             }
             if (!empty($input['teacher_id'])) {
@@ -131,6 +132,12 @@ class ManagerStudentController extends AdminController {
 
         //create schedules
         $scheduleInput = [];
+        if (!empty($input['sale_id'])) {
+            $scheduleInput['sale_id'] = $input['sale_id'];
+        }
+        if (!empty($input['teacher_id'])) {
+            $scheduleInput['teacher_id'] = $input['teacher_id'];
+        }
         $scheduleInput['lesson_per_week'] = $input['lesson_per_week'];
         $scheduleInput['lesson_duration'] = $input['lesson_duration'];
         $scheduleInput['lesson_number'] = $input['lesson_number'];
