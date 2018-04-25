@@ -43,7 +43,7 @@
                         		{{ renderUrl('PublishController@showScheduleStudent', '<i class="fa fa-graduation-cap"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-primary', 'title' => trans('common.lesson_detail')]) }}
                         		{{ renderUrl('PublishController@stopScheduleStudent', '<i class="glyphicon glyphicon-edit"></i>', [$schedule->id, $teacherId], ['class' => 'btn btn-danger', 'title' => trans('common.student_pause')]) }}
 								{{ Form::open(array('method'=>'POST', 'action' => array('PublishController@cancelStopScheduleStudent', $schedule->id, $teacherId), 'style' => 'display: inline-block;')) }}
-		                            <button class="btn btn-primary" onclick="return confirm(trans('common.private_teacher_cancel_pause_message'));">{{ trans('common.private_teacher_cancel_pause') }}</button>
+		                            <button class="btn btn-primary" onclick="return confirm({{trans('common.private_teacher_cancel_pause_message')}});">{{ trans('common.private_teacher_cancel_pause') }}</button>
 		                        {{ Form::close() }}
 		                        @endif
 							</td>
