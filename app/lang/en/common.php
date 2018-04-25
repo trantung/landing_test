@@ -33,6 +33,9 @@ return array(
     'reset' => 'Reset',
     'password_new' => 'New password',
     'password_reset_title' => 'Reset account password',
+    'male' => 'Male',
+    'female' => 'Female',
+    'both' => 'None',
 
     //navbar
     'account' => 'Account',
@@ -109,7 +112,7 @@ return array(
     'student_publish_detail_start_date' => 'Study start date',
     'student_publish_detail_lesson_number' => 'Lesson number',
     'student_publish_detail_get_student' => 'Get student',
-    
+
     //student.schedule
     'student_schedule_at' => 'at',
 

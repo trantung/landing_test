@@ -23,11 +23,11 @@ class Common {
 
     public static function getGenderName($gender){
         if( $gender == NAM ){
-            return 'Nam';
+            return trans('common.male');
         } elseif( $gender == NU ){
-            return 'Nữ';
+            return trans('common.female');
         }
-        return 'Không xác định';
+        return trans('common.both');
     }
 
     public static function getValueOfObject($ob, $method, $field, $default = null)

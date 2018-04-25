@@ -33,6 +33,9 @@ return array(
     'reset' => 'Nhập lại',
     'password_new' => 'Mật khẩu mới',
     'password_reset_title' => 'Reset mật khẩu người dùng',
+    'male' => 'Nam',
+    'female' => 'Nữ',
+    'both' => 'Không xác định',
 
     //navbar
     'account' => 'Tài khoản',
@@ -109,7 +112,7 @@ return array(
     'student_publish_detail_start_date' => 'Ngày bắt đầu học',
     'student_publish_detail_lesson_number' => 'Số lượng buổi học',
     'student_publish_detail_get_student' => 'Nhận học sinh',
-    
+
     //student.schedule
     'student_schedule_at' => 'vào lúc',
 
