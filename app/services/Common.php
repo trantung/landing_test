@@ -639,6 +639,12 @@ class Common {
     public static function getTeacherId()
     {
         $array = ['' => 'Chọn teacher'];
+        $admin = currentUser();
+        $roleGmo = Role::findBySlug('gmo');
+        if ($admin->role_id == $roleGmo->id) {
+            $data = Teacher::where('admin_id', $gmo->id)->lists('full_name', 'id');
+            return $array + $data;
+        }
         $data = Teacher::lists('full_name', 'id');
         return $array + $data;
     }
