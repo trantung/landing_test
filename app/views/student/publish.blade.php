@@ -11,14 +11,14 @@
 		<div class="box box-primary">
 			<table class ="table table-bordered table-striped table-hover">
 				<tr>
-					<th>STT</th>
-					<th>Họ tên</th>
+					<th>{{ trans('common.order') }}</th>
+					<th>{{ trans('common.fullname') }}</th>
 					<th>Email</th>
-					<th>Số điện thoại</th>
-					<th>Trình độ</th>
-					<th>Học thử/chính thức</th>
-					<th>Trạng thái</th>
-					<th>Thao tác</th>
+					<th>Phone</th>
+					<th>{{ trans('common.level') }}</th>
+					<th>{{ trans('common.student_publish_study_status') }}</th>
+					<th>{{ trans('common.student_status') }}</th>
+					<th>{{ trans('common.student_action') }}</th>
 				</tr>
 					@foreach($data as $key => $student)
 						<tr>
@@ -30,13 +30,13 @@
 							<td>{{ Common::getLessonTypeByStudent($student) }}</td>
 							<td>
 								@if(Common::checkSameSchedule($student->id))
-	           					<a class="btn btn-danger">Trùng lịch</a>
+	           					<a class="btn btn-danger">{{ trans('common.student_publish_same_date') }}</a>
 								@else
-	           					<a class="btn btn-primary">Không trùng</a>
+	           					<a class="btn btn-primary">{{ trans('common.student_publish_not_same_date') }}</a>
 	           					@endif
 							</td>
 							<td>
-								{{ renderUrl('PublishController@show', 'Xem', [$student->id], ['class' => 'btn btn-primary']) }}
+								{{ renderUrl('PublishController@show', trans('common.see'), [$student->id], ['class' => 'btn btn-primary']) }}
 							</td>
 						</tr>
 					@endforeach
@@ -45,6 +45,6 @@
 			{{ $data->appends(Request::except('page'))->links() }}
 		</div>
 	@else
-		<div class="alert alert-warning">Rất tiếc, không có dữ liệu hiển thị!</div>
+		<div class="alert alert-warning">{{ trans('common.no_data') }}</div>
 	@endif
 @stop

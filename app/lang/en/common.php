@@ -12,6 +12,8 @@ return array(
 	| you want to customize your views to better match your application.
 	|
 	*/
+	//chung
+    'see' => 'View',
 	//nav_bar
 	'account' => 'Account',
 	'change_pass' => 'change password',
@@ -61,5 +63,8 @@ return array(
 	'private_teacher_cancel_pause' => 'Cancel pause',
 	'private_teacher_cancel_pause_message' => 'Do you want to cancel pause?',
 	//student.publish
+	'student_publish_study_status' => 'Trial/Official',
+    'student_publish_same_date' => 'Schedule coincident',
+    'student_publish_not_same_date' => 'Schedule is not coincident',
 
 );

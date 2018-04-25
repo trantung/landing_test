@@ -12,6 +12,8 @@ return array(
     | you want to customize your views to better match your application.
     |
     */
+    //chung
+    'see' => 'Xem',
     //nav_bar
     'account' => 'Tài khoản',
     'change_pass' => 'Thay mật khẩu',
@@ -62,5 +64,8 @@ return array(
     'private_teacher_cancel_pause' => 'Huỷ tạm dừng',
     'private_teacher_cancel_pause_message' => 'Bạn có chắc chắn muốn huỷ tạm dừng?',
     //student.publish
+    'student_publish_study_status' => 'Học thử/chính thức',
+    'student_publish_same_date' => 'Trùng lịch',
+    'student_publish_not_same_date' => 'Không trùng',
 
 );
