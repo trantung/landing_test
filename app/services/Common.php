@@ -641,7 +641,7 @@ class Common {
         $array = ['' => 'Chọn teacher'];
         $gmo = currentUser();
         $roleGmo = Role::findBySlug('gmo');
-        if ($admin->role_id == $roleGmo->id) {
+        if ($gmo->role_id == $roleGmo->id) {
             $data = Teacher::where('admin_id', $gmo->id)->lists('full_name', 'id');
             return $array + $data;
         }
