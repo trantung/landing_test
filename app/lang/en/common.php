@@ -17,6 +17,19 @@ return array(
 	'change_pass' => 'change password',
 	'logout' => 'Logout',
 	'see_all' => 'See all',
+	//sidebar
+	'sidebar_student_list_new' => 'List new student',
+    'sidebar_student_list_private' => 'List my student',
+    'sidebar_student_list_all' => 'List student',
+    'sidebar_student_report_current' => 'Report student current',
+    'sidebar_student_report' => 'Report student',
+    'sidebar_report' => 'Report',
+    'sidebar_permission' => 'Permission',
+    'sidebar_manager_student' => 'Manager student',
+    'sidebar_manager_teacher' => 'Manager teacher',
+    'sidebar_manager_sale' => 'Manager sale',
+    'sidebar_manager_gmo' => 'Manager Gmo',
+    'sidebar_manager_account' => 'Manager member',
 	//student.index
 	'order' => 'Order',
 	'fullname' => 'Full name',
@@ -47,5 +60,6 @@ return array(
 	//student.private_teacher
 	'private_teacher_cancel_pause' => 'Cancel pause',
 	'private_teacher_cancel_pause_message' => 'Do you want to cancel pause?',
+	//student.publish
 
 );
