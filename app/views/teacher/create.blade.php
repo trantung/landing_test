@@ -51,11 +51,11 @@
                 </div>
                 <div class="form-group">
                     <label>Trình độ</label>
-                    {{ Form::select('level', Common::getLevelTeacherList(), null, ['class' => 'form-control']) }}
+                    {{ Form::select('level', Common::getLevelTeacherList(), null, ['class' => 'form-control', 'required' => true]) }}
                 </div>
                 <div class="form-group">
                     <label>Chọn GMO</label>
-                    {{ Form::select('admin_id', Common::getGmo(), null, ['class' => 'form-control']) }}
+                    {{ Form::select('admin_id', Common::getGmo(), null, ['class' => 'form-control', 'required' => true]) }}
                 </div>
                 <div class="form-group">
                     <label for="password">Ghi chú</label>
