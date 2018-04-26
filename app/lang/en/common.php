@@ -37,6 +37,7 @@ return array(
     'female' => 'Female',
     'both' => 'None',
     'chossen' => 'Choose',
+    'minute' => 'minute',
 
     //navbar
     'account' => 'Account',

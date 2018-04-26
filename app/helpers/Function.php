@@ -303,10 +303,10 @@ function getStatusLesson()
 function getDurationLesson()
 {
     $array = [
-        '' => '-- Chọn --',
-        30 => '30 phút', 
-        60 => '60 phút', 
-        90 => '90 phút'
+        '' => trans('common.chossen'),
+        30 => '30 '.trans('common.minute'), 
+        60 => '60 '.trans('common.minute'), 
+        90 => '90 '.trans('common.minute')
     ];
     return $array;
 }

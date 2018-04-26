@@ -37,7 +37,8 @@ return array(
     'female' => 'Nữ',
     'both' => 'Không xác định',
     'chossen' => 'Chọn',
-    
+    'minute' => 'phút',
+
     //navbar
     'account' => 'Tài khoản',
     'change_pass' => 'Thay mật khẩu',
