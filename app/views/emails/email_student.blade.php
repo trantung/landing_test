@@ -61,7 +61,7 @@
                 <p style="font-size:14px;line-height:20px">Để hỗ trợ các vấn đề về lớp học, xin vui lòng liên hệ:</p>
 
                 <p style="font-size:14px;line-height:20px"><b>Quản lý lớp học</b></p>
-                <p style="font-size:14px;line-height:20px"><b>Hotline StayHome English:</b> <a href="tel:01664389999">0166.438.9999</a></p>
+                <p style="font-size:14px;line-height:20px"><b>Hotline StayHome English:</b> <a href="tel:0868961858">0868961858</a></p>
 
                 <p style="font-size:14px;line-height:20px">StayHome English Xin chân thành cảm ơn sự đồng hành của Bạn!</p>
                 <p style="font-size:14px;line-height:20px"><b>Best regards, StayHome English</b></p>
