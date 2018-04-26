@@ -82,6 +82,9 @@ return array(
     'lesson_detail_comment' => 'Nội dung buổi học và nhận xét',
     'save' => 'Lưu lại',
     'lesson_detail_detail' => 'Chi tiết |',
+    'lesson_detail_wait_confirm' => 'Xác nhận hoàn thành',
+    'lesson_detail_cancel' => 'Huỷ',
+    'lesson_detail_change_schedule' => 'Thay đổi lịch học',
 
     //student.lesson_per_week
     'lesson_per_week_number' => 'Số buổi 1 tuần',

@@ -184,29 +184,23 @@ class PublishController extends AdminController {
                     $message->to($student->email)
                         ->subject(SUBJECT_EMAIL);
                 });
-                Mail::send('emails.email_student', $data, function($message) use ($student, $data){
-                    $message->to('trantunghn196@gmail.com')
-                        ->subject(SUBJECT_EMAIL);
-                });
                 $teacher = Teacher::find($teacherId);
-                $gmoId = $teacher->admin_id;
-                $gmo = Admin::find($gmoId);
-                // dd($teacher->email);
                 if ($teacher) {
+                    $gmoId = $teacher->admin_id;
+                    $gmo = Admin::find($gmoId);
                     Mail::send('emails.email_student', $data, function($message) use ($teacher, $data){
                         $message->to($teacher->email)
                             ->subject(SUBJECT_EMAIL);
                     });
-                } 
-                if ($gmo) {
-                    Mail::send('emails.email_student', $data, function($message) use ($gmo, $data){
-                        $message->to($gmo->email)
-                            ->subject(SUBJECT_EMAIL);
-                    });
-                } 
+                    if ($gmo) {
+                        Mail::send('emails.email_student', $data, function($message) use ($gmo, $data){
+                            $message->to($gmo->email)
+                                ->subject(SUBJECT_EMAIL);
+                        });
+                    }
+                }
             }
             $lessonDetail->update($input);
-            // $
             return Redirect::action('PublishController@showScheduleStudent', ['id' => $lessonDetail->schedule_id, 'teacher_id'=>$teacherId]);
         }
         if ($input['status'] == CHANGE_LESSON) {

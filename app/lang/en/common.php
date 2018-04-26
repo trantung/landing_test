@@ -82,6 +82,9 @@ return array(
     'lesson_detail_comment' => 'detail lesson and comment',
     'save' => 'Save',
     'lesson_detail_detail' => 'Detail |',
+    'lesson_detail_wait_confirm' => 'Finish',
+    'lesson_detail_cancel' => 'Cancel',
+    'lesson_detail_change_schedule' => 'Change schedule lesson',
 
     //student.lesson_per_week
     'lesson_per_week_number' => 'Number per week',
