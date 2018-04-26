@@ -36,7 +36,8 @@ return array(
     'male' => 'Nam',
     'female' => 'Nữ',
     'both' => 'Không xác định',
-
+    'chossen' => 'Chọn',
+    
     //navbar
     'account' => 'Tài khoản',
     'change_pass' => 'Thay mật khẩu',

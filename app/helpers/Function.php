@@ -292,7 +292,7 @@ function getStatusScheduleDetail($status)
 function getStatusLesson()
 {
     $array = [
-        '' => 'Chọn',
+        '' => trans('common.chossen'),
         WAIT_CONFIRM_FINISH => trans('common.lesson_detail_wait_confirm'),
         CANCEL_LESSON => trans('common.lesson_detail_cancel'),
         CHANGE_LESSON => trans('common.lesson_detail_change_schedule'),

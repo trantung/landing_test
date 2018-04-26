@@ -36,6 +36,7 @@ return array(
     'male' => 'Male',
     'female' => 'Female',
     'both' => 'None',
+    'chossen' => 'Choose',
 
     //navbar
     'account' => 'Account',
