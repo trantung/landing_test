@@ -3,7 +3,6 @@
 @section('title')
 {{ $title=trans('common.lesson_detail_detail').$student->full_name }}
 @stop
-lesson_detail_detail
 @section('content')
 <div class="row margin-bottom">
     <div class="col-xs-12">
