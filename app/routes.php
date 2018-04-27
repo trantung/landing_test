@@ -1,6 +1,14 @@
 <?php
 // $test = date('Y-m-d', time());
 // dd($test);
+Route::get('/fix_bug_lesson_detail', function(){
+    $schedules = Schedule::all();
+    foreach ($schedules as $key => $value) {
+        ScheduleDetail::where('schedule_id', $value->id)
+            ->update(['teacher_id' => $value->id]);
+    }
+    dd(333);
+});
 Route::get('/add_super_admin', function(){
     $input['username'] = 'super_admin';
     $input['role_id'] = 1;
