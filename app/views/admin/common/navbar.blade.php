@@ -17,7 +17,7 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <li class="dropdown notifi-dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"></i> <span class="badge count-unread-notifi"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: red"><i class="fa fa-bell-o" style="font-size:24px"></i> <span class="badge count-unread-notifi"></span></a>
                     <div class="dropdown-menu notification-area">
                         <ul class="nav menu list-notifications">
                             @foreach( CommonNotification::getUserNotification() as $value )
