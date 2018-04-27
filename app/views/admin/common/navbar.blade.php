@@ -4,7 +4,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">S.H.E</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><img src="{{ asset('custom/img/logo.png') }}" style="max-height: 50px;"></span>
+        <span class="logo-lg"><img src="{{ asset('custom/img/logo1.png') }}" style="max-height: 50px;"></span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
