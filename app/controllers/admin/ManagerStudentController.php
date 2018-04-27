@@ -137,6 +137,7 @@ class ManagerStudentController extends AdminController {
 
         //create schedules
         $scheduleInput = [];
+        $scheduleInput['teacher_id'] = null;
         if (!empty($input['sale_id'])) {
             $scheduleInput['sale_id'] = $input['sale_id'];
         }
@@ -170,6 +171,7 @@ class ManagerStudentController extends AdminController {
                 'type', 'level','lesson_duration'
             );
             $scheduleDetail['student_id'] = $studentId;
+            $scheduleDetail['teacher_id'] = $scheduleInput['teacher_id'];
             $scheduleDetail['schedule_id'] = $scheduleId;
             $scheduleDetail['time_id'] = getTimeId($lessonDate[$i][0]);
             $scheduleDetail['status'] = REGISTER_LESSON;
