@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'smtp',
+	'driver' => 'mail',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'vnmini122015@gmail.com', 'name' => 'Vnmini'),
+	'from' => array('address' => 'noreply@stayhomeenglish.com', 'name' => 'Stayhomeenglish'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'vnmini122015@gmail.com',
+	'username' => 'noreply@stayhomeenglish.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'tlnbhxlhqyrxbshp',
+	'password' => 'stayhome123',
 
 	/*
 	|--------------------------------------------------------------------------
