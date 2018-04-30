@@ -180,7 +180,7 @@ class PublishController extends AdminController {
                     'lessonDuration' => $input['lesson_duration'],
                     'comment' => $input['comment'],
                 ];
-                // try {
+                try {
                     Mail::send('emails.email_student', $data, function($message) use ($student, $data){
                         // $message->from('noreply@stayhomeenglish.com', 'Site Admin');
                         $message->to($student->email)
@@ -203,10 +203,10 @@ class PublishController extends AdminController {
                             });
                         }
                     }
-                // } catch (Exception $e) {
-                //     $lessonDetail->update($input);
-                //     return Redirect::action('PublishController@showScheduleStudent', ['id' => $lessonDetail->schedule_id, 'teacher_id'=>$teacherId]);
-                // }
+                } catch (Exception $e) {
+                    $lessonDetail->update($input);
+                    return Redirect::action('PublishController@showScheduleStudent', ['id' => $lessonDetail->schedule_id, 'teacher_id'=>$teacherId]);
+                }
             }
             $lessonDetail->update($input);
             return Redirect::action('PublishController@showScheduleStudent', ['id' => $lessonDetail->schedule_id, 'teacher_id'=>$teacherId]);
