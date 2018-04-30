@@ -52,6 +52,7 @@ class ManagerStudentController extends AdminController {
                 $data = $data->where('students.sale_id', $user->id);
             }
         }
+        $data = $data->whereNull('students.deleted_at');
         $data = $data->select('students.*');
         $data = $data->paginate(PAGINATE);
         return View::make('student.index')->with(compact('data'));
