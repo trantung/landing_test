@@ -20,8 +20,10 @@ class ManagerStudentController extends AdminController {
                 if ($user->role_id == $roleGmo->id) {
                     $listTeacherId = Teacher::where('admin_id', $user->id)->lists('id');
                     $data = Schedule::join('students', 'students.id', '=', 'schedules.student_id')
-                        ->whereNull('schedules.teacher_id')
-                        ->orWhereIn('schedules.teacher_id', $listTeacherId);
+                        ->where(function ($query) use ($input){
+                            $query = $query->whereNull('schedules.teacher_id')
+                                ->orWhereIn('schedules.teacher_id', $listTeacherId);
+                        });
                 }
             }
             if (!empty($input['teacher_id'])) {
