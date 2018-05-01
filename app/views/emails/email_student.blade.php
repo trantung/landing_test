@@ -1,9 +1,9 @@
-<div style="padding:20px 5%;background-color:#f0f0f0;max-width:820px">
+<div style="padding:20px 5%;background-color:rgb(250,251,252);max-width:820px">
     <div style="max-width:560px;text-align:center;margin:auto;padding-bottom:20px;border-bottom:3px solid #F44336">
         <img src="{{ asset('custom/img/logoso1.png') }}" style="width:250px;margin:auto">
     </div>
-    <div style="max-width:560px;background-color:#fff;margin:auto">
-        <div style="background-color:#fff;padding:40px 40px">
+    <div style="max-width:560px;background-color:rgb(255,255,255);margin:auto">
+        <div style="background-color:rgb(255,255,255);padding:40px 40px">
             <p style="font-size:14px;line-height:20px"><b>Hi {{ ucwords(Common::getObject($lessonDetail->student, 'full_name')) }}!</b></p>
             <p style="font-size:14px;line-height:20px">Stayhomeenglish xin chào</p>
             <p style="font-size:14px;line-height:20px">Chúc mừng Bạn vừa hoàn thành 01 buổi học trên Stayhomeenglish  với nội dung như sau:</p>
