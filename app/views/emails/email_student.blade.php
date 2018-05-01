@@ -1,6 +1,6 @@
-<div style="padding:60px 5%;background-color:#f0f0f0;max-width:820px">
+<div style="padding:20px 5%;background-color:#f0f0f0;max-width:820px">
     <div style="max-width:560px;text-align:center;margin:auto;padding-bottom:20px;border-bottom:3px solid #F44336">
-        <img src="{{ asset('custom/img/logo.png') }}" style="width:250px;margin:auto">
+        <img src="{{ asset('custom/img/logoso1.png') }}" style="width:250px;margin:auto">
     </div>
     <div style="max-width:560px;background-color:#fff;margin:auto">
         <div style="background-color:#fff;padding:40px 40px">
