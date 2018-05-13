@@ -49,5 +49,5 @@ define('STOP_LESSON', 3);
 //giáo viên chưa được approve(giáo viên nhận học sinh nhưng chưa được gmo đồng ý)
 define('WAIT_APPROVE_GMO', 4);
 //email
-define('SUBJECT_EMAIL', 'Mail gửi từ hệ thống');
+define('SUBJECT_EMAIL', 'Xác nhận thời gian và buổi học');
 define('NO_IMG', 'no image');
