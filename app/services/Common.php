@@ -509,7 +509,7 @@ class Common {
             return null;
         }
         $roleId = $role->id;
-        $list = Admin::where('role_id', 5)->lists('full_name', 'id');
+        $list = Admin::where('role_id', $roleId)->lists('full_name', 'id');
         return $list;
     }
     public static function getGmoOfTeacher($teacher, $field)
