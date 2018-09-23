@@ -33,7 +33,7 @@
 						<tr data-html="true" data-toggle="tooltip" data-placement="auto" title="<img src='{{ !empty($student->avatar) ? url($student->avatar) : NO_IMG }}' width='150px'>" >
 							<td>#{{ $key + 1 + ($data->getPerPage() * ($data->getCurrentPage() -1)) }}</td>
 							@if(checkRemain($student))
-							<td style="color: red">{{ $student->full_name }}</td>
+							<td style="color: red"><b>{{ $student->full_name }}</b></td>
 							@else
 							<td>{{ $student->full_name }}</td>
 							@endif
@@ -44,7 +44,13 @@
 								<td>{{ Common::getScheduleByStudent($student)->lesson_number }}</td>
 								<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
 								<td>{{ Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, CANCEL_LESSON) }}</td>
-								<td>{{ Common::getScheduleByStudent($student)->lesson_number - Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</td>
+								@if(checkRemain($student))
+								<td style="color: red"><b>
+								{{ Common::getScheduleByStudent($student)->lesson_number - Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}</b>
+								</td>
+								@else
+								{{ Common::getScheduleByStudent($student)->lesson_number - Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON) }}
+								@endif
 								<td>{{ Common::getDurationTimeStudentByStudent($student->id) }}</td>
 								
 								@if(Common::getScheduleByStudent($student)->status == WAIT_APPROVE_GMO)
