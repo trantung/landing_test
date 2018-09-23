@@ -186,6 +186,11 @@ class PublishController extends AdminController {
                         $message->to($student->email)
                             ->subject(SUBJECT_EMAIL);
                     });
+                    Mail::send('emails.email_student', $data, function($message) use ($student, $data){
+                        // $message->from('noreply@stayhomeenglish.com', 'Site Admin');
+                        $message->to(EMAIL_DEFAULT)
+                            ->subject(SUBJECT_EMAIL);
+                    });
                     $teacher = Teacher::find($teacherId);
                     if ($teacher) {
                         $gmoId = $teacher->admin_id;

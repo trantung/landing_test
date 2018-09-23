@@ -1,4 +1,5 @@
 <?php
+define('EMAIL_DEFAULT', 'dieulinh9196@gmail.com');
 define('ADMIN', 'admin');
 define('WEBMASTER', 'webmaster');
 define('GMO', 'gmo');
