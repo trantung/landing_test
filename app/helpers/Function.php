@@ -372,3 +372,11 @@ function convertMinToHours($min)
     $hours = round($min/60, 2);
     return $hours;
 }
+function checkRemain($student)
+{
+    $number = Common::getScheduleByStudent($student)->lesson_number - Common::getNumberLessonStatus(Common::getScheduleByStudent($student)->id, FINISH_LESSON);
+    if ($number <= 5) {
+        return true;
+    }
+    return false;
+}

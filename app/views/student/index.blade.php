@@ -32,7 +32,11 @@
 					@foreach($data as $key => $student)
 						<tr data-html="true" data-toggle="tooltip" data-placement="auto" title="<img src='{{ !empty($student->avatar) ? url($student->avatar) : NO_IMG }}' width='150px'>" >
 							<td>#{{ $key + 1 + ($data->getPerPage() * ($data->getCurrentPage() -1)) }}</td>
+							@if(checkRemain($student))
+							<td style="color: red">{{ $student->full_name }}</td>
+							@else
 							<td>{{ $student->full_name }}</td>
+							@endif
 							<td>{{ $student->email }}</td>
 							<td>{{ $student->phone }}</td>
 							<td>{{ Common::getLevelNameByStudent($student) }}</td>
