@@ -118,7 +118,7 @@ class PublishController extends AdminController {
         $schedule = Schedule::find($id);
         $studentId = $schedule->student_id;
         $student = Student::find($studentId);
-        $data = ScheduleDetail::where('schedule_id', $id)->paginate(PAGINATE);
+        $data = ScheduleDetail::where('schedule_id', $id)->orderBy('lesson_date','asc')->paginate(PAGINATE);
         return View::make('student.schedule_detail')->with(compact('data', 'student', 'teacherId'));
     }
 
