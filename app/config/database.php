@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'schedule',
+			'database'  => 'schedule_1',
 			'username'  => 'root',
-			'password'  => 'root',
+			'password'  => '4JAGVVLHYnKB7GtA',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
