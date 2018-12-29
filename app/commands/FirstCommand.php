@@ -39,6 +39,25 @@ class FirstCommand extends Command {
 	{
 		//chạy cron để update toàn bộ các học sinh nhận được email confirm buổi học nhưng chưa xác nhận vào lúc 23:59
 		ScheduleDetail::where('status', WAIT_CONFIRM_FINISH)->update(['status' => FINISH_LESSON]);
+		//backup db
+		$filename='database_backup.sql';
+		// dd(public_path());
+		$path = public_path();
+		$script = 'mysqldump --user=root --password=4JAGVVLHYnKB7GtA --host=localhost schedule_1 > '.$path.'/file.sql';
+		exec($script);
+
+		// $result=exec('mysqldump schedule_1 --password=root --user=root --single-transaction >/Applications/MAMP/htdocs/schedule/'.$filename,$output);
+		// $result=exec('mysqldump -u root -p root DATABASE_NAME schedule_1 -r --single-transaction >/Applications/MAMP/htdocs/schedule/'.$filename,$output);
+		// if ($output == '') {
+		// 	dd(111);
+		// } else {
+		// 	dd(555);
+		// }
+		// $connection = new DataBackup('localhost',"schedule_1",'root', 'root');
+		// $connection->backup_tables();
+		// dd(11);
+		// $connection->closeConnection();
+		// backup_tables();
 	}
 
 	/**
