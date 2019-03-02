@@ -164,5 +164,43 @@ class AdminController extends BaseController {
         return Redirect::action('AdminController@index');
 
     }
+
+    public function getAdd(){
+        return View::make('manual.create');
+    }
+    public function postAdd(){
+        $input = Input::all();
+        $student = [];
+        // dd($input);
+        $teacher_name = stripVN($input['name']);
+        $teacher_name_array = explode(' ', $teacher_name);
+        $teacher_username = implode('_', $teacher_name_array);
+        // dd($tung);
+        $checkTeacher = Teacher::where('full_name', $input['name'])->first();
+        if ($checkTeacher) {
+            return $checkTeacher->id;
+        }
+        $roleTeacher = Role::where('slug', TEACHER)->first();
+        $admin = Admin::where('email', 'admin@gmail.com')->first();
+        $inputTeacher['full_name'] = $input['name'];
+        $inputTeacher['role_id'] = $roleTeacher->id;
+        $inputTeacher['admin_id'] = $admin->id;
+        $inputTeacher['username'] = $teacher_username;
+        $inputTeacher['password'] = Hash::make('123456');
+        $teacherId = Teacher::create($inputTeacher)->id;
+        
+
+        $check = Student::where('full_name', $input['full_name'])->first();
+        if ($check) {
+            dd($check->id);
+        }
+        $student['full_name'] = $input['full_name'];
+        $studentId = Student::create($student)->id;
+        // dd($studentId);
+
+        return Redirect::action('AdminController@getAdd');
+
+
+    }
 }
 
