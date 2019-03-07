@@ -14,7 +14,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-sm-6">
-                                <legend>Thông tin học sinh</legend>
+                                <legend>Thông tin config</legend>
                                 <div class="form-group">
                                     <label>Tên header <span class="text-warning">(*)</span></label>
                                     {{  Form::text('text_header', $config->text_header, array('class' => 'form-control' )) }}

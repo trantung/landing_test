@@ -88,7 +88,6 @@
 							<tr>
 								<td>Bộ phận bảo hành</td>
 								<td>{{$config->quanity}}</td>
-								<td>Trong 30 ngày có thể trả hàng, yên tâm mua sắm. Trong 30 ngày nếu sản phẩm đảm bảo còn mới, nguyên hộp bao bì, có thể liên hệ báo trả hàng. Cũng có thể liên lạc với bộ phận bảo hành qua mail :wax.support@ionlinei.com. Với các sản phẩm là đồ dùng cá nhân và mĩ phẩm, sau khi bóc hàng sẽ ảnh hưởng đến việc chuyển hoàn sản phẩm.</td>
 							</tr>
 						</tbody>
 					</table>

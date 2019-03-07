@@ -33,7 +33,7 @@ class AdminConfigController extends AdminController {
         }
         $input['image_body'] = CommonUpload::uploadImage(UPLOADCONFIG, 'image_body', $config->image_body);
         $config->update(['image_body' => $input['image_body']]);
-        return Redirect::action('AdminController@getConfig');
+        return Redirect::action('AdminConfigController@getConfig');
 
     }
 
