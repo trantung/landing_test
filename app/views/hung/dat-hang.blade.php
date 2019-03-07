@@ -1,4 +1,4 @@
-<?php include 'header.php';?>
+@include('hung.header')
       <div class="layui-container">
         <div class="layui-header">
           <div class="layui-row header">
@@ -7,14 +7,13 @@
           </div>
         </div>
         <div class="layui-main" style="padding-bottom: 0;">
-          <form class="layui-form layui-form-pane" name="addorder" action="http://localhost/ionlinei.com/thong-bao.php" method="POST">
-            <input type="hidden" name="title" value="Wax vuốt đổi màu tóc cao cấp từ Nhật Bản">
-            <input type="hidden" name="sku" value="WISE50002">
-            <input type="hidden" name="size1" value="Đỏ">
-            <input type="hidden" name="size2" value="">
-            <input type="hidden" name="number" value="6">
-            <input type="hidden" name="oprice" value="250000">
-            <input type="hidden" name="price" value="1500000">
+          <!-- <form class="layui-form layui-form-pane" name="addorder" action="http://localhost/ionlinei.com/thong-bao.php" method="POST"> -->
+            {{ Form::open(array('action' => array('OrderController@order'), 'method' => "POST", 'class' => 'layui-form layui-form-pane')) }}
+            <input type="hidden" name="title" value="{{$product->text}}">
+            <input type="hidden" name="code" value="{{$product->code}}">
+            <input type="hidden" name="color" value="{{$product->color}}">
+            <input type="hidden" name="number" value="{{$number}}">
+            
             <div class="safety-tips">
               <div class="safe"><i class="iconfont icon-safedun"></i></div>
             Bạn đang mua sắm an toàn, hãy yên tâm mua sắm</div>
@@ -26,12 +25,12 @@
             <h2>Người nhận hàng</h2>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="text" name="name" lay-filter="name" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác họ tên"><span style="color: red">*</span>
+                <input type="text" name="fullname" lay-filter="name" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác họ tên"><span style="color: red">*</span>
               </div>
             </div>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="number" name="mobile" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác số điện thoại">
+                <input type="number" name="phone" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác số điện thoại">
                 <span style="color: red">*</span>
               </div>
             </div>
@@ -137,9 +136,9 @@
             <ul>
               <li class="list-item">
                 <div class="item-inner" style="overflow:hidden;">
-                  <div class="item-thumb"><img src="images/anh-sp-dat-hang.png"></div>
+                  <div class="item-thumb"><img src="{{$product->image_url}}"></div>
                   <div class="item-info">
-                    <h4 class="title" style="padding:0;">Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</h4>
+                    <h4 class="title" style="padding:0;">{{$product->text}}</h4>
                     <?php
                    
                           function format_price($money, $cur){
@@ -154,26 +153,31 @@
                               return $str;
                           }
 
-                           // $n = $_GET["n"]; 
-                           $n = 8; 
-                           // $color = $_GET["color"];
-                           $color = 'xanh';
-                           $gia = 250000;
-                           $tong_tien =  $n*$gia;
+                           // // $n = $_GET["n"]; 
+                           // $n = 8; 
+                           // // $color = $_GET["color"];
+                           // $color = 'xanh';
+                           // $gia = 250000;
+                           $total_price =  $number*$product->price;
+                           $percent = $discount->percent;
+                           $money_discount = $total_price * $percent/100;
+                           $money_pay =  $total_price - $money_discount;
                       ?>
-                    <p class="size"><?php echo $color; ?>-</p>
-                    <p class="price">250.000 x <?php echo $n; ?>　VNĐ</p>
+                    <p class="size">{{ $product->color }}-</p>
+                    <p class="price">{{$product->price}} x {{$number}}　VNĐ</p>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
           <div class="cartOrder">
-            <h2 id="allmoney">Giá đơn hàng<span> <?php echo  format_price($tong_tien, 'VNĐ'); ?> </span></h2>
+            <h2 id="allmoney">Giá đơn hàng<span> <?php echo  format_price($total_price, 'VNĐ'); ?> </span></h2>
             <ul class="checkout-money" style="overflow: hidden;">
-              <li class="item-money">Tổng tiền <span><?php echo  format_price($tong_tien, 'VNĐ'); ?></span></li>
+              <li class="item-money">Tổng tiền <span><?php echo  format_price($money_pay, 'VNĐ'); ?></span></li>
               <li class="item-money" id="yf">Phí vận chuyển <span>Miễn phí vận chuyển</span></li>
             </ul>
+            <input type="hidden" name="total_price" value="{{$total_price}}">
+            <input type="hidden" name="money_pay" value="{{$money_pay}}">
           </div>
           <div class="newAddress">
             <h2>Ghi chú</h2>
@@ -188,7 +192,8 @@
             <!-- <a id="sbm" href="http://localhost/ionlinei.com/thong-bao.php?n=<?php //echo $tong_tien ; ?> ">Xác nhận đặt hàng</a> -->
             <button id="button" type="submit" class="layui-btn btn_vipshop layui-btn-danger">Xác nhận đặt hàng</button>
           </div>
-        </form>
+        <!-- </form> -->
+        {{ Form::close() }}
       
         <div class="timetips layui-row">
           <ul>
@@ -199,4 +204,4 @@
       </div>
     </div>
   </div>
-<?php include 'footer.php';?>
+@include('hung.footer')

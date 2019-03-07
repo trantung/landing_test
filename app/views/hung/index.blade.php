@@ -2,7 +2,7 @@
 <div class="layui-container">
 	<div class="layui-main">
 		<div class="swiper-container">
-			<div class="swiper-wrapper">
+			<div class="swiper-wrapper"> 
 				@foreach($slides as $slide) 
 				<div class="item">
 					<a class="swiper-slide" href="#">
@@ -21,7 +21,8 @@
 				</div>
 			</div>
 			<div class="layui-buy">
-				<button class="layui-btn layui-btn-danger now_buy"><strong>{{$config->text_header_common}}</strong></button>
+				<span class="layui-right" style="margin-right: 2%;">{{$config->text_header_common}}</span>
+				<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy">Mua ngay</button></spam>
 			</div>
 			<hr>
 			<div class="layui-ship layui-row">
@@ -46,17 +47,17 @@
 		<div class="layui-line"></div>
 		<div class="layui-product-info">
 
-			<div class="layui-product-size">
-				<!-- <div class="layui-product-size-title">
+			<!-- <div class="layui-product-size">
+				<div class="layui-product-size-title">
 					<b>Qui cách</b> 
 				</div>
 				<div class="layui-product-size-list">
 					<span>Đỏ</span><span>Tím</span><span>Khói</span><span>Vàng</span><span>Bạc</span>         
-				</div> -->
-			</div>                        
+				</div>
+			</div>  -->                       
 			<div class="layui-product-size">
 				<!-- <div class="layui-product-size-title"> <b>Chi tiết sản phẩm</b> </div> -->
-				<div class="layui-product-images/hung/images"> <img src="{{ !empty($config->image_body) ? url($config->image_body) : NO_IMG }}" alt="" /> </div>
+				<div class="layui-product-images"> <img src="{{ !empty($config->image_body) ? url($config->image_body) : NO_IMG }}" alt="" /> </div>
 				<div class="layui-row">
 					<table class="layui-table">
 						<colgroup>
@@ -67,24 +68,27 @@
 							<tr>
 								<td>Phương thức phát hàng</td>
 								<td>{{$config->kind_pay}}</td>
+
 							</tr>
 							<tr>
 								<td>Phí vận chuyển</td>
 								<td>{{$config->fee_transfer}}</td>
-
+								
 							</tr>
 							<tr>
 								<td>Thời gian phát hàng</td>
 								<td>{{$config->time_export}}</td>
-
+								
 							</tr>
 							<tr>
 								<td>Thời gian giao hàng</td>
 								<td>{{$config->time_transfer}}</td>
+								
 							</tr>
 							<tr>
 								<td>Bộ phận bảo hành</td>
 								<td>{{$config->quanity}}</td>
+								
 							</tr>
 						</tbody>
 					</table>
@@ -97,11 +101,12 @@
 				<div class="layui-product-size-title"> <b>Bình luận</b> </div>
 				<div class="layui-comment-list" id="commentScroll" style="height: 200px;overflow: hidden;">
 					<ul>
+						@foreach($comments as $comment)
 						<li>
 							<div class="layui-comment">
 								<div class="layui-commet-title">
 									<div class="layui-product-name">
-										<font color="#ff0000">Đ**</font>()
+										<font color="#ff0000">{{$comment->name}}</font>()
 										<span style="color: #ff0000;">
 											<span class="star-item">★</span>
 											<span class="star-item">★</span>
@@ -112,58 +117,15 @@
 									</div>
 								</div>
 								<div class="layui-commet-info">
-									<p>Màu lên rất đẹp nhé. Không dính tay, rửa cái hết ngay.</p>
+									<p>{{$comment->comment}}</p>
 									<div class="comment_picture">
-										<a href="javascript:;"><img class="cpic" src="images/hung/images/anh-cm-3.jpg"></a>
-										<a href="javascript:;"><img class="cpic" src="images/hung/images/anh-cm-4.jpg"></a>                 
+										<a href="javascript:;"><img class="cpic" src="{{$comment->image_url}}"></a>
+										                
 									</div>
 								</div>
 							</div>
 						</li>
-						<li>
-							<div class="layui-comment">
-								<div class="layui-commet-title">
-									<div class="layui-product-name">
-										<font color="#ff0000">V**</font>()
-										<span style="color: #ff0000;">
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-										</span>
-									</div>
-								</div>
-								<div class="layui-commet-info">
-									<p>Nhìn cũng ổn chứ</p>
-									<div class="comment_picture">
-										<a href="javascript:;"><img class="cpic" src="images/hung/images/anh-cm-1.jpg"></a>                  
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="layui-comment">
-								<div class="layui-commet-title">
-									<div class="layui-product-name">
-										<font color="#ff0000">D**</font>()
-										<span style="color: #ff0000;">
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-											<span class="star-item">★</span>
-										</span>
-									</div>
-								</div>
-								<div class="layui-commet-info">
-									<p>Đập trai ^^</p>
-									<div class="comment_picture">
-										<a href="javascript:;"><img class="cpic" src="images/hung/images/anh-cm-2.jpg"></a>                  
-									</div>
-								</div>
-							</div>
-						</li>            
+						@endforeach           
 					</ul>
 				</div>
 				<div class="layui-btn1" style="width:100%;margin:10px 0 0;" id="appcomment">Bình luận</div>
@@ -178,55 +140,13 @@
 						<div class="picMarquee-top">
 							<div class="bd" id="orderScroll" style="height:200px; overflow: hidden;font-size:13px;">
 								<ul class="picList">
+									@foreach($commentOrders as $commentOrder)
 									<li> 
-										<span>B**（090***337）</span> <span style="float:right;">6phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
+										<span>{{$commentOrder->name}}）</span> <span style="float:right;">{{$commentOrder->time}}</span> <br>
+										<span>{{$commentOrder->comment}}</span><br>
+										<span>x{{$commentOrder->status}}</span>
 									</li>
-									<li>
-										<span>a**（093***777）</span> <span style="float:right;">4phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li> 
-										<span>T**（090***937）</span> <span style="float:right;">7phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li>
-										<span>n**（090***930）</span> <span style="float:right;">3phút trước</span>
-										<br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li> 
-										<span>T**（098***106）</span> <span style="float:right;">3phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li> 
-										<span>N**（077***958）</span> <span style="float:right;">3phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li> 
-										<span>a**（090***871）</span> <span style="float:right;">3phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li>
-										<span>a**（090***595）</span> <span style="float:right;">3phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li> <span>H**（038***999）</span> <span style="float:right;">4phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>
-									<li> <span>H**（038***999）</span> <span style="float:right;">4phút trước</span> <br>
-										<span>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</span><br>
-										<span>x1</span>
-									</li>                          
+									@endforeach                         
 								</ul>
 							</div>
 						</div>
@@ -234,7 +154,8 @@
 				</div>
 				<div class="layui-footer layui-product-footer">
 					<div class="layui-buy">
-						<button class="layui-btn layui-btn-danger now_buy">Gía đặc biệt từ <b>250.000đ</b> </button>
+						<span class="layui-right" style="margin-right: 2%;">{{$config->text_footer_left}}</span>
+						<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy">{{$config->text_footer_right}}</button></spam>
 					</div>
 				</div>
 			</div>
@@ -242,18 +163,20 @@
 		</div>
 
 		<div class="layui-product-buy layui-hide">
-			<form class="layui-form" action="http://localhost/ionlinei.com/dat-hang.php" method="post">
+			<!-- <form class="layui-form" action="http://localhost/ionlinei.com/dat-hang.php" method="post"> -->
+				{{ Form::open(array('action' => array('OrderController@store'), 'method' => "POST", 'class' => 'layui-form')) }}
 				<div class="layui-product-title layui-row">
 					<div class="layui-col-xs3 layui-image"> 
-						<img src=" images/hung/images/sp-do.jpg" id="sizeimg"/> 
+						<img src="{{ $productFirst->image_url}}" id="sizeimg"/>
 					</div>
 					<div class="layui-col-xs8 layui-name">
-						<p>Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</p>
-						<p>WISE50002</p>
-						<p class="layui-text-red" id="sizetitle">Đỏ</p>
+						<p>{{$productFirst->text}}</p>
+						<p>{{$productFirst->code}}</p>
+						<p class="layui-text-red" id="sizetitle">{{$productFirst->color}}</p>
 					</div>
 					<div class="layui-col-xs1 layui-close"> <i class="fa fa-times" aria-hidden="true"></i> </div>
 				</div>
+
 				<div class="layui-product-content" id="content_1">
 					<div class="layui-product-info" style="border-bottom:1px solid #dcdcdc;">
 						<div class="layui-product-size">
@@ -261,29 +184,14 @@
 								<b>Qui cách</b>
 							</div>
 							<div class="layui-product-size-list layui-row layui-col-space5" id="sizeselect">
-								<div class="layui-size layui-col-xs3 active" data-field="Đỏ" data-price="250000" data-img="images/hung/images/sp-do.jpg">
-									<div class="layui-elip"><img src="images/hung/images/sp-do.jpg" width="100%"> 
+								@foreach($products as $product)
+								<div class="layui-size layui-col-xs3 active" data-field="{{$product->color}}" data-price="{{$product->price}}" data-img="{{ $product->image_url}}">
+									<div class="layui-elip"><img src="{{ $product->image_url}}" width="100%"> 
 									</div>
 								</div>
-								<div class="layui-size layui-col-xs3 " data-field="Tím" data-price="250000" data-img="images/hung/images/sp-tim.jpg">
-									<div class="layui-elip">
-										<img src="images/hung/images/sp-tim.jpg" width="100%"> 
-									</div>
-								</div><div class="layui-size layui-col-xs3 " data-field="Khói" data-price="250000" data-img="images/hung/images/sp-khoi.jpg">
-									<div class="layui-elip">
-										<img src="images/hung/images/sp-khoi.jpg" width="100%"> 
-									</div>
-								</div>
-								<div class="layui-size layui-col-xs3 " data-field="Vàng" data-price="250000" data-img="images/hung/images/sp-vang.jpg">
-									<div class="layui-elip">
-										<img src="images/hung/images/sp-vang.jpg" width="100%"> 
-									</div>
-								</div>
-								<div class="layui-size layui-col-xs3 " data-field="Bạc" data-price="250000" data-img="images/hung/images/sp-bac.jpg">
-									<div class="layui-elip">
-										<img src="images/hung/images/sp-bac.jpg" width="100%">
-									</div>
-								</div>           
+								@endforeach
+								 
+
 							</div>
 						</div>                             
 					</div>
@@ -296,18 +204,20 @@
 						</div>
 					</div>
 				</div>
+
 				<div id="input-hidden">
-					<input id="color" type="hidden" name="size1" value="Đỏ">
-					<input type="hidden" name="price" value="250000">
+					<input id="color" type="hidden" name="product_id" value="{{$product->id}}">
+					<input type="hidden" name="price" value="{{$product->price}}">
 				</div>
 				<div class="layui-buy-footer layui-row">
-					<div class="col-6" id="pri-num"><span>250000</span>VNĐ<em><s></s></em></div>
+					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$product->price}}</span>VNĐ</div>
+					<div class="col-6 mobile_hihe" style="margin-right: 4px;"><a href="">Nhắn tin</a> </div>
 					<div class="col-6" id="buy">
-						<input type="submit" value="Bước tiếp theo" lay-filter="nowBuy" lay-submit style="font-size: 16px;">
+						<input type="submit" value="Bước tiếp theo" lay-filter="nowBuy" lay-submit style="font-size: 15px;">
 						<!-- <a id="sba" href="http://localhost/ionlinei.com/dat-hang.php?n=<?php //echo 8 ;?>& color= <?php //echo 'xanh' ; ?> ">Bước tiếp theo</a> -->
 					</div>
 				</div>
-			</form>
+			{{Form::close()}}
 		</div>
 		<div class="hbg"></div>
 
@@ -318,8 +228,8 @@
 		</div>
 	</div>
 
-@include('hung.footer')
 
+@include('hung.footer')
 
 
 	

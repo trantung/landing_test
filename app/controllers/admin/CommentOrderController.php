@@ -1,6 +1,6 @@
 <?php
 
-class SlideController extends AdminController {
+class CommentOrderController extends AdminController {
     public function __construct() {
         $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'getResetPass', 'postResetPass')));
     }
@@ -12,8 +12,8 @@ class SlideController extends AdminController {
      */
     public function index()
     {
-        $data = Slide::paginate(20);
-        return View::make('slide.index')->with(compact('data'));
+        $data = CommentOrder::paginate(20);
+        return View::make('comment_order.index')->with(compact('data'));
     }
 
 
@@ -24,7 +24,7 @@ class SlideController extends AdminController {
      */
     public function create()
     {
-        return View::make('slide.create');
+        return View::make('comment_order.create');
     }
 
 
@@ -36,9 +36,9 @@ class SlideController extends AdminController {
     public function store()
     {
         $input = Input::all();
-        $input['image_url'] = CommonUpload::uploadImage(UPLOADSLIDE, 'image_url');
-        Slide::create(['image_url'=>$input['image_url']]);
-        return Redirect::action('SlideController@index');
+        // $input['image_url'] = CommonUpload::uploadImage(UPLOADCOMMENT, 'image_url');
+        CommentOrder::create($input);
+        return Redirect::action('CommentOrderController@index');
 
     }
 
@@ -88,10 +88,9 @@ class SlideController extends AdminController {
     public function destroy($id)
     {
         //
-        $image = Slide::destroy($id);
-        return Redirect::action('SlideController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
+        $image = CommentOrder::destroy($id);
+        return Redirect::action('CommentOrderController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
 
     }
-
 
 }

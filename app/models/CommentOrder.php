@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Comment extends Eloquent {
+class CommentOrder extends Eloquent {
 
 	use SoftDeletingTrait;
 
@@ -10,7 +10,7 @@ class Comment extends Eloquent {
 	 *
 	 * @var string
 	 */
-	protected $table = 'comments';
+	protected $table = 'comment_orders';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -18,7 +18,7 @@ class Comment extends Eloquent {
 	 * @var array
 	 */
 	protected $fillable = array(
-		'status', 'image_url', 'name',
+		'status', 'time', 'name',
 		'comment'
 	);
     protected $dates = ['deleted_at'];

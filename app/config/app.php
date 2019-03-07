@@ -126,6 +126,8 @@ return array(
 		// "Maatwebsite\Excel\ExcelServiceProvider",
 	    // 'Barryvdh\Debugbar\ServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+		// 'PulkitJalan\Google\GoogleServiceProvider',
+
 	),
 
 	/*
@@ -194,6 +196,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		// 'Excel' 		  => 'Maatwebsite\Excel\Facades\Excel',
 		'Debugbar' 	      => 'Barryvdh\Debugbar\Facade',
+		// 'Google' => 'PulkitJalan\Google\Facades\Google',
 	),
 
 );

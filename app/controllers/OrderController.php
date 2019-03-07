@@ -1,6 +1,6 @@
 <?php
 
-class LandingController extends Controller {
+class OrderController extends Controller {
 
 	/**
 	 * Setup the layout used by the controller.
@@ -22,4 +22,26 @@ class LandingController extends Controller {
         return View::make('hung.index')->with(compact('config'));
 	}
 
+	public function create()
+	{
+
+	}
+	public function store()
+	{
+		$input = Input::all();
+		$product = Product::find($input['product_id']);
+		$number = $input['number'];
+		$discount = Discount::find(1);
+		return View::make('hung.dat-hang')->with(compact('product','number', 'discount'));
+	}
+	public function order()
+	{
+		$input = Input::all();
+		dd($input);
+		//luu vao google sheet
+	}
+	public function success()
+	{
+
+	}
 }

@@ -12,7 +12,8 @@ class CommentController extends AdminController {
      */
     public function index()
     {
-        
+        $data = Comment::paginate(20);
+        return View::make('comment.index')->with(compact('data'));
     }
 
 
@@ -23,7 +24,7 @@ class CommentController extends AdminController {
      */
     public function create()
     {
-        //
+        return View::make('comment.create');
     }
 
 
@@ -34,7 +35,11 @@ class CommentController extends AdminController {
      */
     public function store()
     {
-        //
+        $input = Input::all();
+        $input['image_url'] = CommonUpload::uploadImage(UPLOADCOMMENT, 'image_url');
+        Comment::create($input);
+        return Redirect::action('CommentController@index');
+
     }
 
 
@@ -83,6 +88,9 @@ class CommentController extends AdminController {
     public function destroy($id)
     {
         //
+        $image = Comment::destroy($id);
+        return Redirect::action('CommentController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
+
     }
 
 

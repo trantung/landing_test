@@ -1,6 +1,6 @@
 <?php
 
-class OrderController extends AdminController {
+class ProductController extends AdminController {
     public function __construct() {
         $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'getResetPass', 'postResetPass')));
     }
@@ -12,7 +12,8 @@ class OrderController extends AdminController {
      */
     public function index()
     {
-        
+        $data = Product::paginate(20);
+        return View::make('product.index')->with(compact('data'));
     }
 
 
@@ -23,7 +24,7 @@ class OrderController extends AdminController {
      */
     public function create()
     {
-        //
+        return View::make('product.create');
     }
 
 
@@ -34,7 +35,11 @@ class OrderController extends AdminController {
      */
     public function store()
     {
-        //
+        $input = Input::all();
+        $input['image_url'] = CommonUpload::uploadImage(UPLOADPRODUCT, 'image_url');
+        Product::create($input);
+        return Redirect::action('ProductController@index');
+
     }
 
 
@@ -83,6 +88,9 @@ class OrderController extends AdminController {
     public function destroy($id)
     {
         //
+        $image = Product::destroy($id);
+        return Redirect::action('ProductController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
+
     }
 
 

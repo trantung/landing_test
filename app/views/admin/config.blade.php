@@ -63,6 +63,12 @@
                                 <div class="form-group">
                                     <label>Bộ phận bảo hành	<span class="text-warning"></span></label>{{  Form::textarea('quanity', $config->quanity, array('class' => 'form-control','rows'=>6 )) }}
                                 </div>
+                                <div class="form-group">
+                                    <label>footer left <span class="text-warning"></span></label>{{  Form::text('text_footer_left', $config->text_footer_left, array('class' => 'form-control')) }}
+                                </div>
+                                <div class="form-group">
+                                    <label>footer right <span class="text-warning"></span></label>{{  Form::text('text_footer_right', $config->text_footer_right, array('class' => 'form-control')) }}
+                                </div>
 
                                 <label>Ảnh content</label>
                                     <input type="file" name="image_body" class="form-control"><br>

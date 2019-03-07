@@ -1,6 +1,10 @@
 <?php
 Route::get('/', 'LandingController@index');
 
+Route::post('/order','OrderController@order');
+Route::post('/success','OrderController@sucess');
+Route::resource('/dat-hang', 'OrderController');
+
 $locale = Request::segment(1);
 if (in_array($locale, Config::get('app.languages'))) {
     App::setLocale($locale);
@@ -20,9 +24,10 @@ Route::group(array('prefix' => $locale), function() {
         Route::post('/config', 'AdminConfigController@updateConfig');
         
         Route::resource('/slide', 'SlideController');
+        Route::resource('/comment', 'CommentController');
+        Route::resource('/comment_order', 'CommentOrderController');
+        Route::resource('/product', 'ProductController');
 
-        Route::get('/order', 'OrderController@index');
-        Route::get('/comment', 'CommentController@index');
     });
     
 });

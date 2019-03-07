@@ -17,8 +17,13 @@
                 </a>
             </li>
             <li>
-                <a href="{{ action('OrderController@index') }}">
-                    <i class="fa fa-unlock-alt"></i> <span>Order</span>
+                <a href="{{ action('CommentOrderController@index') }}">
+                    <i class="fa fa-unlock-alt"></i> <span>Order comment</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ action('ProductController@index') }}">
+                    <i class="fa fa-unlock-alt"></i> <span>Product</span>
                 </a>
             </li>
 
