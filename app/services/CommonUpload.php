@@ -10,14 +10,16 @@ class CommonUpload
 	{
 
 		$destinationPath = public_path().'/'.$path.'/';
-		dd($image);
 		if(Input::hasFile($inputName)){
 			$file = Input::file($inputName);
 			$filename = $file->getClientOriginalName();
+			dd($filename);
+
 			$uploadSuccess = $file->move($destinationPath, $filename);
 			return $path.'/'.$filename;
 		}
 		if ($image) {
+			dd(444);
 			return $image;
 		}
 	}
