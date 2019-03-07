@@ -13,7 +13,10 @@ class LandingController extends Controller {
 		$slides = Slide::all();
 		$comments = Comment::all();
 		$commentOrders = CommentOrder::all();
-		$productFirst = Product::first();
+		$productFirst = null;
+		if (Product::first()) {
+			$productFirst = Product::first();
+		}
 		$products = Product::all();
         if ($config) {
             return View::make('hung.index')->with(compact('config', 'slides','comments','commentOrders', 'productFirst', 'products'));

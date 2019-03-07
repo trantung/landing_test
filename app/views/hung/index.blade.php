@@ -166,6 +166,7 @@
 			<!-- <form class="layui-form" action="http://localhost/ionlinei.com/dat-hang.php" method="post"> -->
 				{{ Form::open(array('action' => array('OrderController@store'), 'method' => "POST", 'class' => 'layui-form')) }}
 				<div class="layui-product-title layui-row">
+					@if($productFirst)
 					<div class="layui-col-xs3 layui-image"> 
 						<img src="{{ $productFirst->image_url}}" id="sizeimg"/>
 					</div>
@@ -174,6 +175,7 @@
 						<p>{{$productFirst->code}}</p>
 						<p class="layui-text-red" id="sizetitle">{{$productFirst->color}}</p>
 					</div>
+					@endif
 					<div class="layui-col-xs1 layui-close"> <i class="fa fa-times" aria-hidden="true"></i> </div>
 				</div>
 
