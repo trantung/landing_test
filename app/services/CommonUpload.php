@@ -13,13 +13,11 @@ class CommonUpload
 		if(Input::hasFile($inputName)){
 			$file = Input::file($inputName);
 			$filename = $file->getClientOriginalName();
-			dd($file);
 
 			$uploadSuccess = $file->move($destinationPath, $filename);
 			return $path.'/'.$filename;
 		}
 		if ($image) {
-			dd(444);
 			return $image;
 		}
 	}

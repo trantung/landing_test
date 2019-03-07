@@ -24,19 +24,9 @@ class AdminConfigController extends AdminController {
     {
         $input = Input::all();
         $config = AdminConfig::find(1);
-        // if ($config) {
-        // }
-        // else{
-        //     $id = AdminConfig::create($input)->id;
-        //     $config = AdminConfig::find($id);
-        // }
         $input['image_body'] = CommonUpload::uploadImage(UPLOADCONFIG, 'image_body', $config->image_body);
-        // dd($input['image_body']);
-        dd(555);
         $config->update($input);
-
-        // dd($input['image_body']);
-        // $config->update(['image_body' => $input['image_body']]);
+        
         return Redirect::action('AdminConfigController@getConfig');
 
     }
