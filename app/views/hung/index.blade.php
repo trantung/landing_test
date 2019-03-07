@@ -47,16 +47,7 @@
 		<div class="layui-line"></div>
 		<div class="layui-product-info">
 
-			<!-- <div class="layui-product-size">
-				<div class="layui-product-size-title">
-					<b>Qui cách</b> 
-				</div>
-				<div class="layui-product-size-list">
-					<span>Đỏ</span><span>Tím</span><span>Khói</span><span>Vàng</span><span>Bạc</span>         
-				</div>
-			</div>  -->                       
 			<div class="layui-product-size">
-				<!-- <div class="layui-product-size-title"> <b>Chi tiết sản phẩm</b> </div> -->
 				<div class="layui-product-images"> <img src="{{ !empty($config->image_body) ? url($config->image_body) : NO_IMG }}" alt="" /> </div>
 				<div class="layui-row">
 					<table class="layui-table">

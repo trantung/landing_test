@@ -8,9 +8,9 @@ define('TEACHER', 'teacher');
 define('UPLOADTEACHER', '/teacher');
 define('UPLOADSTUDENT', '/student');
 define('UPLOADCONFIG', '/config');
-define('UPLOADCOMMENT', '/comment');
-define('UPLOADSLIDE', '/slider');
-define('UPLOADPRODUCT', '/product');
+define('UPLOADCOMMENT', 'comment');
+define('UPLOADSLIDE', 'slider');
+define('UPLOADPRODUCT', 'product');
 
 define('PAGINATE',20);
 
