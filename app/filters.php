@@ -49,9 +49,13 @@ Route::filter('auth', function()
 });
 Route::filter('admin', function()
 {
+    // dd(Auth::admin()->guest());
     if (Auth::admin()->guest()){
         return Redirect::route('admin.login');
     }
+    // if( !$user ){
+    //     return Redirect::action('AdminController@login');
+    // }
 });
 // Route::filter('admin', function()
 // {

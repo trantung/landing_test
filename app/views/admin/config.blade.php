@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
-            {{ Form::open(array('action' => array('AdminController@updateConfig'), 'method' => "POST", 'files' => true)) }}
+            {{ Form::open(array('action' => array('AdminConfigController@updateConfig'), 'method' => "POST", 'files' => true)) }}
 
                 <div class="box-body">
                     <div class="row">

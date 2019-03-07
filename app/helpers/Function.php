@@ -181,25 +181,26 @@ function currentUser(){
 
 function renderUrl($action, $title, $parameter = [], $attributes = []){
     $link = '<a href="'.action($action, $parameter).'"'.HTML::attributes($attributes).'>'.$title.'</a>';
-    $user = currentUser();
-    if( !$user ){
-        return false;
-    }
-    if( hasRole(ADMIN, $user) ){
-        return $link;
-    }
+    return $link;
+    // $user = currentUser();
+    // if( !$user ){
+    //     return false;
+    // }
+    // if( hasRole(ADMIN, $user) ){
+    //     return $link;
+    // }
 
-    $checkPermission = false;
-    foreach (getAllPermissions() as $permission => $value) {
-        if( userAccess($permission, $user) && in_array($action, $value['accept']) ){
-            $checkPermission = $value['accept'];
-            break;
-        }
-    }
-    if( $checkPermission ){
-        return $link;
-    }
-    return false;
+    // $checkPermission = false;
+    // foreach (getAllPermissions() as $permission => $value) {
+    //     if( userAccess($permission, $user) && in_array($action, $value['accept']) ){
+    //         $checkPermission = $value['accept'];
+    //         break;
+    //     }
+    // }
+    // if( $checkPermission ){
+    //     return $link;
+    // }
+    // return false;
 }
 function getTimeId($time)
 {

@@ -16,8 +16,13 @@ Route::group(array('prefix' => $locale), function() {
         Route::get('/login', array('uses' => 'AdminController@login', 'as' => 'admin.login'));
         Route::post('/login', array('uses' => 'AdminController@doLogin'));
         Route::get('/logout', 'AdminController@logout');
-        Route::get('/config', 'AdminController@getConfig');
-        Route::post('/config', 'AdminController@updateConfig');
+        Route::get('/config', 'AdminConfigController@getConfig');
+        Route::post('/config', 'AdminConfigController@updateConfig');
+        Route::get('/slide', 'SlideController@index');
+        Route::get('/slide/create', 'SlideController@create');
+        Route::post('/slide/create', 'SlideController@store');
+        Route::get('/order', 'OrderController@index');
+        Route::get('/comment', 'CommentController@index');
     });
     
 });
