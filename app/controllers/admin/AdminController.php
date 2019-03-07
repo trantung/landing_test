@@ -2,7 +2,7 @@
 class AdminController extends BaseController {
     public function __construct() {
         $this->beforeFilter('admin', array('except'=>array('login','doLogin', 'logout', 'dashboard')));
-        $this->beforeFilter('user', array('only'=>array('dashboard')));
+        // $this->beforeFilter('user', array('only'=>array('dashboard')));
     }
     /**
      * Display a listing of the resource.
@@ -18,22 +18,22 @@ class AdminController extends BaseController {
     /**
      * Display list of GMO
      **/
-    public function gmoIndex(){
-        $input = Input::all();
-        $data = Admin::where('role_id', getRoleIdBySlug('gmo'))->orderBy('created_at', 'desc');
-        if( !empty($input['username']) ){
-            $data = $data->where('username', 'LIKE', '%'.$input['username'].'%');
-        }
-        if( !empty($input['full_name']) ){
-            $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
-        }
-        if( !empty($input['email']) ){
-            $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
-        }
+    // public function gmoIndex(){
+    //     $input = Input::all();
+    //     $data = Admin::where('role_id', getRoleIdBySlug('gmo'))->orderBy('created_at', 'desc');
+    //     if( !empty($input['username']) ){
+    //         $data = $data->where('username', 'LIKE', '%'.$input['username'].'%');
+    //     }
+    //     if( !empty($input['full_name']) ){
+    //         $data = $data->where('full_name', 'LIKE', '%'.$input['full_name'].'%');
+    //     }
+    //     if( !empty($input['email']) ){
+    //         $data = $data->where('email', 'LIKE', '%'.$input['email'].'%');
+    //     }
 
-        $data = $data->paginate(PAGINATE);
-        return View::make('administrator.index')->with(compact('data'));
-    }
+    //     $data = $data->paginate(PAGINATE);
+    //     return View::make('administrator.index')->with(compact('data'));
+    // }
 
 
     /**
@@ -50,14 +50,14 @@ class AdminController extends BaseController {
      *
      * @return Response
      */
-    public function store()
-    {
-        $input = Input::except('_token');
-        $input['password'] = Hash::make($input['password']);
-        $adminId = Admin::create($input)->id;
-        return Redirect::action('AdminController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
-            Người dùng đã được tạo!');
-    }
+    // public function store()
+    // {
+    //     $input = Input::except('_token');
+    //     $input['password'] = Hash::make($input['password']);
+    //     $adminId = Admin::create($input)->id;
+    //     return Redirect::action('AdminController@index')->with('message','<i class="fa fa-check-square-o fa-lg"></i> 
+    //         Người dùng đã được tạo!');
+    // }
     /**
      * Display the specified resource.
      *
@@ -74,11 +74,11 @@ class AdminController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
-    {
-        $admin = Admin::find($id);
-        return View::make('administrator.edit')->with(compact('admin'));
-    }
+    // public function edit($id)
+    // {
+    //     $admin = Admin::find($id);
+    //     return View::make('administrator.edit')->with(compact('admin'));
+    // }
     /**
      * Update the specified resource in storage.
      *
@@ -122,18 +122,8 @@ class AdminController extends BaseController {
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
-            $checkLogin = Auth::admin()->attempt($input, true);
-            if($checkLogin) {
-                return Redirect::action('AdminController@dashboard');
-            } else {
-                $checkLoginTeacher = Auth::teacher()->attempt($input, true);
-                if ($checkLoginTeacher) {
-                    // dd(111);
-                    return Redirect::action('PublishController@privateStudent');
-                } else {
-                    return Redirect::action('AdminController@login');
-                }
-            }
+            return Redirect::action('AdminController@dashboard');
+            
         }
 
     }
@@ -146,7 +136,7 @@ class AdminController extends BaseController {
     public function logout()
     {
         Auth::admin()->logout();
-        Auth::teacher()->logout();
+        // Auth::teacher()->logout();
         return Redirect::action('AdminController@login');
     }
 
@@ -200,7 +190,35 @@ class AdminController extends BaseController {
 
         return Redirect::action('AdminController@getAdd');
 
+    }
+
+    public function getConfig()
+    {
+        $input = Input::all();
+        $config = AdminConfig::find(1);
+        if ($config) {
+            return View::make('admin.config')->with(compact('config'));
+        }
+        $config = new AdminConfig;
+        return View::make('admin.config')->with(compact('config'));
+    }
+    public function updateConfig()
+    {
+        $input = Input::all();
+        $config = AdminConfig::find(1);
+        if ($config) {
+            $config->update($input);
+        }
+        else{
+            $id = AdminConfig::create($input)->id;
+            $config = AdminConfig::find($id);
+        }
+        $input['image_body'] = CommonUpload::uploadImage(UPLOADCONFIG, 'image_body', $config->image_body);
+        $config->update(['image_body' => $input['image_body']]);
+        return Redirect::action('AdminController@getConfig');
 
     }
+
+
 }
 

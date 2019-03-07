@@ -1,6 +1,4 @@
-
 @include('hung.header')
-
 <div class="layui-container">
 	<div class="layui-main">
 		<div class="swiper-container">
@@ -19,19 +17,19 @@
 		</div>
 		<div class="layui-product-info">
 			<div class="layui-product-meta">
-				<h1 class="layui-product-name">Wax vuốt đổi màu tóc cao cấp từ Nhật Bản</h1>
-				<div class="layui-product-price"> <span class="sale-price"> 250.000đ</span>
-					<span class="market-price"> <del>416.700đ</del> </span>
-					<span class="vip-discount"> <span>Giảm 40%</span> </span> 
+				<h1 class="layui-product-name">{{$config->text_header}}</h1>
+				<div class="layui-product-price"> <span class="sale-price"> {{$config->sale_price_header}}</span>
+					<span class="market-price"> <del>{{$config->price_header}}</del> </span>
+					<span class="vip-discount"> <span>{{$config->promotion_price_header}}</span> </span> 
 				</div>
 			</div>
 			<div class="layui-buy">
-				<button class="layui-btn layui-btn-danger now_buy">Gía đặc biệt từ <b>250000đ</b> <strong>Mua ngay</strong></button>
+				<button class="layui-btn layui-btn-danger now_buy"><strong>{{$config->text_header_common}}</strong></button>
 			</div>
 			<hr>
 			<div class="layui-ship layui-row">
-				<div class="layui-col-xs9">Miễn phí vận chuyển,xuất hàng sau 1 ngày</div>
-				<div class="layui-col-xs3">Số lượng ưu đãi:65465</div>
+				<div class="layui-col-xs9">{{$config->text_fee_transfer}}</div>
+				<div class="layui-col-xs3">Số lượng ưu đãi:{{$config->text_promotion_number}}</div>
 			</div>
 		</div>
 		<div class="layui-line"></div>
@@ -52,16 +50,16 @@
 		<div class="layui-product-info">
 
 			<div class="layui-product-size">
-				<div class="layui-product-size-title">
+				<!-- <div class="layui-product-size-title">
 					<b>Qui cách</b> 
 				</div>
 				<div class="layui-product-size-list">
 					<span>Đỏ</span><span>Tím</span><span>Khói</span><span>Vàng</span><span>Bạc</span>         
-				</div>
+				</div> -->
 			</div>                        
 			<div class="layui-product-size">
-				<div class="layui-product-size-title"> <b>Chi tiết sản phẩm</b> </div>
-				<div class="layui-product-images/hung/images"> <img src="images/hung/images/content.jpg" alt="" /> </div>
+				<!-- <div class="layui-product-size-title"> <b>Chi tiết sản phẩm</b> </div> -->
+				<div class="layui-product-images/hung/images"> <img src="{{ !empty($config->image_body) ? url($config->image_body) : NO_IMG }}" alt="" /> </div>
 				<div class="layui-row">
 					<table class="layui-table">
 						<colgroup>
@@ -71,22 +69,25 @@
 						<tbody>
 							<tr>
 								<td>Phương thức phát hàng</td>
-								<td>Phát hàng đến tận nơi</td>
+								<td>{{$config->kind_pay}}</td>
 							</tr>
 							<tr>
 								<td>Phí vận chuyển</td>
-								<td>Miễn phí vận chuyển</td>
+								<td>{{$config->fee_transfer}}</td>
+
 							</tr>
 							<tr>
 								<td>Thời gian phát hàng</td>
-								<td>Đơn hàng sau khi xác nhận, 1 ngày sau sẽ được xuất hàng.</td>
+								<td>{{$config->time_export}}</td>
+
 							</tr>
 							<tr>
 								<td>Thời gian giao hàng</td>
-								<td>Sau khi xuất hàng, cần 1-3 ngày vận chuyển, để nắm rõ thời gian giao hàng, có thể theo dõi chi tiết thời gian và hành trình đơn hàng thông qua mã đơn hàng</td>
+								<td>{{$config->time_transfer}}</td>
 							</tr>
 							<tr>
 								<td>Bộ phận bảo hành</td>
+								<td>{{$config->quanity}}</td>
 								<td>Trong 30 ngày có thể trả hàng, yên tâm mua sắm. Trong 30 ngày nếu sản phẩm đảm bảo còn mới, nguyên hộp bao bì, có thể liên hệ báo trả hàng. Cũng có thể liên lạc với bộ phận bảo hành qua mail :wax.support@ionlinei.com. Với các sản phẩm là đồ dùng cá nhân và mĩ phẩm, sau khi bóc hàng sẽ ảnh hưởng đến việc chuyển hoàn sản phẩm.</td>
 							</tr>
 						</tbody>

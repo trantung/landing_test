@@ -7,6 +7,7 @@ define('SALE', 'sale');
 define('TEACHER', 'teacher');
 define('UPLOADTEACHER', '/teacher');
 define('UPLOADSTUDENT', '/student');
+define('UPLOADCONFIG', '/config');
 
 define('PAGINATE',20);
 

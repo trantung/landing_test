@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableStopSchedule extends Migration {
+class CommentOrderTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,12 @@ class CreateTableStopSchedule extends Migration {
 	 */
 	public function up()
     {
-        Schema::create('stop_schedules', function(Blueprint $table) {
+        Schema::create('comment_orders', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id')->nullable();
-            $table->integer('teacher_id')->nullable();
-            $table->integer('admin_id')->nullable();
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
             $table->integer('status')->nullable();
+            $table->string('time', 255)->nullable();
+            $table->string('name', 255)->nullable();
+            $table->string('comment', 255)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,7 +30,6 @@ class CreateTableStopSchedule extends Migration {
      */
     public function down()
     {
-        Schema::drop('stop_schedules');
+        Schema::dropIfExists('comment_orders');
     }
-
 }

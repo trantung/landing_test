@@ -47,32 +47,37 @@ Route::filter('auth', function()
         }
     }
 });
-
 Route::filter('admin', function()
 {
-    $user = currentUser();
-    if( !$user ){
-        return Redirect::action('AdminController@login');
+    if (Auth::admin()->guest()){
+        return Redirect::route('admin.login');
     }
-    // dd($user);
-    if( !hasRole('admin', $user) ){
-        $route = Route::getCurrentRoute()->getActionName();
-        $checkPermission = false;
-        foreach (getAllPermissions() as $permission => $value) {
-            if( userAccess($permission, $user) && in_array($route, $value['accept']) ){
-                $checkPermission = $value['accept'];
-                if( !empty($value['callback_function']) && function_exists($value['callback_function']) ){
-                    call_user_func($value['callback_function']);
-                }
-                break;
-            }
-        }
-        if( !$checkPermission ){
-            App::abort(403);
-        }
-    } 
-
 });
+// Route::filter('admin', function()
+// {
+//     $user = currentUser();
+//     if( !$user ){
+//         return Redirect::action('AdminController@login');
+//     }
+//     // dd($user);
+//     if( !hasRole('admin', $user) ){
+//         $route = Route::getCurrentRoute()->getActionName();
+//         $checkPermission = false;
+//         foreach (getAllPermissions() as $permission => $value) {
+//             if( userAccess($permission, $user) && in_array($route, $value['accept']) ){
+//                 $checkPermission = $value['accept'];
+//                 if( !empty($value['callback_function']) && function_exists($value['callback_function']) ){
+//                     call_user_func($value['callback_function']);
+//                 }
+//                 break;
+//             }
+//         }
+//         if( !$checkPermission ){
+//             App::abort(403);
+//         }
+//     } 
+
+// });
 
 Route::filter('user', function()
 {

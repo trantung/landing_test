@@ -9,7 +9,12 @@ class LandingController extends Controller {
 	 */
 	public function index()
 	{
-		return View::make('hung.index');
+		$config = AdminConfig::find(1);
+        if ($config) {
+            return View::make('hung.index')->with(compact('config'));
+        }
+        $config = new AdminConfig;
+        return View::make('hung.index')->with(compact('config'));
 	}
 
 }

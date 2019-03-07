@@ -3,18 +3,19 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoleTable extends Migration {
+class SlideTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
     {
-        Schema::create('roles', function(Blueprint $table) {
+        Schema::create('slides', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 255)->nullable();
+            $table->integer('status')->nullable();
+            $table->string('image_url', 255)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -27,7 +28,7 @@ class CreateRoleTable extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('slides');
     }
 
 }

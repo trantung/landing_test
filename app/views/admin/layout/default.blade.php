@@ -19,7 +19,6 @@
 
             <!-- Main content -->
             <section class="content">
-                @include('admin.common.message')
                 @yield('content')
             </section>
         </div>

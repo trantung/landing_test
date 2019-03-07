@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'schedule_1',
+			'database'  => 'hung',
 			'username'  => 'root',
 			'password'  => 'root',
 			// 'password'  => '4JAGVVLHYnKB7GtA',
