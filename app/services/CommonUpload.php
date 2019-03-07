@@ -8,7 +8,9 @@ class CommonUpload
 
 	public static function uploadImage($path, $inputName, $image = NULL)
 	{
+
 		$destinationPath = public_path().'/'.$path.'/';
+		dd($image);
 		if(Input::hasFile($inputName)){
 			$file = Input::file($inputName);
 			$filename = $file->getClientOriginalName();
