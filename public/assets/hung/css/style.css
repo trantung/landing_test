@@ -72,7 +72,17 @@ background: #ddd;
 }
 
 /* hết hiệu ứng slide*/
-
+.layui-right {
+    width: 49%;
+    display: inline-block;
+    float: left;
+    height: 43px;
+    line-height: 43px;
+    text-align: center;
+    background: #FF5722;
+    border-radius: 4px;
+    color: #fff;
+}
 .layui-btn-danger {
     background-color: #FF5722;
 }
@@ -335,11 +345,17 @@ p#sizetitle {
      font-size: 22px;
     overflow: hidden;
     background-color: #fff;
-    border-top: 1px solid #dcdcdc;
+    /*border-top: 1px solid #dcdcdc;*/
     display: flex;
 }
 .col-6 {
-    width: 50%;
+    width: 100%;
+    border-right: 1px solid #cccc;
+    text-align: center;
+    font-size: 15px;
+    background: #f7422f;
+    color: #fff;
+    border-radius: 4px;
 }
 
 .layui-col-xs8 {
@@ -360,8 +376,8 @@ p#sizetitle {
     top: -4px;
 }
 .layui-buy-footer #pri-num {
-    color: #f7422f;
-    padding-left: 10px;
+    /*color: #f7422f;*/
+    /*padding-left: 10px;*/
 }
 .layui-buy-footer #buy-next, .layui-buy-footer #buy, .layui-buy-footer #addCart {
     font-size: 24px;
