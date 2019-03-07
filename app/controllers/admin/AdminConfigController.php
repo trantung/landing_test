@@ -31,8 +31,9 @@ class AdminConfigController extends AdminController {
         //     $config = AdminConfig::find($id);
         // }
         $input['image_body'] = CommonUpload::uploadImage(UPLOADCONFIG, 'image_body', $config->image_body);
+        dd($input['image_body']);
         $config->update($input);
-        
+
         // dd($input['image_body']);
         // $config->update(['image_body' => $input['image_body']]);
         return Redirect::action('AdminConfigController@getConfig');
