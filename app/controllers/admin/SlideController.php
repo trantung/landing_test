@@ -12,7 +12,6 @@ class SlideController extends AdminController {
      */
     public function index()
     {
-        // dd(111);
         $data = Slide::paginate(20);
         return View::make('slide.index')->with(compact('data'));
     }
@@ -89,6 +88,9 @@ class SlideController extends AdminController {
     public function destroy($id)
     {
         //
+        $image = Slide::destroy($id);
+        return Redirect::action('SlideController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
+
     }
 
 

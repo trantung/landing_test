@@ -10,8 +10,9 @@ class LandingController extends Controller {
 	public function index()
 	{
 		$config = AdminConfig::find(1);
+		$slides = Slide::all();
         if ($config) {
-            return View::make('hung.index')->with(compact('config'));
+            return View::make('hung.index')->with(compact('config', 'slides'));
         }
         $config = new AdminConfig;
         return View::make('hung.index')->with(compact('config'));

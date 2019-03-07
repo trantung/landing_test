@@ -19,10 +19,9 @@
         <tr>
             <td>#{{ $key + 1 + ($data->getPerPage() * ($data->getCurrentPage() -1)) }}</td>
             <td>
-                <img src="{{ !empty($config->image_body) ? url($config->image_body) : NO_IMG }}" height="150px" width="auto"  />
+                <img src="{{ !empty($slide->image_url) ? url($slide->image_url) : NO_IMG }}" height="100px" width="100px"  />
             </td>
             <td>
-                {{ renderUrl('SlideController@edit', '<i class="glyphicon glyphicon-edit"></i>', [$slide->id], ['class' => 'btn btn-warning', 'title' => 'Sửa']) }}
                 {{ Form::open(array('method'=>'DELETE', 'action' => array('SlideController@destroy', $slide->id), 'style' => 'display: inline-block;')) }}
                     <button class="btn btn-danger" title="xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"><i class="glyphicon glyphicon-trash"></i></button>
                 {{ Form::close() }}

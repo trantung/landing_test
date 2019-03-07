@@ -18,9 +18,9 @@ Route::group(array('prefix' => $locale), function() {
         Route::get('/logout', 'AdminController@logout');
         Route::get('/config', 'AdminConfigController@getConfig');
         Route::post('/config', 'AdminConfigController@updateConfig');
-        Route::get('/slide', 'SlideController@index');
-        Route::get('/slide/create', 'SlideController@create');
-        Route::post('/slide/create', 'SlideController@store');
+        
+        Route::resource('/slide', 'SlideController');
+
         Route::get('/order', 'OrderController@index');
         Route::get('/comment', 'CommentController@index');
     });

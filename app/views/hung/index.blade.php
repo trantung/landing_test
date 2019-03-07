@@ -2,17 +2,14 @@
 <div class="layui-container">
 	<div class="layui-main">
 		<div class="swiper-container">
-			<div class="swiper-wrapper"> 
+			<div class="swiper-wrapper">
+				@foreach($slides as $slide) 
 				<div class="item">
 					<a class="swiper-slide" href="#">
-						<img src="images/hung/images/header-1.jpg" width="100%" height=""/>
+						<img src="{{ $slide->image_url }}" width="100%" height=""/>
 					</a>
 				</div>
-				<div class="item">
-					<a class="swiper-slide" href="#">
-						<img src="images/hung/images/header-2.jpg" width="100%" height=""/>
-					</a>
-				</div> 
+				@endforeach
 			</div>
 		</div>
 		<div class="layui-product-info">
