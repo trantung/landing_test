@@ -13,7 +13,7 @@ class CommonUpload
 		if(Input::hasFile($inputName)){
 			$file = Input::file($inputName);
 			$filename = $file->getClientOriginalName();
-			dd($filename);
+			dd($file);
 
 			$uploadSuccess = $file->move($destinationPath, $filename);
 			return $path.'/'.$filename;
