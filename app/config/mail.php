@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'pro30.emailserver.vn',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return array(
 	|
 	*/
 
-	'port' => 465,
+	'port' => 587,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'noreply@stayhomeenglish.com', 'name' => 'Stayhomeenglish'),
+	'from' => array('address' => 'trantunghn196@gmail.com', 'name' => 'trantung'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return array(
 	|
 	*/
 
-	'encryption' => 'ssl',
+	'encryption' => 'tls',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'noreply@stayhomeenglish.com',
+	'username' => 'vnmini122015@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'stayhome123',
+	'password' => 'tungyeuduong',
 
 	/*
 	|--------------------------------------------------------------------------

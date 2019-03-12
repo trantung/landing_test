@@ -76,7 +76,11 @@ $(document).ready(function () {
                     $('#sizetitle').html(id);
                     $('#product_name').html(tname_product);
                     $('#product_color').html(tcode_product);
-                    $('#pri-num span').html(Math.abs(parseInt(tprice))*fnum);                })
+                    // $('#pri-num span').html(Math.abs(parseInt(tprice))*fnum);  
+                    // console.log(html_price); 
+                    var html_price = '<span>' + Math.abs(parseInt(tprice))*fnum + '</span>VNĐ';
+                    $('#pri-num').html(html_price);                
+                })
             });
             $("#size2select > div").each(function(data){
                 $(this).bind("click",function (){
@@ -90,9 +94,14 @@ $(document).ready(function () {
                     $('input[name=number]').val(1);
                 }else{
                     fnum = Math.abs(parseInt(fnum)) - 1;
-                    price = $('input[name=price]').val();
+                    // price = $('input[name=price]').val();
+                    price = $(this).attr('data-price');
+
                     $('input[name=number]').val(fnum);
-                    $('#pri-num span').html(Math.abs(parseInt(price))*fnum);                }
+                    // $('#pri-num span').html(Math.abs(parseInt(price))*fnum);
+                    var html_price = '<span>' + Math.abs(parseInt(price))*fnum + '</span>VNĐ';
+                    $('#pri-num').html(html_price);                
+                }
             });
             $('.increase').click(function () {
                 if (Math.abs(parseInt(fnum)) < 1){
@@ -100,8 +109,13 @@ $(document).ready(function () {
                 }else{
                     fnum = Math.abs(parseInt(fnum)) + 1;
                     price = $('input[name=price]').val();
+                    // price = $(this).attr('data-price');
+                    console.log(price);
                     $('input[name=number]').val(fnum);
-                    $('#pri-num span').html(Math.abs(parseInt(price))*fnum);                }
+                    // $('#pri-num span').html(Math.abs(parseInt(price))*fnum);
+                    var html_price = '<span>' + Math.abs(parseInt(price))*fnum + '</span>VNĐ';
+                    $('#pri-num').html(html_price);             
+                }
             });
 
     $(".cpic").click(function(){

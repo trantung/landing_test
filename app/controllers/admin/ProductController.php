@@ -98,6 +98,15 @@ class ProductController extends AdminController {
         return Redirect::action('ProductController@index')->withMessage('<i class="fa fa-check-square-o fa-lg"></i> Xóa thành công!');
 
     }
-
+    public function ajax()
+    {
+        $input = Input::all();
+        $productId = $input['product_id'];
+        $product = Product::find($productId);
+        $output = [
+            'price' => $product->price,
+        ];
+        return Response::json($output);
+    }
 
 }

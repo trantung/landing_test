@@ -68,7 +68,15 @@ class OrderController extends Controller {
 
 		$money = $input['money_pay'];
 		//gui mail
-		
+		$detail = [
+            'orderCode' => $orderId,
+        ];
+		Mail::send('emails.email_student', $detail, function($message) use ($order, $detail){
+            // $message->from('noreply@stayhomeenglish.com', 'Site Admin');
+            $message->to('vinstoresvn@gmail.com')
+                ->subject('Thông báo có đơn hàng mới');
+        });
+
 		return View::make('hung.thong-bao')->with(compact('money', 'orderId'));
 	}
 	public function success()

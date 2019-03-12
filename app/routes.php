@@ -33,7 +33,7 @@ Route::group(array('prefix' => $locale), function() {
     });
     
 });
-
+Route::post('/ajax/product', 'ProductController@ajax');
 Route::controller('/ajax', 'AjaxController');
 Route::controller('/test', 'TestController');
 

@@ -203,7 +203,8 @@
 				</div>
 				<div class="layui-buy-footer layui-row">
 					<!-- <div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$product->price}}</span>VNĐ</div> -->
-					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>250000</span>VNĐ</div>
+					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>250000</span>VNĐ
+					</div>
 					<div class="col-6 mobile_hihe remove_a" style="margin-right: 4px;"><a href="https://www.facebook.com/Vinstores/">{{$config->text_footer_left}}</a> </div>
 					<div class="col-6" id="buy">
 						<input type="submit" value="Bước tiếp theo" lay-filter="nowBuy" lay-submit style="font-size: 15px;">
@@ -223,10 +224,22 @@
 	<script type="text/javascript">
 		function chooseProduct(product_id)
 		{
-			console.log(product_id);
-			var text = '<input id="color" type="hidden" name="product_id" value="'+product_id+'">';
-			$('#input-hidden').html(text);
-					
+			$.ajax({
+		        url: "/ajax/product",
+		        type: "post",
+		        data: {
+		        	product_id : product_id
+		        } ,
+		        success: function (data) {
+		        	console.log(data['price']);
+		           var text = '<input id="price" type="hidden" name="price" value="'+data['price']+'">' + '<input id="color" type="hidden" name="product_id" value="'+product_id+'">';
+					$('#input-hidden').html(text);                
+
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) {
+		           console.log(textStatus, errorThrown);
+		        }
+		    });
 		}
 
 	</script>
