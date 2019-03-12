@@ -13,6 +13,7 @@
             <input type="hidden" name="code" value="{{$product->code}}">
             <input type="hidden" name="color" value="{{$product->color}}">
             <input type="hidden" name="number" value="{{$number}}">
+            <input type="hidden" name="product_id" value="{{$product->id}}">
             
             <div class="safety-tips">
               <div class="safe"><i class="iconfont icon-safedun"></i></div>
@@ -197,8 +198,8 @@
       
         <div class="timetips layui-row">
           <ul>
-            <li class="layui-col-xs6"><img src="images/30day.png" alt="">Đổi trả hàng trong 30 ngày</li>
-            <li class="layui-col-xs6"><img src="images/huodao.png" alt="">Nhận hàng thanh toán</li>
+            <li class="layui-col-xs6"><img src="images/hung/images/30day.png" alt="">Đổi trả hàng trong 30 ngày</li>
+            <li class="layui-col-xs6"><img src="images/hung/images/huodao.png" alt="">Nhận hàng thanh toán</li>
           </ul>
         </div>
       </div>

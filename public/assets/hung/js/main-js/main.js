@@ -62,11 +62,20 @@ $(document).ready(function () {
                     $(this).addClass('active').siblings().removeClass("active");
                     var id=$(this).attr('data-field');
                     var tprice=$(this).attr('data-price');
+
+                    var tname_product=$(this).attr('data-product-name');
+                    var tcode_product=$(this).attr('data-product-code');
+
                     var img=$(this).attr('data-img');
                     $('input[name=size1]').val(id);
                     $('input[name=price]').val(tprice);
+                    // $('input[name=price]').val(tname_product);
+                    // $('input[name=price]').val(tcode_product);
+
                     $('#sizeimg').attr('src',img);
                     $('#sizetitle').html(id);
+                    $('#product_name').html(tname_product);
+                    $('#product_color').html(tcode_product);
                     $('#pri-num span').html(Math.abs(parseInt(tprice))*fnum);                })
             });
             $("#size2select > div").each(function(data){

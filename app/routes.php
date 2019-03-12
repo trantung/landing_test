@@ -2,7 +2,7 @@
 Route::get('/', 'LandingController@index');
 
 Route::post('/order','OrderController@order');
-Route::post('/success','OrderController@sucess');
+// Route::post('/success','OrderController@sucess');
 Route::resource('/dat-hang', 'OrderController');
 
 $locale = Request::segment(1);
@@ -32,7 +32,6 @@ Route::group(array('prefix' => $locale), function() {
     
 });
 
-
 Route::controller('/ajax', 'AjaxController');
 Route::controller('/test', 'TestController');
 
@@ -41,17 +40,4 @@ App::error( function(Exception $exception, $code){
     $pathInfo = Request::getPathInfo();
     $message = $exception->getMessage() ?: 'Exception';
     Log::error("$code - $message @ $pathInfo\r\n$exception");
-    switch ($code)
-    {
-        case 403:
-            return View::make('errors.404', array('code' => 403, 'message' => 'Quyền truy cập bị từ chối!'));
-
-        case 404:
-            return View::make('errors.404', array('code' => 404, 'message' => 'Trang không tìm thấy!'));
-
-        default:
-            if (Config::get('app.debug')) {
-                return;
-            }
-    }
 });

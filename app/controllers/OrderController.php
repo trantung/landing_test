@@ -37,11 +37,42 @@ class OrderController extends Controller {
 	public function order()
 	{
 		$input = Input::all();
-		dd($input);
-		//luu vao google sheet
+		$product_id = $input['product_id'];
+		$number = $input['number'];
+		$config = AdminConfig::find(1);
+		$numberConfig = $config->text_promotion_number;
+		$config->update(['text_promotion_number' => $numberConfig - $number]);
+		// //luu order
+		$order = [];
+		$order['money_pay'] = $input['money_pay'];
+		$order['status'] = 1;
+		$order['receiver_name'] = $input['fullname'];
+		$order['phone_name'] = $input['phone'];
+		$order['email'] = $input['email'];
+		$order['city'] = $input['city'];
+		$order['address'] = $input['detailed'];
+		$order['comment'] = $input['remark'];
+		$order['total_price'] = $input['total_price'];
+		$orderId = Order::create($order)->id;
+		//luu vao product_order
+
+		$data = [];
+		$product = Product::find($product_id);
+		$data['product_id'] = $product_id;
+		$data['order_id'] = $orderId;
+		$data['quantity'] = $input['number'];
+		$data['price'] = $product->price;
+		$data['total_price'] = $input['total_price'];
+		ProductOrder::create($data);
+
+		$money = $input['money_pay'];
+		//gui mail
+		
+		return View::make('hung.thong-bao')->with(compact('money', 'orderId'));
 	}
 	public function success()
 	{
-
+		// $money
+		return View::make('hung.thong-bao')->with(compact('money'));
 	}
 }

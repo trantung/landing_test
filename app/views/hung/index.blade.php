@@ -22,12 +22,11 @@
 			</div>
 			<div class="layui-buy">
 				<span class="layui-right" style="margin-right: 2%;">{{$config->text_header_common}}</span>
-				<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy">Mua ngay</button></spam>
+				<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy">{{$config->text_number_sale_off}}: {{$config->text_promotion_number}}</button></spam>
 			</div>
 			<hr>
 			<div class="layui-ship layui-row">
 				<div class="layui-col-xs9">{{$config->text_fee_transfer}}</div>
-				<div class="layui-col-xs3">Số lượng ưu đãi:{{$config->text_promotion_number}}</div>
 			</div>
 		</div>
 		<div class="layui-line"></div>
@@ -36,12 +35,12 @@
 			<div class="layui-col-xs2"> <a class="layui-circle layui-inline line" href="" target="_blank"></a> </div>
 
 			<div class="layui-col-xs2"> 
-				<a class="layui-circle layui-inline facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://wax.ionlinei.com&t=Wax vuốt đổi màu tóc cao cấp từ Nhật Bản&shaer=fb" target="_blank"></a>
+				<a class="layui-circle layui-inline facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/Vinstores/&t=Wax vuốt đổi màu tóc cao cấp từ Nhật Bản&shaer=fb" target="_blank"></a>
 			</div>
 			<div class="layui-col-xs8 sharer_fb "> 
-				<div class="fb-send" data-href="http://wax.ionlinei.com"></div>
-				<div class="fb-like" data-href="http://wax.ionlinei.com" data-layout="button_count" data-action="like" data-show-faces="true"></div>
-				<div class="fb-share-button" data-href="http://wax.ionlinei.com" data-layout="button_count"></div> 
+				<div class="fb-send" data-href="https://www.facebook.com/Vinstores/"></div>
+				<div class="fb-like" data-href="https://www.facebook.com/Vinstores/" data-layout="button_count" data-action="like" data-show-faces="true"></div>
+				<div class="fb-share-button" data-href="https://www.facebook.com/Vinstores/" data-layout="button_count"></div> 
 			</div>
 		</div>
 		<div class="layui-line"></div>
@@ -162,8 +161,8 @@
 						<img src="{{ $productFirst->image_url}}" id="sizeimg"/>
 					</div>
 					<div class="layui-col-xs8 layui-name">
-						<p>{{$productFirst->text}}</p>
-						<p>{{$productFirst->code}}</p>
+						<p id="product_name">{{$productFirst->text}}</p>
+						<p id="product_color">{{$productFirst->code}}</p>
 						<p class="layui-text-red" id="sizetitle">{{$productFirst->color}}</p>
 					</div>
 					@endif
@@ -178,8 +177,8 @@
 							</div>
 							<div class="layui-product-size-list layui-row layui-col-space5" id="sizeselect">
 								@foreach($products as $product)
-								<div class="layui-size layui-col-xs3 active" data-field="{{$product->color}}" data-price="{{$product->price}}" data-img="{{ $product->image_url}}">
-									<div class="layui-elip"><img src="{{ $product->image_url}}" width="100%"> 
+								<div class="layui-size layui-col-xs3 active choose" data-field="{{$product->color}}" data-price="{{$product->price}}" data-product-name="{{$product->text}}" data-product-code="{{$product->code}}" data-img="{{ $product->image_url}}">
+									<div class="layui-elip" onclick="chooseProduct({{$product->id}})"><img src="{{ $product->image_url}}" width="100%"> 
 									</div>
 								</div>
 								@endforeach
@@ -198,16 +197,17 @@
 					</div>
 				</div>
 
-				<div id="input-hidden">
-					<input id="color" type="hidden" name="product_id" value="{{$product->id}}">
-					<input type="hidden" name="price" value="{{$product->price}}">
+				<div id="input-hidden" class="choose-product">
+					<!-- <input id="color" type="hidden" name="product_id" value="{{$product->id}}">
+					<input type="hidden" name="price" value="{{$product->price}}"> -->
 				</div>
 				<div class="layui-buy-footer layui-row">
-					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$product->price}}</span>VNĐ</div>
-					<div class="col-6 mobile_hihe" style="margin-right: 4px;"><a href="">Nhắn tin</a> </div>
+					<!-- <div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$product->price}}</span>VNĐ</div> -->
+					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>250000</span>VNĐ</div>
+					<div class="col-6 mobile_hihe" style="margin-right: 4px;"><a href="https://www.facebook.com/Vinstores/">{{$config->text_footer_left}}</a> </div>
 					<div class="col-6" id="buy">
 						<input type="submit" value="Bước tiếp theo" lay-filter="nowBuy" lay-submit style="font-size: 15px;">
-						<!-- <a id="sba" href="http://localhost/ionlinei.com/dat-hang.php?n=<?php //echo 8 ;?>& color= <?php //echo 'xanh' ; ?> ">Bước tiếp theo</a> -->
+						
 					</div>
 				</div>
 			{{Form::close()}}
@@ -220,7 +220,16 @@
 			<script async defer src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2"></script>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function chooseProduct(product_id)
+		{
+			console.log(product_id);
+			var text = '<input id="color" type="hidden" name="product_id" value="'+product_id+'">';
+			$('#input-hidden').html(text);
+					
+		}
 
+	</script>
 
 @include('hung.footer')
 

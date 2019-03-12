@@ -41,9 +41,14 @@
                                     {{  Form::text('text_fee_transfer', $config->text_fee_transfer, array('class' => 'form-control' )) }}
                                 </div>
                                 <div class="form-group">
+                                    <label>Text số lượng ưu đãi <span class="text-warning"></span></label>
+                                    {{  Form::text('text_number_sale_off', $config->text_number_sale_off, array('class' => 'form-control' )) }}
+                                </div>
+                                <div class="form-group">
                                     <label>Số lượng ưu đãi <span class="text-warning"></span></label>
                                     {{  Form::text('text_promotion_number', $config->text_promotion_number, array('class' => 'form-control' )) }}
                                 </div>
+
                                 <div class="form-group">
                                     <label>Phương thức phát hàng <span class="text-warning"></span></label>
                                     {{  Form::text('kind_pay', $config->kind_pay, array('class' => 'form-control' )) }}
