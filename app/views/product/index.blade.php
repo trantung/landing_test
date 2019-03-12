@@ -38,6 +38,7 @@
                 <img src="{{ !empty($product->image_url) ? url($product->image_url) : NO_IMG }}" height="100px" width="100px"  />
             </td>
             <td>
+                {{ renderUrl('ProductController@edit', 'Sửa', [$product->id], ['class' => 'btn btn-warning']) }}
                 {{ Form::open(array('method'=>'DELETE', 'action' => array('ProductController@destroy', $product->id), 'style' => 'display: inline-block;')) }}
                     <button class="btn btn-danger" title="xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"><i class="glyphicon glyphicon-trash"></i></button>
                 {{ Form::close() }}

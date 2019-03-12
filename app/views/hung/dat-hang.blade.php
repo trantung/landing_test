@@ -174,6 +174,7 @@
           <div class="cartOrder">
             <h2 id="allmoney">Giá đơn hàng<span> <?php echo  format_price($total_price, 'VNĐ'); ?> </span></h2>
             <ul class="checkout-money" style="overflow: hidden;">
+              <li class="item-money">{{$config->text_discount_payment}} <span>{{$discount->percent}}%</span></li>
               <li class="item-money">Tổng tiền <span><?php echo  format_price($money_pay, 'VNĐ'); ?></span></li>
               <li class="item-money" id="yf">Phí vận chuyển <span>Miễn phí vận chuyển</span></li>
             </ul>

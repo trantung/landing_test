@@ -74,6 +74,9 @@
                                 <div class="form-group">
                                     <label>footer right <span class="text-warning"></span></label>{{  Form::text('text_footer_right', $config->text_footer_right, array('class' => 'form-control')) }}
                                 </div>
+                                <div class="form-group">
+                                    <label>Text discount <span class="text-warning"></span></label>{{  Form::text('text_discount_payment', $config->text_discount_payment, array('class' => 'form-control')) }}
+                                </div>
 
                                 <label>Ảnh content</label>
                                     <input type="file" name="image_body" class="form-control"><br>

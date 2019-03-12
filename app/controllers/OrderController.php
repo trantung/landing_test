@@ -32,7 +32,8 @@ class OrderController extends Controller {
 		$product = Product::find($input['product_id']);
 		$number = $input['number'];
 		$discount = Discount::find(1);
-		return View::make('hung.dat-hang')->with(compact('product','number', 'discount'));
+		$config = AdminConfig::find(1);
+		return View::make('hung.dat-hang')->with(compact('product','number', 'discount','config'));
 	}
 	public function order()
 	{

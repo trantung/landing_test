@@ -23,4 +23,17 @@ class ProductOrder extends Eloquent {
 	);
     protected $dates = ['deleted_at'];
 
+    public static function getNameProductByOrder($orderId)
+    {
+    	$listProduct = ProductOrder::where('order_id', $orderId)->get();
+    	$productName = '';
+    	foreach ($listProduct as $key => $value) {
+    		$product = Product::find($value->id);
+    		if ($product) {
+    			$productName .= $product->text . '+'. $product->color . ' ,';
+    		}
+    		
+    	}
+    	return $productName;
+    }
 }

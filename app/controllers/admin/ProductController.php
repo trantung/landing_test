@@ -63,7 +63,8 @@ class ProductController extends AdminController {
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return View::make('product.edit')->with(compact('product'));
     }
 
 
@@ -75,7 +76,12 @@ class ProductController extends AdminController {
      */
     public function update($id)
     {
-        //
+        $input = Input::all();
+        // dd($input);
+        $product = Product::find($id);
+        $input['image_url'] = CommonUpload::uploadImage(UPLOADPRODUCT, 'image_url', $product->image_url);
+        $product->update($input);
+        return Redirect::action('ProductController@index');
     }
 
 

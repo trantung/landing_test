@@ -23,4 +23,20 @@ class Order extends Eloquent {
 	);
     protected $dates = ['deleted_at'];
 
+    public static function getValueByOrderId($orderId, $value)
+    {
+    	$order = Order::find($orderId);
+    	if ($order) {
+    		return $order->$value;
+    	}
+    	return null;
+    }
+    // public static function getTotalMoney($orderId)
+    // {
+
+    // 	$order = Order::find($orderId);
+    // 	if ($order) {
+    // 		return $order->total_price;
+    // 	}
+    // }
 }
