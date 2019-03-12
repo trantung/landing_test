@@ -144,7 +144,7 @@
 				</div>
 				<div class="layui-footer layui-product-footer">
 					<div class="layui-buy">
-						<span class="layui-right" style="margin-right: 2%;">{{$config->text_footer_left}}</span>
+						<a href="https://www.facebook.com/Vinstores/"><span class="layui-right" style="margin-right: 2%;">{{$config->text_footer_left}}</span></a>
 						<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy">{{$config->text_footer_right}}</button></spam>
 					</div>
 				</div>
@@ -204,7 +204,7 @@
 				<div class="layui-buy-footer layui-row">
 					<!-- <div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$product->price}}</span>VNĐ</div> -->
 					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>250000</span>VNĐ</div>
-					<div class="col-6 mobile_hihe" style="margin-right: 4px;"><a href="https://www.facebook.com/Vinstores/">{{$config->text_footer_left}}</a> </div>
+					<div class="col-6 mobile_hihe remove_a" style="margin-right: 4px;"><a href="https://www.facebook.com/Vinstores/">{{$config->text_footer_left}}</a> </div>
 					<div class="col-6" id="buy">
 						<input type="submit" value="Bước tiếp theo" lay-filter="nowBuy" lay-submit style="font-size: 15px;">
 						

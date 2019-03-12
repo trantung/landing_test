@@ -722,3 +722,7 @@ ul.pay_list {
         max-width: 100%;
     }
 }
+.remove_a a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
