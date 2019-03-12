@@ -27,6 +27,8 @@ Route::group(array('prefix' => $locale), function() {
         Route::resource('/comment', 'CommentController');
         Route::resource('/comment_order', 'CommentOrderController');
         Route::resource('/product', 'ProductController');
+        Route::resource('/order', 'AdminOrderController');
+        Route::resource('/discount', 'AdminDiscountController');
 
     });
     

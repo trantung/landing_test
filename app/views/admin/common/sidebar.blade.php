@@ -26,6 +26,17 @@
                     <i class="fa fa-unlock-alt"></i> <span>Product</span>
                 </a>
             </li>
+            <li>
+                <a href="{{ action('AdminOrderController@index') }}">
+                    <i class="fa fa-unlock-alt"></i> <span>Order</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ action('AdminDiscountController@index') }}">
+                    <i class="fa fa-unlock-alt"></i> <span>Discount</span>
+                </a>
+            </li>
+
 
         </ul>
     </section>
