@@ -133,7 +133,7 @@
             </div>
           </div>
           <div class="cartItems">
-            <h2>Chi tiết đơn hàng</h2>
+            <h2 style="font-weight: bold">Chi tiết đơn hàng</h2>
             <ul>
               <li class="list-item">
                 <div class="item-inner" style="overflow:hidden;">
