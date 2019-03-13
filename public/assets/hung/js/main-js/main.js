@@ -121,7 +121,8 @@ $(document).ready(function () {
                     console.log(price);
                     $('input[name="number"]').val(fnum);
                     // $('#pri-num span').html(Math.abs(parseInt(price))*fnum);
-                    var html_price = '<span>' + Math.abs(parseInt(price))*fnum + '</span>VNĐ';
+                    var tong = Math.abs(parseInt(price))*fnum;
+                    var html_price = '<span>' + tong + '</span>VNĐ';
                     $('#pri-num').html(html_price);             
                 }
             });
