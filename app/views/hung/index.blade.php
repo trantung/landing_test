@@ -239,44 +239,7 @@
 		           var text = '<input id="price" type="hidden" name="price" value="'+data['price']+'">' + '<input id="color" type="hidden" name="product_id" value="'+product_id+'">'+
 		           '<input type="hidden" name="price_first" value="'+data['price']+'">'
 		           ;
-					$('#input-hidden').html(text); 
-					$('.decrease').click(function () {
-                if (Math.abs(parseInt(fnum)) <= 1){
-                    $('input[name="number"]').val(1);
-                }else{
-                    fnum = Math.abs(parseInt(fnum)) - 1;
-                    // price = $('input[name=price]').val();
-                    if (typeof $('input[name=price]').val() === "undefined") {
-                        var price = $('input[name=price_first]').val();
-                    } else{
-                        var price = $('input[name=price]').val();
-                    }
-                    $('input[name="number"]').val(fnum);
-                    // $('#pri-num span').html(Math.abs(parseInt(price))*fnum);
-                    var html_price = '<span>' + Math.abs(parseInt(price))*fnum + '</span>VNĐ';
-                    $('#pri-num').html(html_price);
-                                    
-                }
-            });
-            $('.increase').click(function () {
-                if (Math.abs(parseInt(fnum)) < 1){
-                    $('input[name="number"]').val(1);
-                }else{
-                    fnum = Math.abs(parseInt(fnum)) + 1;
-                    if (typeof $('input[name=price]').val() === "undefined") {
-                        var price = $('input[name=price_first]').val();
-                    } else{
-                        var price = $('input[name=price]').val();
-                    }
-                    // price = $(this).attr('data-price');
-                    console.log(price);
-                    $('input[name="number"]').val(fnum);
-                    // $('#pri-num span').html(Math.abs(parseInt(price))*fnum);
-                    var tong = Math.abs(parseInt(price))*fnum;
-                    var html_price = '<span>' + tong + '</span>VNĐ';
-                    $('#pri-num').html(html_price);             
-                }
-            });               
+					$('#input-hidden').html(text);               
 
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) {
