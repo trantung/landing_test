@@ -29,7 +29,12 @@ class OrderController extends Controller {
 	public function store()
 	{
 		$input = Input::all();
-		$product = Product::find($input['product_id']);
+		if (!isset($input['product_id'])) {
+			$productId = $input['product_id_first'];
+		} else {
+			$productId = $input['product_id'];
+		}
+		$product = Product::find($productId);
 		$number = $input['number'];
 		$discount = Discount::find(1);
 		$config = AdminConfig::find(1);

@@ -228,6 +228,7 @@ class AjaxController extends \BaseController {
         $product = Product::find($productId);
         $output = [
             'price' => $product->price,
+            'product_id' => $product->id,
         ];
         return Response::json($output);
     }

@@ -127,7 +127,7 @@
             <br />
           </div>
           <div class="cartLogistics">
-            <h2>Phương thức thanh toán</h2>
+            <h2 style="font-weight: bold">Phương thức thanh toán</h2>
             <div class="layui-form-item">
               <label class="layui-form-label" style="width: auto;">Nhận hàng thanh toán</label>
             </div>
