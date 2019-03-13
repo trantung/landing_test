@@ -56,7 +56,7 @@ $(document).ready(function () {
         $('#apprDialog').addClass('layui-hide');
     });
 
-    var fnum = $('input[name=number]').val();
+    var fnum = $('input[name="number"]').val();
     $("#sizeselect > div").each(function(data){
                 $(this).bind("click",function (){
                     $(this).addClass('active').siblings().removeClass("active");
