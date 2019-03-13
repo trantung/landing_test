@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
 // click hiện  chọn sản phẩm số lượng 
 
-    $('.layui-btn').click(function(){
+    $('.layui-btn2').click(function(){
         $('.layui-product-buy').removeClass('layui-hide');
         $('body').addClass('buy-active');
 
@@ -95,12 +95,16 @@ $(document).ready(function () {
                 }else{
                     fnum = Math.abs(parseInt(fnum)) - 1;
                     // price = $('input[name=price]').val();
-                    price = $(this).attr('data-price');
-
+                    if ($('input[name=price]').val()) {
+                        price = $('input[name=price]').val();
+                    } else{
+                        price = $('input[name=price_first]').val();
+                    }
                     $('input[name=number]').val(fnum);
                     // $('#pri-num span').html(Math.abs(parseInt(price))*fnum);
                     var html_price = '<span>' + Math.abs(parseInt(price))*fnum + '</span>VNĐ';
-                    $('#pri-num').html(html_price);                
+                    $('#pri-num').html(html_price);
+                                    
                 }
             });
             $('.increase').click(function () {
@@ -108,7 +112,11 @@ $(document).ready(function () {
                     $('input[name=number]').val(1);
                 }else{
                     fnum = Math.abs(parseInt(fnum)) + 1;
-                    price = $('input[name=price]').val();
+                    if ($('input[name=price]').val()) {
+                        price = $('input[name=price]').val();
+                    } else{
+                        price = $('input[name=price_first]').val();
+                    }
                     // price = $(this).attr('data-price');
                     console.log(price);
                     $('input[name=number]').val(fnum);
