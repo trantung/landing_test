@@ -238,7 +238,7 @@
 		        	$('#remove_product').remove();
 		        	// $('#number_default').remove();
 		        	// $('#number_default').val() = 1;
-		        	$('input[name="number"]').val(1);
+		        	// $('input[name="number"]').val(1);
 		        	var test = $('input[name="number"]').val();
 		        	console.log(test);
 		           var text = '<input id="price" type="hidden" name="price" value="'+data['price']+'">' + '<input id="color" type="hidden" name="product_id" value="'+product_id+'">'+
