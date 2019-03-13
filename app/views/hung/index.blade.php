@@ -203,7 +203,7 @@
 					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$productFirst->price}}</span>VNĐ
 					</div>
 					<div id="remove_product">
-					<input type="hidden" name="price_first" value="{{$productFirst->price}}">
+					<input type="hidden" id="price_first" name="price_first" value="{{$productFirst->price}}">
 					</div>
 					<div class="col-6 mobile_hihe remove_a" style="margin-right: 4px;"><a href="https://www.facebook.com/Vinstores/">{{$config->text_footer_left}}</a> </div>
 					<div class="col-6" id="buy">
@@ -231,13 +231,13 @@
 		        	product_id : product_id
 		        } ,
 		        success: function (data) {
-		        	console.log(data['price']);
+		        	console.log(data);
 		        	$('#remove_product').remove();
 		        	// $('#number_default').remove();
 		        	// $('#number_default').val() = 1;
 		        	// $('input[name="number"]').val(1);
 		           var text = '<input id="price" type="hidden" name="price" value="'+data['price']+'">' + '<input id="color" type="hidden" name="product_id" value="'+product_id+'">'+
-		           '<input type="hidden" name="price_first" value="'+data['price']+'">'
+		           '<input type="hidden" id="price_first" name="price_first" value="'+data['price']+'">'
 		           ;
 					$('#input-hidden').html(text);               
 

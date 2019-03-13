@@ -221,4 +221,14 @@ class AjaxController extends \BaseController {
     {
 
     }
+    public function ajaxProduct()
+    {
+        $input = Input::all();
+        $productId = $input['product_id'];
+        $product = Product::find($productId);
+        $output = [
+            'price' => $product->price,
+        ];
+        return Response::json($output);
+    }
 }

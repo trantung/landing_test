@@ -96,9 +96,9 @@ $(document).ready(function () {
                     fnum = Math.abs(parseInt(fnum)) - 1;
                     // price = $('input[name=price]').val();
                     if (typeof $('input[name=price]').val() === "undefined") {
-                        var price = $('input[name=price_first]').val();
+                        var price = $('#price_first').val();
                     } else{
-                        var price = $('input[name=price]').val();
+                        var price = $('#price').val();
                     }
                     $('input[name="number"]').val(fnum);
                     // $('#pri-num span').html(Math.abs(parseInt(price))*fnum);
@@ -113,9 +113,9 @@ $(document).ready(function () {
                 }else{
                     fnum = Math.abs(parseInt(fnum)) + 1;
                     if (typeof $('input[name=price]').val() === "undefined") {
-                        var price = $('input[name=price_first]').val();
+                        var price = $('#price_first').val();
                     } else{
-                        var price = $('input[name=price]').val();
+                        var price = $('#price').val();
                     }
                     // price = $(this).attr('data-price');
                     console.log(price);

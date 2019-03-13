@@ -100,13 +100,13 @@ class ProductController extends AdminController {
     }
     public function ajax()
     {
-        $input = Input::all();
-        $productId = $input['product_id'];
-        $product = Product::find($productId);
-        $output = [
-            'price' => $product->price,
-        ];
-        return Response::json($output);
+        // $input = Input::all();
+        // $productId = $input['product_id'];
+        // $product = Product::find($productId);
+        // $output = [
+        //     'price' => $product->price,
+        // ];
+        // return Response::json($output);
     }
 
 }
