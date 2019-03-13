@@ -198,11 +198,8 @@
 				</div>
 
 				<div id="input-hidden" class="choose-product">
-					<!-- <input id="color" type="hidden" name="product_id" value="{{$product->id}}">
-					<input type="hidden" name="price" value="{{$product->price}}"> -->
 				</div>
 				<div class="layui-buy-footer layui-row">
-					<!-- <div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$product->price}}</span>VNĐ</div> -->
 					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$productFirst->price}}</span>VNĐ
 					</div>
 					<div id="remove_product">
