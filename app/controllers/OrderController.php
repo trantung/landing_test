@@ -37,6 +37,7 @@ class OrderController extends Controller {
 	}
 	public function order()
 	{
+		$config = AdminConfig::find(1);
 		$input = Input::all();
 		$product_id = $input['product_id'];
 		$number = $input['number'];
@@ -71,13 +72,13 @@ class OrderController extends Controller {
 		$detail = [
             'orderCode' => $orderId,
         ];
-		Mail::send('emails.email_student', $detail, function($message) use ($order, $detail){
-            // $message->from('noreply@stayhomeenglish.com', 'Site Admin');
-            $message->to('vinstoresvn@gmail.com')
-                ->subject('Thông báo có đơn hàng mới');
-        });
+		// Mail::send('emails.email_student', $detail, function($message) use ($order, $detail){
+  //           // $message->from('noreply@stayhomeenglish.com', 'Site Admin');
+  //           $message->to('vinstoresvn@gmail.com')
+  //               ->subject('Thông báo có đơn hàng mới');
+  //       });
 
-		return View::make('hung.thong-bao')->with(compact('money', 'orderId'));
+		return View::make('hung.thong-bao')->with(compact('money', 'orderId', 'config'));
 	}
 	public function success()
 	{

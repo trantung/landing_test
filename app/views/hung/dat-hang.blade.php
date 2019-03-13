@@ -160,9 +160,17 @@
                            // $color = 'xanh';
                            // $gia = 250000;
                            $total_price =  $number*$product->price;
-                           $percent = $discount->percent;
-                           $money_discount = $total_price * $percent/100;
-                           $money_pay =  $total_price - $money_discount;
+                           $discount_number = $discount->number;
+                           if ($number >= $discount_number) {
+                            $percent = $discount->percent;
+                            $money_discount = $total_price * $percent/100;
+                            $money_pay =  $total_price - $money_discount;
+                           } else {
+                            $money_discount = 0;
+                            $money_pay =  $total_price;
+                            $percent = 0;
+                           }
+                           
                       ?>
                     <p class="size">{{ $product->color }}-</p>
                     <p class="price">{{$product->price}} x {{$number}}　VNĐ</p>
@@ -174,7 +182,7 @@
           <div class="cartOrder">
             <h2 id="allmoney">Giá đơn hàng<span> <?php echo  format_price($total_price, 'VNĐ'); ?> </span></h2>
             <ul class="checkout-money" style="overflow: hidden;">
-              <li class="item-money">{{$config->text_discount_payment}} <span>{{$discount->percent}}%</span></li>
+              <li class="item-money">{{$config->text_discount_payment}} <span>{{$percent}}%</span></li>
               <li class="item-money">Tổng tiền <span><?php echo  format_price($money_pay, 'VNĐ'); ?></span></li>
               <li class="item-money" id="yf">Phí vận chuyển <span>Miễn phí vận chuyển</span></li>
             </ul>
@@ -199,8 +207,7 @@
       
         <div class="timetips layui-row">
           <ul>
-            <li class="layui-col-xs6"><img src="images/hung/images/30day.png" alt="">Đổi trả hàng trong 30 ngày</li>
-            <li class="layui-col-xs6"><img src="images/hung/images/huodao.png" alt="">Nhận hàng thanh toán</li>
+            <li style="text-align: center; width:100%; color: #000000">{{$config->text_footer_order}}</li>
           </ul>
         </div>
       </div>

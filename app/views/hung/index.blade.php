@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<div class="layui-buy">
-				<span class="layui-right" style="margin-right: 2%;">{{$config->text_header_common}}</span>
+				<span class="layui-right layui-btn2" style="margin-right: 2%;">{{$config->text_header_common}}</span>
 				<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy">{{$config->text_number_sale_off}}: {{$config->text_promotion_number}}</button></spam>
 			</div>
 			<hr>
@@ -145,7 +145,7 @@
 				<div class="layui-footer layui-product-footer">
 					<div class="layui-buy">
 						<a href="https://www.facebook.com/Vinstores/"><span class="layui-right" style="margin-right: 2%;">{{$config->text_footer_left}}</span></a>
-						<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy">{{$config->text_footer_right}}</button></spam>
+						<spam class="layui-right"><button class="layui-btn layui-btn-danger now_buy layui-btn2">{{$config->text_footer_right}}</button></spam>
 					</div>
 				</div>
 			</div>
@@ -203,8 +203,10 @@
 				</div>
 				<div class="layui-buy-footer layui-row">
 					<!-- <div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$product->price}}</span>VNĐ</div> -->
-					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>250000</span>VNĐ
+					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$productFirst->price}}</span>VNĐ
 					</div>
+					<input type="hidden" name="price_first" value="{{$productFirst->price}}">
+
 					<div class="col-6 mobile_hihe remove_a" style="margin-right: 4px;"><a href="https://www.facebook.com/Vinstores/">{{$config->text_footer_left}}</a> </div>
 					<div class="col-6" id="buy">
 						<input type="submit" value="Bước tiếp theo" lay-filter="nowBuy" lay-submit style="font-size: 15px;">

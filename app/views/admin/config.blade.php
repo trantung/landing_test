@@ -77,6 +77,12 @@
                                 <div class="form-group">
                                     <label>Text discount <span class="text-warning"></span></label>{{  Form::text('text_discount_payment', $config->text_discount_payment, array('class' => 'form-control')) }}
                                 </div>
+                                <div class="form-group">
+                                    <label>Text footer đặt hàng <span class="text-warning"></span></label>{{  Form::text('text_footer_order', $config->text_footer_order, array('class' => 'form-control')) }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Text đặt hàng thành công<span class="text-warning"></span></label>{{  Form::text('text_order_notify', $config->text_order_notify, array('class' => 'form-control')) }}
+                                </div>
 
                                 <label>Ảnh content</label>
                                     <input type="file" name="image_body" class="form-control"><br>

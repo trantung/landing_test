@@ -25,14 +25,13 @@
 </div>
 <div class="m-orderItem">
   <div class="reminder_title"><i class="reminder_icon"></i>Lưu ý</div>
-  <div class="reminder"> Nhận hàng mới thanh toán + miễn phí vận chuyển + 30 ngày đổi trả hàng! Mọi thắc mắc vui lòng liên hệ với bộ phận chăm sóc khách hàng! Cũng có thể gửi qua địa chỉ mail : . Đồng thời cung cấp đầy đủ họ tên, các thức liên hệ và mã đơn hàng trong mail, để chúng tôi có thể kịp thời liên hệ với quý khách hàng, chúc bạn mua sắm vui vẻ</div>
+  <div class="reminder">{{$config->text_order_notify}}</div>
 </div>
     </div>
 </div>
 <div class="timetips layui-row">
     <ul>
-        <li class="layui-col-xs6"><img src="images/hung/images/30day.png" alt="">Cam kết đổi hàng trong vòng 30 ngày</li>
-        <li class="layui-col-xs6"><img src="images/hung/images/huodao.png" alt="">Nhận tiền mặt khi giao hàng</li>
+        <li style="text-align: center; width:100%; color: #000000">{{$config->text_footer_order}}</li>
     </ul>
 </div>
 @include('hung.footer')

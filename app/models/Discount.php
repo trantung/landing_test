@@ -8,7 +8,7 @@ class Discount extends Eloquent
 
     protected $table = 'discounts';
     protected $fillable = [
-        'percent'
+        'percent','number'
     ];
 
     protected $dates = ['deleted_at'];

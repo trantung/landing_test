@@ -19,6 +19,11 @@
                                 <label>% Chiết khấu <span class="text-warning">(*)</span></label>
                                 {{  Form::text('percent', $discount->percent, array('class' => 'form-control' )) }}
                             </div>
+                            <div class="form-group">
+                                <label>Số lượng ít nhất để chiết khấu(ví dụ mua trên 2 sản phẩm mới được chiết khấu thì đặt = 2, mua trên 3 sp mới được ck đặt = 3..., nếu mua số lượng sp bất kì đều ck thì đặt = 1) <span class="text-warning">(*)</span></label>
+                                {{  Form::text('number', $discount->number, array('class' => 'form-control' )) }}
+                            </div>
+
                     </div> {{-- End row --}}
                 </div> {{-- End box-body --}}
 
