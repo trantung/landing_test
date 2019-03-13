@@ -15,6 +15,7 @@
             <th>Phone</th>
             <th>Address</th>
             <th>Comment</th>
+            <th>Date</th>
             <th width="145px">Thao tác</th>
         </tr>
         @foreach($data as $key => $order)
@@ -38,7 +39,7 @@
                 {{ Order::getValueByOrderId($order->id,'email') }}
             </td>
             <td>
-                {{ Order::getValueByOrderId($order->id,'phone') }}
+                {{ Order::getValueByOrderId($order->id,'phone_name') }}
             </td>
             <td>
                 {{ Order::getValueByOrderId($order->id,'address') }}
@@ -46,6 +47,10 @@
             <td>
                 {{ Order::getValueByOrderId($order->id,'comment') }}
             </td>
+            <td>
+                {{ Order::getValueByOrderId($order->id,'created_at') }}
+            </td>
+
             <td>
                 {{ Form::open(array('method'=>'DELETE', 'action' => array('AdminOrderController@destroy', $order->id), 'style' => 'display: inline-block;')) }}
                     <button class="btn btn-danger" title="xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa?');"><i class="glyphicon glyphicon-trash"></i></button>
