@@ -93,6 +93,7 @@ $(document).ready(function () {
                 if (Math.abs(parseInt(fnum)) <= 1){
                     $('input[name=number]').val(1);
                 }else{
+                    price = 0;
                     fnum = Math.abs(parseInt(fnum)) - 1;
                     // price = $('input[name=price]').val();
                     if ($('input[name=price]').val()) {
@@ -111,6 +112,7 @@ $(document).ready(function () {
                 if (Math.abs(parseInt(fnum)) < 1){
                     $('input[name=number]').val(1);
                 }else{
+                    price = 0;
                     fnum = Math.abs(parseInt(fnum)) + 1;
                     if ($('input[name=price]').val()) {
                         price = $('input[name=price]').val();
