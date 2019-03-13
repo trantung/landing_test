@@ -199,6 +199,8 @@
 
 				<div id="input-hidden" class="choose-product">
 				</div>
+				<input type="hidden" name="product_id_first" value="{{$productFirst->id}}">
+
 				<div class="layui-buy-footer layui-row">
 					<div class="col-6" id="pri-num" style="margin-right: 4px;"><span>{{$productFirst->price}}</span>VNĐ
 					</div>
