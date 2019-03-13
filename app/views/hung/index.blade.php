@@ -191,7 +191,7 @@
 						<div class="layui-product-size-title"> <b>Số lượng</b> </div>
 						<div class="layui-product-num">
 							<button type="button" class="decrease">-</button>
-							<input type="text" name="number" maxlength="2" class="layui-input" value="1" readonly>
+							<input id = "number_default" type="text" name="number" maxlength="2" class="layui-input" value="1" readonly>
 							<button type="button" class="increase">+</button>
 						</div>
 					</div>
@@ -236,6 +236,11 @@
 		        success: function (data) {
 		        	console.log(data['price']);
 		        	$('#remove_product').remove();
+		        	// $('#number_default').remove();
+		        	// $('#number_default').val() = 1;
+		        	$('input[name="number"]').val(1);
+		        	var test = $('input[name="number"]').val();
+		        	console.log(test);
 		           var text = '<input id="price" type="hidden" name="price" value="'+data['price']+'">' + '<input id="color" type="hidden" name="product_id" value="'+product_id+'">'+
 		           '<input type="hidden" name="price_first" value="'+data['price']+'">'
 		           ;
