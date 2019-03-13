@@ -93,7 +93,8 @@ $(document).ready(function () {
                 if (Math.abs(parseInt(fnum)) <= 1){
                     $('input[name=number]').val(1);
                 }else{
-                    fnum = Math.abs(parseInt(fnum)) - 1;
+                    // fnum = Math.abs(parseInt(fnum)) - 1;
+                    fnum = fnum - 1;
                     // price = $('input[name=price]').val();
                     if (typeof $('input[name=price]').val() === "undefined") {
                         price = $('input[name=price_first]').val();
@@ -111,7 +112,7 @@ $(document).ready(function () {
                 if (Math.abs(parseInt(fnum)) < 1){
                     $('input[name=number]').val(1);
                 }else{
-                    fnum = Math.abs(parseInt(fnum)) + 1;
+                    fnum = fnum + 1;
                     if (typeof $('input[name=price]').val() === "undefined") {
                         price = $('input[name=price_first]').val();
                     } else{
