@@ -26,7 +26,7 @@
 			</div>
 			<hr>
 			<div class="layui-ship layui-row">
-				<div class="layui-col-xs9">{{$config->text_fee_transfer}}</div>
+				<div class="layui-col">{{$config->text_fee_transfer}}</div>
 			</div>
 		</div>
 		<div class="layui-line"></div>
