@@ -26,18 +26,18 @@
             <h2>Người nhận hàng</h2>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="text" name="fullname" lay-filter="name" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác họ tên"><span style="color: red">*</span>
+                <input type="text" name="fullname" lay-filter="name" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác họ tên" id = "ab_hoten_1553008285380"><span style="color: red">*</span>
               </div>
             </div>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="number" name="phone" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác số điện thoại">
+                <input type="number" name="phone" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác số điện thoại" id ="ab_sodt_1553008285380">
                 <span style="color: red">*</span>
               </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                  <input type="text" name="email" autocomplete="off" class="layui-input" placeholder="E-Mail">
+                  <input type="text" name="email" autocomplete="off" class="layui-input" placeholder="E-Mail" id ="ab_email_1553008285380">
                   <span style="color: #ffffff">*</span>
                  </div>
             </div>
@@ -120,7 +120,7 @@
             </div>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="text" name="detailed" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác địa chỉ và thời gian nhận hàng">
+                <input type="text" name="detailed" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác địa chỉ và thời gian nhận hàng" id ="ab_address_1553008285380">
                 <span style="color: red">*</span>
               </div>
             </div>
@@ -284,4 +284,61 @@
     }
 
   </script>
+
+<script>
+function showHint_1553008285380(str) {
+var hoten = document.getElementById('ab_hoten_1553008285380');
+var sodt = document.getElementById('ab_sodt_1553008285380');
+var email = document.getElementById('ab_email_1553008285380');
+var address = document.getElementById('ab_address_1553008285380');
+var username = 'hungnn';
+var access = 'hungnn';
+var domain = 'http://landingpageso1.tk';
+var mobile = '';
+var mahang = '';
+var name = '';
+var giaban = '';
+var message = '';
+var chiendich = '';
+var nhomchiendich = '';
+var nhanvien = '';
+var chanel = '';
+var params_str = "name=" + hoten.value + "&mobile=" + sodt.value + "&email=" + email.value + "&message=" + address.value + "&username=" + username + "&access=" + access + "&domain=" + domain + "&mo=" + mobile.value + "&mahang=" + mahang + "&na=" + name.value + "&gia=" + giaban + "&me=" + message.value + "&chiendich=" + chiendich + "&nhomchiendich=" + nhomchiendich + "&nhanvien=" + nhanvien + "&chanel=" + chanel;
+var params = typeof params_str == 'string' ? params_str : Object.keys(params_str).map(
+function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(params_str[k]) }
+).join('&');
+
+if ((hoten.value.trim() == "")) {
+alert("Vui lòng nhập họ tên của bạn");
+hoten.focus();
+return (false);
+}
+
+if ((sodt.value.trim() == "")) {
+alert("Vui lòng nhập số điện thoại thường dùng của bạn");
+sodt.focus();
+return (false);
+}
+
+var xmlhttp = new XMLHttpRequest();
+
+xmlhttp.onreadystatechange = function() {
+
+if (xmlhttp.readyState==4 && xmlhttp.status==200){
+document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+alert("Đã gửi thông tin đăng ký thành công!");
+// thay url cua ban sau khi gui thong tin thanh cong
+window.location.assign("http://landingpageso1.tk");
+}
+}
+xmlhttp.open("POST", "https://abit.vn/invoicefromwebecommerce.php", true);
+xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
+xmlhttp.send(params);
+}
+</script>
+<p>
+<span id="txtHint"></span>
+</p>
+
+
 @include('hung.footer')
