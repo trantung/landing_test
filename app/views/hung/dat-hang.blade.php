@@ -213,7 +213,7 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     function submitAbit()
     {
       $.ajax({
@@ -283,7 +283,7 @@
         });
     }
 
-  </script>
+  </script> -->
 
 <script>
 function showHint_1553008285380(str) {
