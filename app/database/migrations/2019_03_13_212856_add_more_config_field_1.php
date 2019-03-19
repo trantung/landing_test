@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMoreConfigField extends Migration {
+class AddMoreConfigField1 extends Migration {
 
 	/**
 	 * Run the migrations.
