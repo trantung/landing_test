@@ -39,8 +39,8 @@
 			</div>
 			<div class="layui-col-xs8 sharer_fb "> 
 				<div class="fb-send" data-href="https://www.facebook.com/Vinstores/"></div>
-				<div class="fb-like" data-href="https://www.facebook.com/Vinstores/" data-layout="button_count" data-action="like" data-show-faces="true"></div>
-				<div class="fb-share-button" data-href="https://www.facebook.com/Vinstores/" data-layout="button_count"></div> 
+				<div class="fb-like" data-href="{{$config->like_link}}" data-layout="button_count" data-action="like" data-show-faces="true"></div>
+				<div class="fb-share-button" data-href="{{$config->share_link}}" data-layout="button_count"></div> 
 			</div>
 		</div>
 		<div class="layui-line"></div>

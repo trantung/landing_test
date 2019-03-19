@@ -83,6 +83,12 @@
                                 <div class="form-group">
                                     <label>Text đặt hàng thành công<span class="text-warning"></span></label>{{  Form::text('text_order_notify', $config->text_order_notify, array('class' => 'form-control')) }}
                                 </div>
+                                <div class="form-group">
+                                    <label>like link<span class="text-warning"></span></label>{{  Form::text('like_link', $config->like_link, array('class' => 'form-control')) }}
+                                </div>
+                                <div class="form-group">
+                                    <label>share link<span class="text-warning"></span></label>{{  Form::text('share_link', $config->share_link, array('class' => 'form-control')) }}
+                                </div>
 
                                 <label>Ảnh content</label>
                                     <input type="file" name="image_body" class="form-control"><br>
