@@ -18,7 +18,7 @@
         <li> <span class="tips1">Mã đơn hàng:</span> <span class="tips2"> {{$orderId}} </span> </li>
         <?php $t = 30000000;?>
         <!-- <?php $t //= $_GET["n"]; ?> -->
-      <li> <span class="tips1">Số tiền thanh toán :</span> <span class="tips2">{{$money}}</span> </li>
+      <li> <span class="tips1">Số tiền thanh toán :</span> <span class="tips2">{{number_format($money)}} VNĐ</span> </li>
     </ul>
   </div>
   <p style="margin-bottom: 38px;" id="order_tips">Chúc mừng bạn, đơn hàng đã đặt mua thành công. Chúng tôi đã nhận được đơn hàng của bạn, và sẽ sớm phát hàng cho bạn.</p>
