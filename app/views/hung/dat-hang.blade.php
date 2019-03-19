@@ -200,7 +200,7 @@
           </div>
           <div class="cart-footer">
             <!-- <a id="sbm" href="http://localhost/ionlinei.com/thong-bao.php?n=<?php //echo $tong_tien ; ?> ">Xác nhận đặt hàng</a> -->
-            <button id="button" type="submit" class="layui-btn btn_vipshop layui-btn-danger" onclick="submitAbit()">Xác nhận đặt hàng</button>
+            <button id="button" type="submit" class="layui-btn btn_vipshop layui-btn-danger">Xác nhận đặt hàng</button>
           </div>
         <!-- </form> -->
         {{ Form::close() }}
