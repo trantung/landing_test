@@ -639,7 +639,7 @@ textarea.layui-textarea {
     height: 16px; 
     z-index: 999999999;
     transition: all .5s ease;
-    /*opacity: .7;*/
+    opacity: .7;
 }
 #toTop:hover{
      opacity: 1;
