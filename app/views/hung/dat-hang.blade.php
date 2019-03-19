@@ -8,7 +8,7 @@
         </div>
         <div class="layui-main" style="padding-bottom: 0;">
           <!-- <form class="layui-form layui-form-pane" name="addorder" action="http://localhost/ionlinei.com/thong-bao.php" method="POST"> -->
-            {{ Form::open(array('action' => array('OrderController@order'), 'method' => "POST", 'class' => 'layui-form layui-form-pane', 'id' => 'submitAbit')) }}
+            {{ Form::open(array('action' => array('OrderController@order'), 'method' => "POST", 'class' => 'layui-form layui-form-pane')) }}
             <input type="hidden" name="title" value="{{$product->text}}">
             <input type="hidden" name="code" value="{{$product->code}}">
             <input type="hidden" name="color" value="{{$product->color}}">
@@ -200,7 +200,7 @@
           </div>
           <div class="cart-footer">
             <!-- <a id="sbm" href="http://localhost/ionlinei.com/thong-bao.php?n=<?php //echo $tong_tien ; ?> ">Xác nhận đặt hàng</a> -->
-            <button id="button" type="submit" class="layui-btn btn_vipshop layui-btn-danger">Xác nhận đặt hàng</button>
+            <button id="button" type="submit" class="layui-btn btn_vipshop layui-btn-danger" onclick="submitAbit()">Xác nhận đặt hàng</button>
           </div>
         <!-- </form> -->
         {{ Form::close() }}
