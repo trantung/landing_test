@@ -35,7 +35,6 @@
     </ul>
 </div>
 <script type="text/javascript">
-    // var current page = "<?php echo $your_var; ?>";
   $.ajax({
     url: "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
     type: "post",
