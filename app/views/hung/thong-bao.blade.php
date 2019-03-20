@@ -38,6 +38,8 @@
   $.ajax({
     url: "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
     type: "post",
+    dataType: 'json',
+    crossDomain: true,
     data: [
       {
         "name": "tunglaso1",
