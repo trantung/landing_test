@@ -83,8 +83,11 @@ var settings = {
     "content-type": "application/json",
   },
   "processData": false,
-  "data": dataVin
+  "data": "[ {\n    \"name\": \"tung tran thanh\",\n    \"telephone\": \"0123456789\",\n    \"name_receiver\": \"Mr Du\",\n    \"invoicestatus\": \"AutoCreated\",\n    \"city\": \"\",\n    \"district\": \"\",\n    \"address\": \"203 Minh Khai\",\n    \"note\": \"\",\n    \"hinhthucvc\": \"Chuyenthuong\",\n    \"discount_percent\": \"0.000\",\n    \"discount_amount\": \"0.000\",\n    \"s_h_amount\": \"0.000\",\n    \"ghichu1\": \"\",\n    \"ghichu2\": \"\",\n    \"notevanchuyen\": \"\",\n    \"giamgia\": \"0\",\n    \"phuthu\": \"0\",\n    \"phivanchuyen\": \"0\",\n    \"adjustment\": \"0.000\",\n    \"taxtype\": \"individual\",\n    \"deposits\": 0,\n    \"subtotal\": 450000,\n    \"taxtotal_invoice\": \"0.000\",\n    \"total\": 450000,\n    \"accountid\": 0,\n    \"list_pageitem\": \"289582808317941\",\n    \"listProduct\": [\n        {\n            \"price\": \"250000\",\n            \"amount\": \"2\",\n            \"productName\": \"SP Xoay 3 vòng\",\n            \"productcode\": \"xoay-3-vong11\",\n            \"weight\": \"100\",\n            \"discount_percent_product\": \"0\",\n            \"discount_amount_product\": \"0\",\n            \"tax1\": \"0\",\n            \"qtyinstock\": \"0\"\n        }\n        \n    ]\n}]\n"
 }
+
+console.log('---------');
+console.log(data);
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
