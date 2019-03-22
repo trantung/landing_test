@@ -65,6 +65,8 @@ class OrderController extends Controller {
 
 		$data = [];
 		$product = Product::find($product_id);
+		$productName = $product->text;
+		$productCode = $product->code;
 		$data['product_id'] = $product_id;
 		$data['order_id'] = $orderId;
 		$data['quantity'] = $input['number'];
@@ -82,6 +84,18 @@ class OrderController extends Controller {
   //           $message->to('vinstoresvn@gmail.com')
   //               ->subject('Thông báo có đơn hàng mới');
   //       });
+//         name	Bắt buộc	Tên khách hàng
+// telephone	Bắt buộc	Điện thoại khách
+// name_receiver	Bắt buộc	Tên người nhận hàng (có thể để giống tên khách)
+// invoicestatus	Bắt buộc	Trạng thái đơn hàng, mặc định AutoCreated
+        // subtotal	Bắt buộc	Tiền hàng, mặc định : 0
+// total	Bắt buộc	Tổng tiền hàng + phụ thu - giảm trừ (nếu có) : mặc định :0
+//         listProduct	Bắt buộc	Mảng các giá trị về sản phẩm trong đơn hàng
+// price	Bắt buộc	Giá sản phẩm
+// amount	Bắt buộc	Số lượng bán
+// productName	Bắt buộc	Tên sản phẩm
+// productcode	Bắt buộc
+
         $abit = '[
                       {
                         "name": "Hoang Xuan Du",
@@ -137,7 +151,7 @@ class OrderController extends Controller {
                         ]
                     }
                     ]';
-		return View::make('hung.thong-bao')->with(compact('money', 'orderId', 'config', 'abit'));
+		return View::make('hung.thong-bao')->with(compact('money', 'orderId', 'config', 'abit','order', 'data', 'productName'));
 	}
 	public function success()
 	{
