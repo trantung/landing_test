@@ -35,14 +35,18 @@
     </ul>
 </div>
 <script type="text/javascript">
-  $.ajax({
-    url: "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
-    type: "post",
-    dataType: 'json',
-    crossDomain: true,
-    data: [
-      {
-        "name": "tunglaso1",
+    var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded",
+    "cache-control": "no-cache",
+    "postman-token": "fa6f49a7-ace1-574f-36cf-f3d74857bb8b"
+  },
+  "data": [ {
+        "name": "tung tran thanh",
         "telephone": "0123456789",
         "name_receiver": "Mr Du",
         "invoicestatus": "AutoCreated",
@@ -94,13 +98,11 @@
             }
         ]
     }
-    ] ,
-    success: function (data) {
-      console.log('tunglaso1');
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-       console.log(textStatus, errorThrown);
-    }
+]
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
 });
 </script>
 @include('hung.footer')
