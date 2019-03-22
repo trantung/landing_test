@@ -44,7 +44,61 @@
     "content-type": "application/json",
   },
   "processData": false,
-  "data": "\n   [ {\n        \"name\": \"tung tran thanh\",\n        \"telephone\": \"0123456789\",\n        \"name_receiver\": \"Mr Du\",\n        \"invoicestatus\": \"AutoCreated\",\n        \"city\": \"\",\n        \"district\": \"\",\n        \"address\": \"203 Minh Khai\",\n        \"note\": \"\",\n        \"hinhthucvc\": \"Chuyenthuong\",\n        \"discount_percent\": \"0.000\",\n        \"discount_amount\": \"0.000\",\n        \"s_h_amount\": \"0.000\",\n        \"ghichu1\": \"\",\n        \"ghichu2\": \"\",\n        \"notevanchuyen\": \"\",\n        \"giamgia\": \"0\",\n        \"phuthu\": \"0\",\n        \"phivanchuyen\": \"0\",\n        \"adjustment\": \"0.000\",\n        \"taxtype\": \"individual\",\n        \"deposits\": 0,\n        \"subtotal\": 450000,\n        \"taxtotal_invoice\": \"0.000\",\n        \"total\": 450000,\n        \"accountid\": 0,\n        \"list_pageitem\": \"289582808317941\",\n        \"listProduct\": [\n            {\n                \"price\": \"250000\",\n                \"amount\": \"2\",\n                \"productName\": \"SP Xoay 3 vòng\",\n                \"productcode\": \"xoay-3-vong11\",\n                \"weight\": \"100\",\n                \"discount_percent_product\": \"0\",\n                \"discount_amount_product\": \"0\",\n                \"tax1\": \"0\",\n                \"qtyinstock\": \"0\"\n            },\n            {\n                \"price\": \"298000\",\n                \"amount\": \"3\",\n                \"storeId\": 1,\n                \"productName\": \"Giày Boot Nam Cao Cổ Khâu Đế Màu Đen Da Sần M89-38\",\n                \"productcode\": \"M89-38222\",\n                \"weight\": \"100\",\n                \"discount_percent_product\": \"0\",\n                \"discount_amount_product\": \"0\",\n                \"tax1\": \"0\",\n                \"qtyinstock\": \"0\"\n            }\n        ]\n    }\n]\n"
+  "data": 
+   [ {
+        "name": "tung tran thanh",
+        "telephone": "0123456789",
+        "name_receiver": "Mr Du",
+        "invoicestatus": "AutoCreated",
+        "city": "",
+        "district": "",
+        "address": "203 Minh Khai",
+        "note": "",
+        "hinhthucvc": "Chuyenthuong",
+        "discount_percent": "0.000",
+        "discount_amount": "0.000",
+        "s_h_amount": "0.000",
+        "ghichu1": "",
+        "ghichu2": "",
+        "notevanchuyen": "",
+        "giamgia": "0",
+        "phuthu": "0",
+        "phivanchuyen": "0",
+        "adjustment": "0.000",
+        "taxtype": "individual",
+        "deposits": 0,
+        "subtotal": 450000,
+        "taxtotal_invoice": "0.000",
+        "total": 450000,
+        "accountid": 0,
+        "list_pageitem": "289582808317941",
+        "listProduct": [
+            {
+                "price": "250000",
+                "amount": "2",
+                "productName": "SP Xoay 3 vòng",
+                "productcode": "xoay-3-vong11",
+                "weight": "100",
+                "discount_percent_product": "0",
+                "discount_amount_product": "0",
+                "tax1": "0",
+                "qtyinstock": "0"
+            },
+            {
+                "price": "298000",
+                "amount": "3",
+                "storeId": 1,
+                "productName": "Giày Boot Nam Cao Cổ Khâu Đế Màu Đen Da Sần M89-38",
+                "productcode": "M89-38222",
+                "weight": "100",
+                "discount_percent_product": "0",
+                "discount_amount_product": "0",
+                "tax1": "0",
+                "qtyinstock": "0"
+            }
+        ]
+    }
+]
 }
 
 $.ajax(settings).done(function (response) {
