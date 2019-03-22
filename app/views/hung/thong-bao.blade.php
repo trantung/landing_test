@@ -73,7 +73,7 @@ var dataVin = '" [ {\n        \"name\": \"' +name +
     '\",\n                \"weight\": \"100\",\n                \"discount_percent_product\": \"0\",\n                \"discount_amount_product\": \"0\",\n                \"tax1\": \"0\",\n                \"qtyinstock\": \"0\"\n            }\n        \n    ]\n}]\n"'
 ;
     
-
+console.log(dataVin);
 var settings = {
   "async": true,
   "crossDomain": true,
