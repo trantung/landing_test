@@ -151,6 +151,65 @@ class OrderController extends Controller {
                         ]
                     }
                     ]';
+        $request = new HttpRequest();
+		$request->setUrl('https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL');
+		$request->setMethod(HTTP_METH_POST);
+
+		$request->setHeaders(array(
+		  'postman-token' => '377850ad-4613-75eb-d015-62cbd1944d94',
+		  'cache-control' => 'no-cache'
+		));
+
+		$request->setBody('[ {
+			"name": "tung tran thanh","telephone": "0123456789",
+		    "name_receiver": "Mr Du",
+		    "invoicestatus": "AutoCreated",
+		    "city": "",
+		    "district": "",
+		    "address": "203 Minh Khai",
+		    "note": "",
+		    "hinhthucvc": "Chuyenthuong",
+		    "discount_percent": "0.000",
+		    "discount_amount": "0.000",
+		    "s_h_amount": "0.000",
+		    "ghichu1": "",
+		    "ghichu2": "",
+		    "notevanchuyen": "",
+		    "giamgia": "0",
+		    "phuthu": "0",
+		    "phivanchuyen": "0",
+		    "adjustment": "0.000",
+		    "taxtype": "individual",
+		    "deposits": 0,
+		    "subtotal": 450000,
+		    "taxtotal_invoice": "0.000",
+		    "total": 450000,
+		    "accountid": 0,
+		    "list_pageitem": "289582808317941",
+		    "listProduct": [
+		        {
+		            "price": "250000",
+		            "amount": "2",
+		            "productName": "SP Xoay 3 vòng",
+		            "productcode": "xoay-3-vong11",
+		            "weight": "100",
+		            "discount_percent_product": "0",
+		            "discount_amount_product": "0",
+		            "tax1": "0",
+		            "qtyinstock": "0"
+		        }
+		        
+		    ]
+		}]
+		');
+
+		try {
+		  $response = $request->send();
+
+		  
+		} catch (HttpException $ex) {
+		  echo $ex;
+		}
 		return View::make('hung.thong-bao')->with(compact('money', 'orderId', 'config', 'abit','order', 'data', 'productName','productCode'));
 	}
 	public function success()
