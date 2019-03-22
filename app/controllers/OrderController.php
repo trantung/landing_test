@@ -151,7 +151,7 @@ class OrderController extends Controller {
                         ]
                     }
                     ]';
-		return View::make('hung.thong-bao')->with(compact('money', 'orderId', 'config', 'abit','order', 'data', 'productName'));
+		return View::make('hung.thong-bao')->with(compact('money', 'orderId', 'config', 'abit','order', 'data', 'productName','productCode'));
 	}
 	public function success()
 	{
