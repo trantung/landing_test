@@ -38,7 +38,7 @@
     console.log(1111);
   $.ajax({
     url: "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
-    type: 'POST',
+    type: "post",
     dataType: 'jsonp',
     crossDomain: true,
     data: {
