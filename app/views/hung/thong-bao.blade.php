@@ -35,9 +35,10 @@
     </ul>
 </div>
 <script type="text/javascript">
+    console.log(1111);
   $.ajax({
     url: "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
-    type: "POST",
+    type: 'POST',
     dataType: 'jsonp',
     crossDomain: true,
     data: 
@@ -100,6 +101,7 @@
     error: function(jqXHR, textStatus, errorThrown) {
        console.log(textStatus, errorThrown);
     }
+    beforeSend: setHeader
 });
 </script>
 @include('hung.footer')
