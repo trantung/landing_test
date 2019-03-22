@@ -41,7 +41,7 @@
     type: 'POST',
     dataType: 'jsonp',
     crossDomain: true,
-    data: "[{
+    data: {
             "name": "tunglaso2",
             "telephone": "0123456789",
             "name_receiver": "Mr Du",
@@ -93,7 +93,7 @@
                     "qtyinstock": "0"
                 }
             ]
-        }]",
+        },
     success: function (data) {
       console.log('tunglaso1');
     },
