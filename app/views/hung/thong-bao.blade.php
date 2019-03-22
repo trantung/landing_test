@@ -35,71 +35,58 @@
     </ul>
 </div>
 <script type="text/javascript">
-  $.ajax({
-    url: "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
-    type: "POST",
-    dataType: 'json',
-    crossDomain: true,
-    data: 
-      {
-        "name": "tunglaso1",
-        "telephone": "0123456789",
-        "name_receiver": "Mr Du",
-        "invoicestatus": "AutoCreated",
-        "city": "",
-        "district": "",
-        "address": "203 Minh Khai",
-        "note": "",
-        "hinhthucvc": "Chuyenthuong",
-        "discount_percent": "0.000",
-        "discount_amount": "0.000",
-        "s_h_amount": "0.000",
-        "ghichu1": "",
-        "ghichu2": "",
-        "notevanchuyen": "",
-        "giamgia": "0",
-        "phuthu": "0",
-        "phivanchuyen": "0",
-        "adjustment": "0.000",
-        "taxtype": "individual",
-        "deposits": 0,
-        "subtotal": 450000,
-        "taxtotal_invoice": "0.000",
-        "total": 450000,
-        "accountid": 0,
-        "list_pageitem": "289582808317941",
-        "listProduct": [
-            {
-                "price": "250000",
-                "amount": "2",
-                "productName": "SP Xoay 3 vòng",
-                "productcode": "xoay-3-vong11",
-                "weight": "100",
-                "discount_percent_product": "0",
-                "discount_amount_product": "0",
-                "tax1": "0",
-                "qtyinstock": "0"
-            },
-            {
-                "price": "298000",
-                "amount": "3",
-                "storeId": 1,
-                "productName": "Giày Boot Nam Cao Cổ Khâu Đế Màu Đen Da Sần M89-38",
-                "productcode": "M89-38222",
-                "weight": "100",
-                "discount_percent_product": "0",
-                "discount_amount_product": "0",
-                "tax1": "0",
-                "qtyinstock": "0"
-            }
-        ]
-    },
-    success: function (data) {
-      console.log('tunglaso1');
-    },
-    error: function(jqXHR, textStatus, errorThrown) {
-       console.log(textStatus, errorThrown);
-    }
+// name    Bắt buộc    Tên khách hàng
+// telephone    Bắt buộc    Điện thoại khách
+// name_receiver    Bắt buộc    Tên người nhận hàng (có thể để giống tên khách)
+// invoicestatus    Bắt buộc    Trạng thái đơn hàng, mặc định AutoCreated
+        // subtotal Bắt buộc    Tiền hàng, mặc định : 0
+// total    Bắt buộc    Tổng tiền hàng + phụ thu - giảm trừ (nếu có) : mặc định :0
+//         listProduct  Bắt buộc    Mảng các giá trị về sản phẩm trong đơn hàng
+// price    Bắt buộc    Giá sản phẩm
+// amount   Bắt buộc    Số lượng bán
+// productName  Bắt buộc    Tên sản phẩm
+// productcode  Bắt buộc\
+
+var name = "<?php echo $order['receiver_name']; ?>";
+var telephone = "<?php echo $order['phone_name']; ?>";
+var city = "<?php echo $order['city']; ?>";
+var address = "<?php echo $order['address']; ?>";
+var name_receiver = "<?php echo $order['receiver_name']; ?>";
+var comment = "<?php echo $order['comment']; ?>";
+var subtotal = "<?php echo $order['total_price']; ?>";
+var total = "<?php echo $order['money_pay']; ?>";
+var price = "<?php echo $data['price']; ?>";
+var amount = "<?php echo $data['quantity']; ?>";
+var productName = "<?php echo $productName; ?>";
+var productcode = "<?php echo $productCode; ?>";
+
+var dataVin = '" [ {\n        \"name\": \"' +name +
+    '\",\n        \"telephone\": \"'+telephone+
+    '\",\n        \"name_receiver\": \"'+name_receiver+
+    '\",\n        \"invoicestatus\": \"AutoCreated\",\n        \"'+city+
+    '\": \"\",\n        \"district\": \"\",\n        \"address\": \"'+address+
+    '\",\n        \"note\": \"'+comment+'\",\n        \"hinhthucvc\": \"Chuyenthuong\",\n        \"discount_percent\": \"0.000\",\n        \"discount_amount\": \"0.000\",\n        \"s_h_amount\": \"0.000\",\n        \"ghichu1\": \"\",\n        \"ghichu2\": \"\",\n        \"notevanchuyen\": \"\",\n        \"giamgia\": \"0\",\n        \"phuthu\": \"0\",\n        \"phivanchuyen\": \"0\",\n        \"adjustment\": \"0.000\",\n        \"taxtype\": \"individual\",\n        \"deposits\": 0,\n        \"subtotal\": '+subtotal+
+    ',\n        \"taxtotal_invoice\": \"0.000\",\n        \"total\": '+total+
+    ',\n        \"accountid\": 0,\n        \"list_pageitem\": \"289582808317941\",\n        \"listProduct\": [\n            {\n                \"price\": \"'+price+'\",\n                \"amount\": \"'+amount+
+    '\",\n                \"productName\": \"'+productName+
+    '\",\n                \"productcode\": \"'+productcode+
+    '\",\n                \"weight\": \"100\",\n                \"discount_percent_product\": \"0\",\n                \"discount_amount_product\": \"0\",\n                \"tax1\": \"0\",\n                \"qtyinstock\": \"0\"\n            }\n        \n    ]\n}]\n"'
+;
+    
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://new.abit.vn/invoices/createInvoiceFromPartner/2/vinstore/Zxb9yNn2TC5fTXL",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/json",
+  },
+  "processData": false,
+  "data": dataVin
+}
+$.ajax(settings).done(function (response) {
+  console.log(response);
 });
 </script>
 @include('hung.footer')
