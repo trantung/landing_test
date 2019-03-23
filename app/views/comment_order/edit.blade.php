@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
-            {{ Form::open(array('action' => array('CommentOrderController@update', $commentOrder->id), 'method' => "POST", 'files' => true)) }}
+            {{ Form::open(array('action' => array('CommentOrderController@update', $commentOrder->id), 'method' => "PUT", 'files' => true)) }}
                 <div class="box-body">
                     <div class="row">
                         <div class="col-sm-6">
