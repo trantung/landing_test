@@ -63,7 +63,8 @@ class CommentOrderController extends AdminController {
      */
     public function edit($id)
     {
-        //
+        $commentOrder = CommentOrder::find($id);
+        return View::make('comment_order.edit')->with(compact('commentOrder'));
     }
 
 
@@ -75,7 +76,12 @@ class CommentOrderController extends AdminController {
      */
     public function update($id)
     {
-        //
+        $input = Input::all();
+        // dd($input);
+        $commentOrder = CommentOrder::find($id);
+        // $input['image_url'] = CommonUpload::uploadImage(UPLOADPRODUCT, 'image_url', $product->image_url);
+        $commentOrder->update($input);
+        return Redirect::action('CommentOrderController@index');
     }
 
 

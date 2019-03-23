@@ -63,7 +63,8 @@ class CommentController extends AdminController {
      */
     public function edit($id)
     {
-        //
+        $comment = Comment::find($id);
+        return View::make('comment.edit')->with(compact('comment'));
     }
 
 
@@ -75,7 +76,12 @@ class CommentController extends AdminController {
      */
     public function update($id)
     {
-        //
+        $input = Input::all();
+        // dd($input);
+        $comment = Comment::find($id);
+        $input['image_url'] = CommonUpload::uploadImage(UPLOADCOMMENT, 'image_url', $comment->image_url);
+        $comment->update($input);
+        return Redirect::action('CommentController@index');
     }
 
 

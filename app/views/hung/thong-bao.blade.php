@@ -60,7 +60,7 @@ var amount = "<?php echo $data['quantity']; ?>";
 var productName = "<?php echo $productName; ?>";
 var productcode = "<?php echo $productCode; ?>";
 
-var dataVin = '" [ {\n        \"name\": \"' +name +
+var dataVin = ' [ {\n        \"name\": \"' +name +
     '\",\n        \"telephone\": \"'+telephone+
     '\",\n        \"name_receiver\": \"'+name_receiver+
     '\",\n        \"invoicestatus\": \"AutoCreated\",\n    \"city\": \"'+city+'\",\n    \"district\": \"\",\n        \"address\": \"'+address+
@@ -69,7 +69,7 @@ var dataVin = '" [ {\n        \"name\": \"' +name +
     ',\n        \"accountid\": 0,\n        \"list_pageitem\": \"289582808317941\",\n        \"listProduct\": [\n            {\n                \"price\": \"'+price+'\",\n                \"amount\": \"'+amount+
     '\",\n                \"productName\": \"'+productName+
     '\",\n                \"productcode\": \"'+productcode+
-    '\",\n                \"weight\": \"100\",\n                \"discount_percent_product\": \"0\",\n                \"discount_amount_product\": \"0\",\n                \"tax1\": \"0\",\n                \"qtyinstock\": \"0\"\n            }\n        \n    ]\n}]\n"'
+    '\",\n                \"weight\": \"100\",\n                \"discount_percent_product\": \"0\",\n                \"discount_amount_product\": \"0\",\n                \"tax1\": \"0\",\n                \"qtyinstock\": \"0\"\n            }\n        \n    ]\n}]\n'
 ;
     
 console.log(dataVin);
