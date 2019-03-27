@@ -160,7 +160,7 @@
 					<div class="layui-col-xs3 layui-image"> 
 						<img src="{{ $productFirst->image_url}}" id="sizeimg"/>
 					</div>
-					<div class="layui-col-xs8 layui-name">
+					<div class="layui-col-xs9 layui-name">
 						<p id="product_name">{{$productFirst->text}}</p>
 						<p id="product_color">{{$productFirst->code}}</p>
 						<p class="layui-text-red" id="sizetitle">{{$productFirst->color}}</p>
