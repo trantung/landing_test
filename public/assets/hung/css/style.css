@@ -312,7 +312,7 @@ ul.picList li {
     font-size: 27px;
     text-align: right;
     position: relative;
-    top: -31px;
+    top: 0;
     font-weight: 100;
 }
 .layui-col-xs3{
@@ -625,6 +625,8 @@ textarea.layui-textarea {
     left: -1px;
 }
 #toTop { 
+    background-size: 100%;
+    display: flex;
     background:url("/../../images/hung/images/Back-To-Top1.png");
     bottom: 60px;
     color: #333;
@@ -727,5 +729,6 @@ ul.pay_list {
     text-decoration: none;
 }
 .layui-image{
+    margin-right :15px;
     margin-right: 10px;
 }
