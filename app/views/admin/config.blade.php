@@ -89,6 +89,9 @@
                                 <div class="form-group">
                                     <label>share link<span class="text-warning"></span></label>{{  Form::text('share_link', $config->share_link, array('class' => 'form-control')) }}
                                 </div>
+                                <div class="form-group">
+                                    <label>Nhắn tin<span class="text-warning"></span></label>{{  Form::text('message_to', $config->message_to, array('class' => 'form-control')) }}
+                                </div>
 
                                 <label>Ảnh content</label>
                                     <input type="file" name="image_body" class="form-control"><br>
