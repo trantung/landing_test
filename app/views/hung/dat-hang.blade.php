@@ -26,19 +26,18 @@
             <h2>Người nhận hàng</h2>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="text" name="fullname" lay-filter="name" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác họ tên" id = "ab_hoten_1553008285380"><span style="color: red">*</span>
+                <input type="text" name="fullname" lay-filter="name" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác họ tên (bắt buộc)" id = "ab_hoten_1553008285380"><span style="color: red">*</span>
               </div>
             </div>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="number" name="phone" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác số điện thoại" id ="ab_sodt_1553008285380">
+                <input type="number" name="phone" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác số điện thoại (bắt buộc)" id ="ab_sodt_1553008285380">
                 <span style="color: red">*</span>
               </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-inline">
-                  <input type="text" name="email" autocomplete="off" class="layui-input" placeholder="E-Mail" id ="ab_email_1553008285380">
-                  <span style="color: #ffffff">*</span>
+                  <input type="text" name="email" autocomplete="off" class="layui-input" placeholder="E-Mail (không bắt buộc)" id ="ab_email_1553008285380">
                  </div>
             </div>
             <div class="layui-form-item">
@@ -120,7 +119,7 @@
             </div>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <input type="text" name="detailed" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác địa chỉ và thời gian nhận hàng" id ="ab_address_1553008285380">
+                <input type="text" name="detailed" autocomplete="off" class="layui-input" placeholder="Vui lòng điền chính xác địa chỉ" id ="ab_address_1553008285380">
                 <span style="color: red">*</span>
               </div>
             </div>

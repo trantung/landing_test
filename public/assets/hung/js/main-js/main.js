@@ -143,8 +143,8 @@ $(document).ready(function () {
 
 // validate form
         $("#button").click(function(){
-          var name = $('input[name=name]').val();
-          var mobile = $('input[name=mobile]').val();
+          var name = $('input[name=fullname]').val();
+          var mobile = $('input[name=phone]').val();
           var detailed = $('input[name=detailed]').val();
           if (name == "") {
             alert('Vui lòng điền họ tên');

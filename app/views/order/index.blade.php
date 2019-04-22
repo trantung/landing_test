@@ -11,6 +11,7 @@
             <th>Tổng tiền chưa discount</th>
             <th>Tổng tiền nhận</th>
             <th>Tỉnh/thành</th>
+            <th>Họ tên</th>
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
@@ -36,8 +37,12 @@
                 {{ Order::getValueByOrderId($order->id,'city') }}
             </td>
             <td>
+                {{ Order::getValueByOrderId($order->id,'receiver_name') }}
+            </td>
+            <td>
                 {{ Order::getValueByOrderId($order->id,'email') }}
             </td>
+            
             <td>
                 {{ Order::getValueByOrderId($order->id,'phone_name') }}
             </td>
