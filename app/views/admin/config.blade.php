@@ -15,10 +15,20 @@
                     <div class="row">
                         <div class="col-sm-6">
                                 <legend>Thông tin config</legend>
+				 <div class="form-group">
+                                    <label>Title <span class="text-warning">(*)</span></label>
+                                    {{  Form::text('text_config_title', $config->text_config_title, array('class' => 'form-control' )) }}
+                                </div>
+
                                 <div class="form-group">
                                     <label>Tên header <span class="text-warning">(*)</span></label>
                                     {{  Form::text('text_header', $config->text_header, array('class' => 'form-control' )) }}
                                 </div>
+				 <div class="form-group">
+                                    <label>Google analytics  <span class="text-warning"></span></label>
+                                    {{  Form::textarea('google_code', $config->google_code, array('class' => 'form-control', 'rows'=>5)) }}
+                                </div>
+
                                 <div class="form-group">
                                     <label>Price header <span class="text-warning">(*)</span></label>
                                     {{  Form::text('price_header', $config->price_header, array('class' => 'form-control' )) }}
