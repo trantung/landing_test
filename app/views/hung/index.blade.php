@@ -1,4 +1,4 @@
-include('hung.header')
+@include('hung.header')
 <div class="layui-container">
 	<div class="layui-main">
 		<div class="swiper-container">
