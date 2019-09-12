@@ -3,7 +3,7 @@
 	<div class="layui-main">
 		<div class="swiper-container">
 			<div class="swiper-wrapper"> 
-				<iframe width="100%" height="" src="https://www.youtube.com/embed/BIr9wlVnoFY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<iframe width="100%" height="" src="{{ $config->link_video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
 		</div>
 		<div class="layui-product-info">
