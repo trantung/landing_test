@@ -25,4 +25,14 @@ class LandingController extends Controller {
         return View::make('hung.index')->with(compact('config'));
 	}
 
+	public function getBuy()
+	{
+		$config = AdminConfig::find(1);
+		$productFirst = null;
+		if (Product::first()) {
+			$productFirst = Product::first();
+		}
+		$products = Product::all();
+        return View::make('hung.product')->with(compact('products', 'config', 'productFirst'));
+	}
 }

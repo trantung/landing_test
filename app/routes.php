@@ -1,5 +1,6 @@
 <?php
 Route::get('/', 'LandingController@index');
+Route::get('/mua-san-pham', 'LandingController@getBuy');
 
 Route::post('/order','OrderController@order');
 // Route::post('/success','OrderController@sucess');
