@@ -14,8 +14,7 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-sm-6">
-                                <legend>Thông tin config</legend>
-				 <div class="form-group">
+                                <div class="form-group">
                                     <label>Title <span class="text-warning">(*)</span></label>
                                     {{  Form::text('text_config_title', $config->text_config_title, array('class' => 'form-control' )) }}
                                 </div>
@@ -24,9 +23,13 @@
                                     <label>Tên header <span class="text-warning">(*)</span></label>
                                     {{  Form::text('text_header', $config->text_header, array('class' => 'form-control' )) }}
                                 </div>
-				 <div class="form-group">
+                                <div class="form-group">
                                     <label>Google analytics  <span class="text-warning"></span></label>
                                     {{  Form::textarea('google_code', $config->google_code, array('class' => 'form-control', 'rows'=>5)) }}
+                                </div>
+                                <div class="form-group">
+                                    <label>Link video youtube  <span class="text-warning"></span></label>
+                                    {{  Form::text('link_video', $config->link_video, array('class' => 'form-control')) }}
                                 </div>
 
                                 <div class="form-group">
