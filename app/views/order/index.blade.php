@@ -4,8 +4,12 @@
     {{ $title='Quản lý order' }}
 @stop
 @section('content')
-    <table class ="table table-bordered table-striped table-hover">
-        <tr>
+include('order.index_script')
+	<div class="scrollme">        
+<table class="table table-responsive table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+        <thead>
+	<tr>
             <th>STT</th>
             <th>Product + color</th>
             <th>Tổng tiền chưa discount</th>
@@ -17,8 +21,10 @@
             <th>Address</th>
             <th>Comment</th>
             <th>Date</th>
-            <th width="145px">Thao tác</th>
+            <th>Thao tác</th>
         </tr>
+	</thead>
+	<tbody>
         @foreach($data as $key => $order)
         <tr>
             <td>#{{ $key + 1 + ($data->getPerPage() * ($data->getCurrentPage() -1)) }}</td>
@@ -64,7 +70,9 @@
             
         </tr>
         @endforeach
+	</tbody>
     </table>
+</div>
     <div class="clear clearfix"></div>
     {{ $data->appends(Request::except('page'))->links() }}
 @stop

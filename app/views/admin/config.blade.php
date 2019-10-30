@@ -27,6 +27,11 @@
                                     <label>Google analytics  <span class="text-warning"></span></label>
                                     {{  Form::textarea('google_code', $config->google_code, array('class' => 'form-control', 'rows'=>5)) }}
                                 </div>
+				<div class="form-group">
+                                    <label>Facebook code  <span class="text-warning"></span></label>
+                                    {{  Form::textarea('fb_analytic', $config->fb_analytic, array('class' => 'form-control', 'rows'=>5)) }}
+                                </div>
+
                                 <div class="form-group">
                                     <label>Link video youtube  <span class="text-warning"></span></label>
                                     {{  Form::text('link_video', $config->link_video, array('class' => 'form-control')) }}

@@ -64,4 +64,31 @@
 </div>
 <div class="hbg"></div>
 
+<script type="text/javascript">
+    function chooseProduct(product_id)
+    {
+        $.ajax({
+            url: "/ajax/product",
+            type: "post",
+            data: {
+                product_id : product_id
+            } ,
+            success: function (data) {
+                console.log(data);
+                $('#remove_product').remove();
+                // $('#number_default').remove();
+                // $('#number_default').val() = 1;
+                // $('input[name="number"]').val(1);
+               var text = '<input id="price" type="hidden" name="price" value="'+data['price']+'">' + '<input id="color" type="hidden" name="product_id" value="'+product_id+'">'+
+               '<input type="hidden" id="price_first" name="price_first" value="'+data['price']+'">'
+               ;
+                $('#input-hidden').html(text);               
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+               console.log(textStatus, errorThrown);
+            }
+        });
+    }
+</script>
 @include('hung.footer')

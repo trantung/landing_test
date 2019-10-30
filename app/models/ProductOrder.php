@@ -28,9 +28,9 @@ class ProductOrder extends Eloquent {
     	$listProduct = ProductOrder::where('order_id', $orderId)->get();
     	$productName = '';
     	foreach ($listProduct as $key => $value) {
-    		$product = Product::find($value->id);
+    		$product = Product::find($value->product_id);
     		if ($product) {
-    			$productName .= $product->text . '+'. $product->color . ' ,';
+    			$productName .= $product->text . '+'. $product->color . ' ,' . $product->code;
     		}
     		
     	}
